@@ -26,13 +26,16 @@ nav{
 position:fixed;
 top:0;
 width:100%;
-background:black;
 display:flex;
 align-items:center;
 justify-content:flex-start;
 gap:40px;
 padding:10px 40px;
 z-index:1000;
+
+background:
+linear-gradient(90deg,#000000 0%,#000000 55%,#7a0000 100%);
+border-bottom:1px solid #2a2a2a;
 }
 
 .logo img{
@@ -77,19 +80,42 @@ justify-content:center;
 text-align:center;
 
 background:
-linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.9)),
+linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.95)),
 url("https://images.unsplash.com/photo-1503376780353-7e6692767b70")
 center/cover;
 }
 
-.hero h1{
-font-size:60px;
+.hero-content{
+max-width:700px;
+padding:20px;
+}
+
+.hero-logo{
+width:90px;
 margin-bottom:10px;
 }
 
-.hero p{
-font-size:20px;
+.hero h1{
+font-size:60px;
+margin:0;
+letter-spacing:2px;
 }
+
+.hero h2{
+font-size:32px;
+font-weight:400;
+color:#ff1c1c;
+margin-top:10px;
+}
+
+.hero-text{
+font-size:18px;
+opacity:0.85;
+margin-top:15px;
+line-height:1.6;
+}
+
+/* BUTTON */
 
 .btn{
 display:inline-block;
@@ -100,11 +126,37 @@ color:white;
 text-decoration:none;
 font-size:16px;
 transition:0.3s;
+border-radius:6px;
 }
 
 .btn:hover{
 background:white;
 color:black;
+}
+
+/* CONTACT FLOAT BUTTON */
+
+.contact-float{
+position:fixed;
+bottom:25px;
+right:25px;
+width:55px;
+height:55px;
+border-radius:50%;
+background:#ff1c1c;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+color:white;
+text-decoration:none;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+z-index:999;
+transition:0.3s;
+}
+
+.contact-float:hover{
+transform:scale(1.1);
 }
 
 /* SECTION */
@@ -243,8 +295,15 @@ margin-right:30px;
 display:flex;
 }
 
+.hero h1{
+font-size:42px;
 }
 
+.hero h2{
+font-size:24px;
+}
+
+}
 
 </style>
 
@@ -278,11 +337,19 @@ display:flex;
 
 <div class="hero" id="home">
 
-<div>
+<div class="hero-content">
+
+<img src="logo.png" class="hero-logo">
 
 <h1>GBAutoCare</h1>
 
-<p>Profesionalni car detailing studio</p>
+<h2>Detalji koji čine razliku.</h2>
+
+<p class="hero-text">
+GBAutoCare pruža profesionalno dubinsko čišćenje i
+detailing vozila kako bi vaš automobil uvijek izgledao
+čisto, svježe i besprijekorno.
+</p>
 
 <a href="#booking" class="btn">Rezerviraj termin</a>
 
@@ -304,13 +371,13 @@ display:flex;
 </div>
 
 <div class="card">
-<h3>Poliranje vozila</h3>
-<p>Uklanjanje ogrebotina i vraćanje sjaja laka.</p>
+<h3>Detailing interijera</h3>
+<p>Profesionalno čišćenje i njega unutrašnjosti vozila.</p>
 </div>
 
 <div class="card">
-<h3>Keramička zaštita</h3>
-<p>Dugotrajna zaštita vozila i visok sjaj.</p>
+<h3>Njega eksterijera</h3>
+<p>Pranje, zaštita i održavanje vanjskog izgleda vozila.</p>
 </div>
 
 </div>
@@ -334,13 +401,13 @@ display:flex;
 <div class="package">
 <h3>Premium paket</h3>
 <p>Dubinsko čišćenje</p>
-<p>Poliranje laka</p>
+<p>Detailing interijera</p>
 </div>
 
 <div class="package">
 <h3>Ultimate paket</h3>
-<p>Poliranje</p>
-<p>Keramička zaštita</p>
+<p>Kompletno čišćenje vozila</p>
+<p>Zaštita i njega interijera</p>
 </div>
 
 </div>
@@ -371,12 +438,10 @@ display:flex;
 
 <p style="text-align:center;max-width:800px;margin:auto;">
 
-GBAutoCare je obrt specijaliziran za profesionalni car detailing.
-Naš cilj je svakom vozilu vratiti savršen izgled kroz dubinsko
-čišćenje, poliranje i zaštitu vozila.
-
-Koristimo profesionalnu opremu i vrhunske proizvode kako bi
-svaki automobil dobio najbolju moguću njegu.
+GBAutoCare je specijaliziran za profesionalno dubinsko čišćenje
+i detailing vozila. Naš cilj je svakom automobilu pružiti
+najbolju moguću njegu koristeći profesionalnu opremu
+i kvalitetne proizvode.
 
 </p>
 
@@ -432,8 +497,6 @@ ili društvenih mreža.
 <a href="#">Instagram</a>
 <a href="#">Facebook</a>
 <a href="#">TikTok</a>
-<a href="#">Osobni Instagram</a>
-<a href="#">Osobni Facebook</a>
 
 </div>
 
@@ -442,6 +505,8 @@ ili društvenih mreža.
 </p>
 
 </footer>
+
+<a href="#contact" class="contact-float">📞</a>
 
 <script>
 
