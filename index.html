@@ -174,25 +174,45 @@ transform:scale(1.05);
 position:fixed;
 bottom:25px;
 right:25px;
-width:55px;
-height:55px;
+width:60px;
+height:60px;
 border-radius:50%;
-background:white;
+background:#ff1c1c;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:26px;
 color:black;
 text-decoration:none;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
+box-shadow:0 0 15px rgba(255,0,0,0.6);
 z-index:999;
 transition:0.3s;
+}
+
+.contact-float::after{
+content:"Kontaktiraj nas";
+position:absolute;
+bottom:70px;
+right:0;
+background:#111;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+font-size:14px;
+opacity:0;
+transform:translateY(10px);
+transition:0.3s;
+white-space:nowrap;
+}
+
+.contact-float:hover::after{
+opacity:1;
+transform:translateY(0);
 }
 
 .contact-float:hover{
 transform:scale(1.1);
 }
-
 /* SECTION */
 
 section{
