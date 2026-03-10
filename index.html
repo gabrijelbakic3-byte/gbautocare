@@ -29,8 +29,7 @@ width:100%;
 background:black;
 display:flex;
 align-items:center;
-justify-content:flex-start;
-  gap:40px;
+justify-content:space-between;
 padding:10px 40px;
 z-index:1000;
 }
@@ -49,7 +48,7 @@ align-items:center;
 .menu a{
 color:white;
 text-decoration:none;
-margin-left:50px;
+margin-left:30px;
 font-size:18px;
 }
 
@@ -202,6 +201,10 @@ color:#ff1c1c;
 
 @media (max-width:768px){
 
+nav{
+padding:10px 20px;
+}
+
 .menu{
 display:none;
 flex-direction:column;
@@ -220,16 +223,10 @@ font-size:20px;
 
 .menu-toggle{
 display:block;
-font-size:32px;
-color:white;
-cursor:pointer;
-margin-right:40px;
 }
 
 .menu.active{
 display:flex;
-}
-
 }
 
 }
@@ -248,8 +245,6 @@ display:flex;
 <img src="logo.png">
 </div>
 
-<div class="menu-toggle">☰</div>
-
 <div class="menu">
 <a href="#home">Početna</a>
 <a href="#services">Usluge</a>
@@ -259,6 +254,8 @@ display:flex;
 <a href="#booking">Rezervacija</a>
 <a href="#contact">Kontakt</a>
 </div>
+
+<div class="menu-toggle">☰</div>
 
 </nav>
 
