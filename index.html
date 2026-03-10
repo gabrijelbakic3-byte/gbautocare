@@ -1,91 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="hr">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GBAutoCare</title>
+
 <style>
 
 body{
 margin:0;
-font-family:Arial;
-background:#111;
+font-family:Arial, Helvetica, sans-serif;
+background:#0f0f0f;
 color:white;
+}
+
+/* HERO */
+
+.hero{
+height:80vh;
+background:url("https://images.unsplash.com/photo-1503376780353-7e6692767b70") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
 text-align:center;
 }
 
-header{
-background:black;
-padding:80px 20px;
-}
-
-h1{
-font-size:50px;
+.hero h1{
+font-size:60px;
 margin:0;
 }
 
-.section{
-padding:60px 20px;
+.hero p{
+font-size:20px;
+opacity:0.9;
 }
+
+.hero button{
+margin-top:20px;
+padding:15px 30px;
+border:none;
+background:#e63946;
+color:white;
+font-size:16px;
+cursor:pointer;
+border-radius:5px;
+}
+
+/* SECTION */
+
+.section{
+padding:80px 20px;
+text-align:center;
+}
+
+.section h2{
+font-size:35px;
+margin-bottom:40px;
+}
+
+/* SERVICES */
 
 .services{
 display:flex;
 justify-content:center;
-flex-wrap:wrap;
 gap:30px;
+flex-wrap:wrap;
 }
 
 .card{
-background:#222;
+background:#1c1c1c;
 padding:30px;
-width:250px;
+width:260px;
 border-radius:10px;
+transition:0.3s;
 }
 
+.card:hover{
+transform:translateY(-10px);
+background:#262626;
+}
+
+.card h3{
+margin-top:0;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:10px;
+}
+
+.gallery img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+/* CONTACT */
+
+.contact{
+background:#151515;
+padding:60px;
+text-align:center;
+}
+
+/* FOOTER */
+
 footer{
-background:black;
+text-align:center;
 padding:20px;
+background:black;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<header>
+<div class="hero">
+<div>
 <h1>GBAutoCare</h1>
 <p>Professional Car Detailing</p>
-</header>
+<button>Rezerviraj termin</button>
+</div>
+</div>
 
 <div class="section">
+
 <h2>Naše usluge</h2>
 
 <div class="services">
 
 <div class="card">
 <h3>Dubinsko čišćenje</h3>
-<p>Temeljito čišćenje interijera vozila.</p>
+<p>Temeljito čišćenje interijera vozila i uklanjanje nečistoća.</p>
 </div>
 
 <div class="card">
 <h3>Poliranje</h3>
-<p>Uklanjanje ogrebotina i vraćanje sjaja.</p>
+<p>Uklanjanje ogrebotina i vraćanje visokog sjaja laka.</p>
 </div>
 
 <div class="card">
 <h3>Keramička zaštita</h3>
-<p>Dugotrajna zaštita laka vozila.</p>
+<p>Dugotrajna zaštita vozila od prljavštine i vremenskih uvjeta.</p>
 </div>
 
 </div>
+
 </div>
 
 <div class="section">
+
+<h2>Galerija</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
+<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c">
+<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a">
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+
+</div>
+
+</div>
+
+<div class="contact">
+
 <h2>Kontakt</h2>
+
 <p>Telefon: +385...</p>
 <p>Email: gbautocare@gmail.com</p>
+
 </div>
 
 <footer>
+
 <p>© 2026 GBAutoCare</p>
+
 </footer>
 
 </body>
