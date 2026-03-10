@@ -28,25 +28,41 @@ top:0;
 width:100%;
 background:black;
 display:flex;
-justify-content:flex-start;
 align-items:center;
-gap:40px;
-padding:10px 10px;
+justify-content:space-between;
+padding:10px 20px;
 z-index:1000;
 }
 
 .logo img{
-height:80px;
+height:70px;
 }
 
-nav a{
+/* MENU */
+
+.menu{
+display:flex;
+align-items:center;
+}
+
+.menu a{
 color:white;
 text-decoration:none;
-margin-left:40px;
-font-size:20px;
+margin-left:30px;
+font-size:18px;
 }
-nav a:hover{
+
+.menu a:hover{
 color:#ff1c1c;
+}
+
+/* HAMBURGER */
+
+.menu-toggle{
+display:none;
+font-size:32px;
+color:white;
+cursor:pointer;
 }
 
 /* HERO */
@@ -181,6 +197,36 @@ text-decoration:none;
 color:#ff1c1c;
 }
 
+/* MOBILE */
+
+@media (max-width:768px){
+
+.menu{
+display:none;
+flex-direction:column;
+background:black;
+position:absolute;
+top:80px;
+left:0;
+width:100%;
+padding:20px;
+}
+
+.menu a{
+margin:15px 0;
+font-size:20px;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.menu.active{
+display:flex;
+}
+
+}
+
 </style>
 
 </head>
@@ -194,8 +240,10 @@ color:#ff1c1c;
 <div class="logo">
 <img src="logo.png">
 </div>
-  
-<div>
+
+<div class="menu-toggle">☰</div>
+
+<div class="menu">
 <a href="#home">Početna</a>
 <a href="#services">Usluge</a>
 <a href="#packages">Paketi</a>
@@ -375,6 +423,17 @@ ili društvenih mreža.
 </p>
 
 </footer>
+
+<script>
+
+const toggle = document.querySelector(".menu-toggle");
+const menu = document.querySelector(".menu");
+
+toggle.addEventListener("click", () => {
+menu.classList.toggle("active");
+});
+
+</script>
 
 </body>
 </html>
