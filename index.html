@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="hr">
 
 <head>
@@ -8,11 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>GBAutoCare</title>
-
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
 <style>
 
@@ -28,90 +22,40 @@ scroll-behavior:smooth;
 
 nav{
 position:fixed;
-overflow:hidden;
 top:0;
 width:100%;
 display:flex;
 align-items:center;
-justify-content:flex-start;
 gap:40px;
 padding:10px 40px;
 z-index:1000;
 transition:0.3s;
-background:linear-gradient(90deg,#000000 0%,#000000 55%,#7a0000 100%);
-border-bottom:1px solid #2a2a2a;
-}
-
-nav::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(
-90deg,
-transparent 40%,
-rgba(255,0,0,0.15) 70%,
-rgba(255,0,0,0.25) 100%
-);
-opacity:0;
-transition:0.4s;
-pointer-events:none;
-}
-
-nav.scrolled{
-background:linear-gradient(
-90deg,
-rgba(0,0,0,0.75) 0%,
-rgba(0,0,0,0.75) 55%,
-rgba(122,0,0,0.75) 100%
-);
-backdrop-filter:blur(14px);
--webkit-backdrop-filter:blur(14px);
-padding:6px 40px;
-border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-nav.scrolled::before{
-opacity:1;
-}
-
-nav.scrolled .logo img{
-height:55px;
+background:linear-gradient(90deg,#000 0%,#000 55%,#7a0000 100%);
 }
 
 .logo img{
 height:70px;
-transition:0.3s;
 }
-
-/* MENU */
 
 .menu{
 display:flex;
-align-items:center;
 gap:25px;
 }
 
 .menu a{
 color:white;
 text-decoration:none;
-font-size:18px;
 }
 
 .menu a:hover{
 color:#ff1c1c;
 }
 
-/* HAMBURGER */
-
 .menu-toggle{
 display:none;
-font-size:32px;
-color:white;
-cursor:pointer;
+font-size:30px;
 margin-left:auto;
+cursor:pointer;
 }
 
 /* HERO */
@@ -122,7 +66,6 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-
 background:
 linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.95)),
 url("https://images.unsplash.com/photo-1503376780353-7e6692767b70")
@@ -131,44 +74,26 @@ center/cover;
 
 .hero-content{
 max-width:700px;
-padding:20px;
 }
 
 .hero-logo{
-width:300px;
-margin-bottom:10px;
-filter:
-drop-shadow(0 0 10px rgba(255,255,255,0.3))
-drop-shadow(0 0 20px rgba(255,0,0,0.4))
-drop-shadow(0 0 40px rgba(255,0,0,0.2));
+width:280px;
+margin-bottom:20px;
 }
 
 .hero h1{
 font-size:90px;
-margin:0 0 5px 0;
-letter-spacing:3px;
-font-weight:700;
-color:white;
-display:inline-block;
-text-shadow:
-0 0 10px rgba(255,255,255,0.3),
-0 0 20px rgba(255,0,0,0.4),
-0 0 40px rgba(255,0,0,0.2);
+margin:0;
 }
 
 .hero h2{
-font-size:32px;
-font-weight:400;
 color:#ff1c1c;
-margin-top:35px;
-display:inline-block;
+margin-top:20px;
 }
 
 .hero-text{
-font-size:18px;
-opacity:0.85;
-margin-top:15px;
-line-height:1.6;
+margin-top:20px;
+opacity:0.8;
 }
 
 .hero.blur{
@@ -177,61 +102,15 @@ transform:scale(1.03);
 transition:0.6s;
 }
 
-/* HERO SCROLL */
-
-.scroll-down{
-display:block;
-margin-top:120px;
-font-size:60px;
-color:#ff1c1c;
-text-decoration:none;
-opacity:0.8;
-animation:scrollBounce 2s infinite;
-transition:0.3s;
-}
-
-.scroll-down:hover{
-opacity:1;
-transform:scale(1.2);
-}
-
-@keyframes scrollBounce{
-0%,20%,50%,80%,100%{
-transform:translateY(0);
-}
-40%{
-transform:translateY(15px);
-}
-60%{
-transform:translateY(8px);
-}
-}
-
-/* HERO DIVIDER */
-
-.hero-divider{
-height:120px;
-width:100%;
-background:linear-gradient(
-to bottom,
-rgba(255,0,0,0.25),
-rgba(255,0,0,0.12),
-#0b0b0b
-);
-filter:blur(10px);
-margin-top:-60px;
-}
 /* BUTTON */
 
 .btn{
 display:inline-block;
-margin-top:60px;
+margin-top:40px;
 padding:15px 35px;
 background:#ff1c1c;
 color:white;
 text-decoration:none;
-font-size:16px;
-transition:0.3s;
 border-radius:6px;
 }
 
@@ -239,25 +118,40 @@ border-radius:6px;
 background:transparent;
 border:2px solid #ff1c1c;
 color:#ff1c1c;
-margin-top:15px;
-display:inline-block;
 }
 
-.btn-secondary:hover{
-background:#ff1c1c;
-color:white;
-box-shadow:0 0 15px rgba(255,0,0,0.6);
-transform:scale(1.05);
+/* SCROLL ARROW */
+
+.scroll-down{
+display:block;
+margin-top:100px;
+font-size:55px;
+color:#ff1c1c;
+text-decoration:none;
+animation:bounce 2s infinite;
 }
 
-.btn:not(.btn-secondary):hover{
-background:white;
-color:black;
-box-shadow:0 0 15px rgba(255,0,0,0.6);
-transform:scale(1.05);
+@keyframes bounce{
+0%,20%,50%,80%,100%{transform:translateY(0);}
+40%{transform:translateY(12px);}
+60%{transform:translateY(6px);}
 }
 
-/* SECTION */
+/* HERO DIVIDER */
+
+.hero-divider{
+height:120px;
+background:linear-gradient(
+to bottom,
+rgba(255,0,0,0.25),
+rgba(255,0,0,0.1),
+#0b0b0b
+);
+filter:blur(10px);
+margin-top:-60px;
+}
+
+/* SECTIONS */
 
 section{
 padding:100px 20px;
@@ -290,6 +184,11 @@ transform:translateY(-10px);
 border:1px solid #ff1c1c;
 }
 
+.service-icon{
+font-size:35px;
+margin-bottom:10px;
+}
+
 /* PACKAGES */
 
 .packages{
@@ -317,36 +216,6 @@ gap:10px;
 width:100%;
 height:220px;
 object-fit:cover;
-transition:0.3s;
-}
-
-.gallery img:hover{
-transform:scale(1.05);
-}
-
-/* WORK HOURS */
-
-.hours{
-text-align:center;
-font-size:18px;
-}
-
-/* FOOTER */
-
-footer{
-background:black;
-padding:60px 20px;
-text-align:center;
-}
-
-.socials a{
-color:white;
-margin:10px;
-text-decoration:none;
-}
-
-.socials a:hover{
-color:#ff1c1c;
 }
 
 /* WHATSAPP */
@@ -365,29 +234,21 @@ justify-content:center;
 font-size:28px;
 color:white;
 text-decoration:none;
-z-index:999;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
-animation:whatsapp-pulse 2s infinite;
 }
 
-@keyframes whatsapp-pulse{
-0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}
-70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}
-100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
-}
-
-/* SERVICES ZOOM ANIMATION */
+/* SERVICES ZOOM */
 
 #services{
 opacity:0;
-transform:scale(0.85);
-transition:1s ease;
+transform:scale(0.9);
+transition:1s;
 }
 
 #services.show{
 opacity:1;
 transform:scale(1);
 }
+
 /* MOBILE */
 
 @media (max-width:768px){
@@ -395,18 +256,13 @@ transform:scale(1);
 .menu{
 display:none;
 flex-direction:column;
-align-items:center;
-text-align:center;
-background:rgba(0,0,0,0.6);
+background:black;
 position:absolute;
-top:80px;
-left:45%;
+top:70px;
+left:50%;
 transform:translateX(-50%);
-width:70%;
-max-width:260px;
-padding:20px 0;
-border-radius:12px;
-backdrop-filter:blur(6px);
+width:80%;
+padding:20px;
 }
 
 .menu.active{
@@ -415,20 +271,19 @@ display:flex;
 
 .menu-toggle{
 display:block;
-margin-right:20px;
-font-size:28px;
 }
 
 .hero h1{
-font-size:42px;
-}
-
-.hero h2{
-font-size:24px;
+font-size:40px;
 }
 
 .hero-logo{
-width:120px;
+width:130px;
+}
+
+.scroll-down{
+font-size:40px;
+margin-top:70px;
 }
 
 }
@@ -474,12 +329,12 @@ width:120px;
 <h2>Detalji koji čine razliku.</h2>
 
 <p class="hero-text">
-GBAutoCare pruža profesionalno dubinsko čišćenje i
-detailing vozila kako bi vaš automobil uvijek izgledao
-čisto, svježe i besprijekorno.
+Profesionalno dubinsko čišćenje i detailing vozila.
 </p>
 
-<a href="#booking" class="btn">Rezerviraj termin</a> <br> <a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
+<a href="#booking" class="btn">Rezerviraj termin</a>
+<br>
+<a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
 
 <a href="#services" class="scroll-down">⌄</a>
 
@@ -493,89 +348,43 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 
 <section id="services">
 
-<div class="services-intro">
-
-<h2>Profesionalne usluge detailinga</h2>
-
-<p>
-Brinemo o svakom detalju vašeg vozila koristeći profesionalnu opremu
-i kvalitetne proizvode kako bi vaš automobil izgledao kao nov.
-</p>
-
-</div>
+<h2>Usluge</h2>
 
 <div class="services">
 
 <div class="card">
-
 <div class="service-icon">🧼</div>
-
 <h3>Unutarnje čišćenje</h3>
-
-<p>
-Temeljito čišćenje svih površina u interijeru vozila
-uključujući plastiku, sjedala, tepih i prtljažnik.
-</p>
-
+<p>Temeljito čišćenje interijera.</p>
 </div>
 
-
 <div class="card">
-
 <div class="service-icon">🚗</div>
-
 <h3>Vanjsko pranje</h3>
-
-<p>
-Detaljno ručno pranje vozila uz korištenje
-profesionalnih sredstava za zaštitu laka.
-</p>
-
+<p>Profesionalno ručno pranje vozila.</p>
 </div>
 
-
 <div class="card">
-
 <div class="service-icon">🧽</div>
-
 <h3>Kemijsko čišćenje sjedala</h3>
-
-<p>
-Dubinsko kemijsko čišćenje sjedala i tapecirunga
-koje uklanja mrlje, prljavštinu i neugodne mirise.
-</p>
-
+<p>Dubinsko uklanjanje mrlja i prljavštine.</p>
 </div>
 
-
 <div class="card">
-
 <div class="service-icon">🌬</div>
-
 <h3>Antibakterijski tretman klime</h3>
-
-<p>
-Dezinfekcija klima sustava koja uklanja bakterije,
-gljivice i neugodne mirise iz ventilacije.
-</p>
-
+<p>Dezinfekcija ventilacije i klime.</p>
 </div>
-
 
 <div class="card">
-
 <div class="service-icon">💡</div>
-
 <h3>Poliranje farova</h3>
-
-<p>
-Obnavljanje mutnih i izblijedjelih farova
-kako bi ponovno bili prozirni i sigurni za vožnju.
-</p>
-
+<p>Obnova mutnih i izblijedjelih farova.</p>
 </div>
 
 </div>
+
+</section>
 
 <!-- PACKAGES -->
 
@@ -600,72 +409,7 @@ kako bi ponovno bili prozirni i sigurni za vožnju.
 <div class="package">
 <h3>Ultimate paket</h3>
 <p>Kompletno čišćenje vozila</p>
-<p>Njega interijera</p>
 </div>
-
-</div>
-
-</section>
-
-<!-- GALLERY -->
-
-<section id="gallery">
-
-<h2>Galerija</h2>
-
-<div class="gallery">
-
-<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c">
-<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a">
-<img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
-
-</div>
-
-</section>
-
-<!-- ABOUT -->
-
-<section id="about">
-
-<h2>O nama</h2>
-
-<p style="text-align:center;max-width:800px;margin:auto;">
-GBAutoCare je specijaliziran za profesionalno dubinsko čišćenje
-i detailing vozila. Naš cilj je svakom automobilu pružiti
-najbolju moguću njegu koristeći profesionalnu opremu
-i kvalitetne proizvode.
-</p>
-
-</section>
-
-<!-- BOOKING -->
-
-<section id="booking">
-
-<h2>Rezervacija termina</h2>
-
-<p style="text-align:center">
-Za rezervaciju termina kontaktirajte nas putem telefona
-ili društvenih mreža.
-</p>
-
-<div style="text-align:center">
-<a class="btn">Rezerviraj termin</a>
-</div>
-
-</section>
-
-<!-- WORK HOURS -->
-
-<section>
-
-<h2>Radno vrijeme</h2>
-
-<div class="hours">
-
-<p>Ponedjeljak – Petak: 08:00 – 18:00</p>
-<p>Subota: 08:00 – 14:00</p>
-<p>Nedjelja: zatvoreno</p>
 
 </div>
 
@@ -679,19 +423,11 @@ ili društvenih mreža.
 
 <p>Telefon: +385 99 647 1243</p>
 
-<div class="socials">
-<a href="#">Instagram</a>
-<a href="#">Facebook</a>
-<a href="#">TikTok</a>
-</div>
-
-<p style="margin-top:30px">
-© 2026 GBAutoCare
-</p>
+<p>© 2026 GBAutoCare</p>
 
 </footer>
 
-<a href="https://wa.me/385996471243" class="whatsapp-float" target="_blank">💬</a>
+<a href="https://wa.me/385996471243" class="whatsapp-float">💬</a>
 
 <script>
 
@@ -701,19 +437,11 @@ const services = document.querySelector("#services");
 const arrow = document.querySelector(".scroll-down");
 const hero = document.querySelector(".hero");
 
-toggle.addEventListener("click", () => {
+toggle.addEventListener("click",()=>{
 menu.classList.toggle("active");
 });
 
-window.addEventListener("scroll", function(){
-
-const nav = document.querySelector("nav");
-
-if(window.scrollY > 50){
-nav.classList.add("scrolled");
-}else{
-nav.classList.remove("scrolled");
-}
+window.addEventListener("scroll",function(){
 
 if(window.scrollY < 100){
 hero.classList.remove("blur");
@@ -722,13 +450,14 @@ hero.classList.remove("blur");
 const position = services.getBoundingClientRect().top;
 const screen = window.innerHeight;
 
-if(position < screen - 200){
+if(position < screen-200){
 services.classList.add("show");
 }
 
 });
 
-arrow.addEventListener("click", function(e){
+arrow.addEventListener("click",function(e){
+
 e.preventDefault();
 
 hero.classList.add("blur");
