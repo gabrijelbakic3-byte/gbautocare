@@ -48,11 +48,7 @@ rgba(0,0,0,0.75) 55%,
 rgba(122,0,0,0.75) 100%
 );
 backdrop-filter:blur(14px);
--webkit-backdrop-filter:blur(14px);
-
 padding:6px 40px;
-
-border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .logo img{
@@ -128,11 +124,44 @@ margin:0 0 5px 0;
 letter-spacing:3px;
 font-weight:700;
 color:white;
+position:relative;
 
 text-shadow:
 0 0 10px rgba(255,255,255,0.3),
 0 0 20px rgba(255,0,0,0.4),
 0 0 40px rgba(255,0,0,0.2);
+}
+
+/* svjetleća linija */
+
+.hero h1::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-5px;
+width:100%;
+height:2px;
+
+background:linear-gradient(
+90deg,
+transparent,
+#ff1c1c,
+transparent
+);
+
+box-shadow:
+0 0 6px #ff1c1c,
+0 0 12px rgba(255,0,0,0.8),
+0 0 20px rgba(255,0,0,0.5);
+
+animation:ledLine 3s linear infinite;
+}
+
+@keyframes ledLine{
+
+0%{background-position:-300px;}
+100%{background-position:300px;}
+
 }
 
 .hero h2{
@@ -168,7 +197,6 @@ background:transparent;
 border:2px solid #ff1c1c;
 color:#ff1c1c;
 margin-top:15px;
-display:inline-block;
 }
 
 .btn-secondary:hover{
@@ -217,7 +245,7 @@ transform:scale(1.1);
 100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
 }
 
-/* SECTION */
+/* SECTIONS */
 
 section{
 padding:100px 20px;
@@ -402,9 +430,7 @@ right:16px;
 <h2>Detalji koji čine razliku.</h2>
 
 <p class="hero-text">
-GBAutoCare pruža profesionalno dubinsko čišćenje i
-detailing vozila kako bi vaš automobil uvijek izgledao
-čisto, svježe i besprijekorno.
+GBAutoCare pruža profesionalno dubinsko čišćenje i detailing vozila kako bi vaš automobil uvijek izgledao čisto, svježe i besprijekorno.
 </p>
 
 <a href="#booking" class="btn">Rezerviraj termin</a>
@@ -416,6 +442,125 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 </div>
 
 </div>
+
+<section id="services">
+<h2>Usluge</h2>
+
+<div class="services">
+
+<div class="card">
+<h3>Dubinsko čišćenje</h3>
+<p>Temeljito čišćenje interijera vozila.</p>
+</div>
+
+<div class="card">
+<h3>Detailing interijera</h3>
+<p>Profesionalno čišćenje i njega unutrašnjosti vozila.</p>
+</div>
+
+<div class="card">
+<h3>Njega eksterijera</h3>
+<p>Pranje i održavanje vanjskog izgleda vozila.</p>
+</div>
+
+</div>
+</section>
+
+<section id="packages">
+<h2>Detailing paketi</h2>
+
+<div class="packages">
+
+<div class="package">
+<h3>Basic paket</h3>
+<p>Vanjsko pranje</p>
+<p>Čišćenje interijera</p>
+</div>
+
+<div class="package">
+<h3>Premium paket</h3>
+<p>Dubinsko čišćenje</p>
+<p>Detailing interijera</p>
+</div>
+
+<div class="package">
+<h3>Ultimate paket</h3>
+<p>Kompletno čišćenje vozila</p>
+<p>Njega interijera</p>
+</div>
+
+</div>
+</section>
+
+<section id="gallery">
+<h2>Galerija</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c">
+<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a">
+<img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
+
+</div>
+</section>
+
+<section id="about">
+
+<h2>O nama</h2>
+
+<p style="text-align:center;max-width:800px;margin:auto;">
+GBAutoCare je specijaliziran za profesionalno dubinsko čišćenje i detailing vozila. Naš cilj je svakom automobilu pružiti najbolju moguću njegu koristeći profesionalnu opremu i kvalitetne proizvode.
+</p>
+
+</section>
+
+<section id="booking">
+
+<h2>Rezervacija termina</h2>
+
+<p style="text-align:center">
+Za rezervaciju termina kontaktirajte nas putem telefona ili društvenih mreža.
+</p>
+
+<div style="text-align:center">
+<a class="btn">Rezerviraj termin</a>
+</div>
+
+</section>
+
+<section>
+
+<h2>Radno vrijeme</h2>
+
+<p style="text-align:center">
+Ponedjeljak – Petak: 08:00 – 18:00<br>
+Subota: 08:00 – 14:00<br>
+Nedjelja: zatvoreno
+</p>
+
+</section>
+
+<footer id="contact">
+
+<h2>Kontakt</h2>
+
+<p>Telefon: +385 99 647 1243</p>
+
+<div class="socials">
+
+<a href="#">Instagram</a>
+<a href="#">Facebook</a>
+<a href="#">TikTok</a>
+
+</div>
+
+<p style="margin-top:30px">
+© 2026 GBAutoCare
+</p>
+
+</footer>
+
+<a href="https://wa.me/385996471243" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
 
