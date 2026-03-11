@@ -290,6 +290,26 @@ z-index:999;
 box-shadow:0 0 15px rgba(0,0,0,0.5);
 animation:whatsapp-pulse 2s infinite;
 }
+  
+.whatsapp-text{
+position:absolute;
+right:75px;
+background:#111;
+color:white;
+padding:8px 14px;
+border-radius:6px;
+font-size:14px;
+white-space:nowrap;
+opacity:0;
+transform:translateY(5px);
+transition:0.3s;
+pointer-events:none;
+}
+
+.whatsapp-float:hover .whatsapp-text{
+opacity:1;
+transform:translateY(0);
+}
 
   @keyframes whatsapp-pulse{
 0%{
@@ -510,7 +530,10 @@ i detailing vozila koristeći profesionalnu opremu i proizvode.
 
 </footer>
 
-<a href="https://wa.me/385996471243" class="whatsapp-float">💬</a>
+<a href="https://wa.me/385996471243" class="whatsapp-float">
+💬
+<span class="whatsapp-text">Piši nam na WhatsApp</span>
+</a>
 
 <script>
 
