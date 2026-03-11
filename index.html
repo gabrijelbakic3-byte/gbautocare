@@ -333,16 +333,70 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
-.card{
-background:#161616;
-padding:30px;
-border-radius:10px;
-transition:0.3s;
+/* SERVICE CARD */
+
+.service-card{
+position:relative;
+height:260px;
+border-radius:12px;
+overflow:hidden;
+display:flex;
+align-items:flex-end;
+
+background-size:cover;
+background-position:center;
+
+transition:0.4s;
 }
 
-.card:hover{
-transform:translateY(-10px);
-border:1px solid #ff1c1c;
+.service-card:hover{
+transform:scale(1.03);
+}
+
+/* TAMNI OVERLAY */
+
+.service-overlay{
+background:linear-gradient(
+to top,
+rgba(0,0,0,0.85),
+rgba(0,0,0,0.2)
+);
+
+padding:25px;
+width:100%;
+}
+
+.service-overlay h3{
+margin:0 0 10px 0;
+font-size:22px;
+}
+
+.service-overlay p{
+margin:0;
+font-size:15px;
+opacity:0.85;
+}
+
+/* SLIKE ZA USLUGE */
+
+.service-card:nth-child(1){
+background-image:url("https://images.unsplash.com/photo-1607860108855-64acf2078ed9");
+}
+
+.service-card:nth-child(2){
+background-image:url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
+}
+
+.service-card:nth-child(3){
+background-image:url("https://images.unsplash.com/photo-1580273916550-e323be2ae537");
+}
+
+.service-card:nth-child(4){
+background-image:url("https://images.unsplash.com/photo-1625047509168-a7026f36de04");
+}
+
+.service-card:nth-child(5){
+background-image:url("https://images.unsplash.com/photo-1619642751034-765dfdf7c58e");
 }
 
 /* PACKAGES */
@@ -615,23 +669,45 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 
 <div class="services">
 
-<div class="card">
-<h3>Dubinsko čišćenje</h3>
-<p>Temeljito čišćenje interijera vozila.</p>
+<div class="service-card">
+<div class="service-overlay">
+<h3>Unutarnje čišćenje</h3>
+<p>Temeljito čišćenje interijera vozila uključujući plastiku, tepihe i sve unutarnje površine.</p>
+</div>
 </div>
 
-<div class="card">
-<h3>Detailing interijera</h3>
-<p>Profesionalno čišćenje i njega unutrašnjosti vozila.</p>
+<div class="service-card">
+<div class="service-overlay">
+<h3>Vanjsko pranje</h3>
+<p>Profesionalno ručno pranje vozila uz čišćenje felgi i završno sušenje.</p>
+</div>
 </div>
 
-<div class="card">
-<h3>Njega eksterijera</h3>
-<p>Pranje i održavanje vanjskog izgleda vozila.</p>
+<div class="service-card">
+<div class="service-overlay">
+<h3>Kemijsko čišćenje sjedala</h3>
+<p>Dubinsko kemijsko čišćenje sjedala koje uklanja mrlje i neugodne mirise.</p>
+</div>
+</div>
+
+<div class="service-card">
+<div class="service-overlay">
+<h3>Antibakterijski tretman klime</h3>
+<p>Dezinfekcija ventilacijskog sustava koja uklanja bakterije i neugodne mirise.</p>
+</div>
+</div>
+
+<div class="service-card">
+<div class="service-overlay">
+<h3>Poliranje farova</h3>
+<p>Obnova i poliranje farova za bolju vidljivost i svjež izgled vozila.</p>
+</div>
 </div>
 
 </div>
+
 <a href="#packages" class="scroll-arrow">⌄</a>
+
 </section>
 
 <!-- PACKAGES -->
