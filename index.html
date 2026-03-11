@@ -171,6 +171,12 @@ margin-top:15px;
 line-height:1.6;
 }
 
+.hero.blur{
+filter:blur(3px);
+transform:scale(1.03);
+transition:0.6s;
+}
+
 /* HERO SCROLL */
 
 .scroll-down{
@@ -374,8 +380,8 @@ animation:whatsapp-pulse 2s infinite;
 
 #services{
 opacity:0;
-transform:scale(0.95);
-transition:1s ease;
+transform:scale(0.9);
+transition:1.2s ease;
 }
 
 #services.show{
@@ -631,12 +637,13 @@ ili društvenih mreža.
 
 const toggle = document.querySelector(".menu-toggle");
 const menu = document.querySelector(".menu");
+const services = document.querySelector("#services");
+const arrow = document.querySelector(".scroll-down");
+const hero = document.querySelector(".hero");
 
 toggle.addEventListener("click", () => {
 menu.classList.toggle("active");
 });
-
-const services = document.querySelector("#services");
 
 window.addEventListener("scroll", function(){
 
@@ -657,12 +664,12 @@ services.classList.add("show");
 
 });
 
-const arrow = document.querySelector(".scroll-down");
-
 arrow.addEventListener("click", function(e){
 e.preventDefault();
 
-document.querySelector("#services").scrollIntoView({
+hero.classList.add("blur");
+
+services.scrollIntoView({
 behavior:"smooth"
 });
 
