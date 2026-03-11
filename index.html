@@ -430,22 +430,16 @@ height:38px;
 display:none;
 flex-direction:column;
 align-items:center;
-justify-content:center;
 
-position:absolute;
+position:fixed;
 top:70px;
 left:0;
+
 width:100%;
+background:#000;
 
-background:rgba(0,0,0,0.95);
 padding:20px 0;
-
-border-bottom:1px solid #333;
-}
-
-.menu a{
-margin:12px 0;
-font-size:20px;
+z-index:999;
 }
 
 .menu.active{
@@ -453,8 +447,11 @@ display:flex;
 }
 
 .menu a{
-margin:10px 0;
+margin:12px 0;
 font-size:20px;
+}
+.menu.active{
+display:flex;
 }
 
 .menu-toggle{
@@ -485,6 +482,8 @@ height:42px;
 font-size:18px;
 bottom:16px;
 right:16px;
+}
+
 }
 
 </style>
