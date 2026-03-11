@@ -10,11 +10,9 @@
 <title>GBAutoCare</title>
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
 <style>
+
 body{
 margin:0;
 font-family:Arial;
@@ -31,11 +29,10 @@ top:0;
 width:100%;
 display:flex;
 align-items:center;
-gap:40px;
-padding:10px 40px;
-z-index:1000;
-transition:0.3s;
+justify-content:space-between;
+padding:12px 40px;
 background:linear-gradient(90deg,#000 0%,#000 55%,#7a0000 100%);
+z-index:1000;
 }
 
 .logo img{
@@ -59,8 +56,7 @@ color:#ff1c1c;
 
 .menu-toggle{
 display:none;
-font-size:30px;
-margin-left:auto;
+font-size:28px;
 cursor:pointer;
 }
 
@@ -72,6 +68,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
+
 background:
 linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.95)),
 url("https://images.unsplash.com/photo-1503376780353-7e6692767b70")
@@ -84,71 +81,30 @@ padding:20px;
 }
 
 .hero-logo{
-width:280px;
-margin-bottom:20px;
+width:260px;
+margin-bottom:15px;
 }
 
 .hero h1{
-font-size:90px;
+font-size:80px;
 margin:0;
 }
 
 .hero h2{
 font-size:32px;
-font-weight:400;
 color:#ff1c1c;
-margin-top:35px;
-display:inline-block;
-position:relative;
-}
-
-.hero h2::after{
-content:"";
-display:block;
-width:80%;
-height:3px;
-margin:10px auto 0;
-background:linear-gradient(
-90deg,
-transparent,
-#ff1c1c,
-transparent
-);
-animation:lineMove 6s infinite;
-}
-  
-.hero-text{
 margin-top:20px;
+}
+
+.hero-text{
 opacity:0.85;
+margin-top:20px;
 }
-
-.hero.blur{
-filter:blur(3px);
-transform:scale(1.03);
-transition:0.6s;
-}
-
-  @keyframes lineMove{
-0%{
-transform:scaleX(0.5);
-opacity:0.5;
-}
-50%{
-transform:scaleX(1);
-opacity:1;
-}
-100%{
-transform:scaleX(0.5);
-opacity:0.5;
-}
-}
-
-/* BUTTON */
 
 .btn{
 display:inline-block;
 margin-top:40px;
-padding:15px 35px;
+padding:14px 30px;
 background:#ff1c1c;
 color:white;
 text-decoration:none;
@@ -159,14 +115,16 @@ border-radius:6px;
 background:transparent;
 border:2px solid #ff1c1c;
 color:#ff1c1c;
+margin-top:10px;
+display:inline-block;
 }
 
 /* SCROLL ARROW */
 
 .scroll-down{
 display:block;
-margin-top:100px;
-font-size:55px;
+margin-top:90px;
+font-size:50px;
 color:#ff1c1c;
 text-decoration:none;
 animation:bounce 2s infinite;
@@ -174,8 +132,8 @@ animation:bounce 2s infinite;
 
 @keyframes bounce{
 0%,20%,50%,80%,100%{transform:translateY(0);}
-40%{transform:translateY(12px);}
-60%{transform:translateY(6px);}
+40%{transform:translateY(10px);}
+60%{transform:translateY(5px);}
 }
 
 /* HERO DIVIDER */
@@ -234,7 +192,7 @@ margin-bottom:10px;
 
 .packages{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
@@ -291,44 +249,28 @@ font-size:28px;
 color:white;
 text-decoration:none;
 z-index:999;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
 animation:whatsapp-pulse 2s infinite;
 }
 
-.whatsapp-float:hover{
-transform:scale(1.1);
-}
-  
 .whatsapp-text{
 position:absolute;
 right:75px;
 background:#111;
-color:white;
 padding:8px 14px;
 border-radius:6px;
 font-size:14px;
-white-space:nowrap;
 opacity:0;
-transform:translateY(5px);
 transition:0.3s;
-pointer-events:none;
 }
 
 .whatsapp-float:hover .whatsapp-text{
 opacity:1;
-transform:translateY(0);
 }
 
-  @keyframes whatsapp-pulse{
-0%{
-box-shadow:0 0 0 0 rgba(37,211,102,0.7);
-}
-70%{
-box-shadow:0 0 0 15px rgba(37,211,102,0);
-}
-100%{
-box-shadow:0 0 0 0 rgba(37,211,102,0);
-}
+@keyframes whatsapp-pulse{
+0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}
+70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}
+100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
 }
 
 /* SERVICES ZOOM */
@@ -348,16 +290,27 @@ transform:scale(1);
 
 @media (max-width:768px){
 
+nav{
+padding:8px 15px;
+}
+
+.logo img{
+height:45px;
+}
+
 .menu{
 display:none;
 flex-direction:column;
+align-items:center;
 background:black;
 position:absolute;
-top:70px;
+top:60px;
 left:50%;
 transform:translateX(-50%);
-width:80%;
+width:85%;
 padding:20px;
+border-radius:10px;
+gap:15px;
 }
 
 .menu.active{
@@ -369,16 +322,16 @@ display:block;
 }
 
 .hero h1{
-font-size:40px;
+font-size:38px;
 }
 
 .hero-logo{
-width:130px;
+width:110px;
 }
 
 .scroll-down{
-font-size:40px;
-margin-top:70px;
+font-size:32px;
+margin-top:60px;
 }
 
 }
@@ -425,7 +378,7 @@ margin-top:70px;
 Profesionalno dubinsko čišćenje i detailing vozila.
 </p>
 
-<a href="#booking" class="btn">Rezerviraj termin</a> <br> <a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
+<a href="#booking" class="btn">Rezerviraj termin</a><br> <a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
 
 <a href="#services" class="scroll-down">⌄</a>
 
@@ -512,8 +465,6 @@ i detailing vozila koristeći profesionalnu opremu i proizvode.
 
 </section>
 
-<!-- WORK HOURS -->
-
 <section>
 
 <h2>Radno vrijeme</h2>
@@ -548,16 +499,10 @@ i detailing vozila koristeći profesionalnu opremu i proizvode.
 const toggle=document.querySelector(".menu-toggle");
 const menu=document.querySelector(".menu");
 const services=document.querySelector("#services");
-const arrow=document.querySelector(".scroll-down");
-const hero=document.querySelector(".hero");
 
 toggle.onclick=()=>menu.classList.toggle("active");
 
 window.addEventListener("scroll",function(){
-
-if(window.scrollY<100){
-hero.classList.remove("blur");
-}
 
 const position=services.getBoundingClientRect().top;
 const screen=window.innerHeight;
@@ -567,12 +512,6 @@ services.classList.add("show");
 }
 
 });
-
-arrow.onclick=function(e){
-e.preventDefault();
-hero.classList.add("blur");
-services.scrollIntoView({behavior:"smooth"});
-};
 
 </script>
 
