@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="hr">
 
 <head>
@@ -45,6 +46,7 @@ gap:25px;
 .menu a{
 color:white;
 text-decoration:none;
+font-size:18px;
 }
 
 .menu a:hover{
@@ -74,6 +76,7 @@ center/cover;
 
 .hero-content{
 max-width:700px;
+padding:20px;
 }
 
 .hero-logo{
@@ -93,7 +96,7 @@ margin-top:20px;
 
 .hero-text{
 margin-top:20px;
-opacity:0.8;
+opacity:0.85;
 }
 
 .hero.blur{
@@ -218,6 +221,21 @@ height:220px;
 object-fit:cover;
 }
 
+/* WORK HOURS */
+
+.hours{
+text-align:center;
+font-size:18px;
+}
+
+/* FOOTER */
+
+footer{
+background:black;
+padding:60px 20px;
+text-align:center;
+}
+
 /* WHATSAPP */
 
 .whatsapp-float{
@@ -294,8 +312,6 @@ margin-top:70px;
 
 <body>
 
-<!-- NAVBAR -->
-
 <nav>
 
 <div class="logo">
@@ -332,9 +348,7 @@ margin-top:70px;
 Profesionalno dubinsko čišćenje i detailing vozila.
 </p>
 
-<a href="#booking" class="btn">Rezerviraj termin</a>
-<br>
-<a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
+<a href="#booking" class="btn">Rezerviraj termin</a> <br> <a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
 
 <a href="#services" class="scroll-down">⌄</a>
 
@@ -352,35 +366,11 @@ Profesionalno dubinsko čišćenje i detailing vozila.
 
 <div class="services">
 
-<div class="card">
-<div class="service-icon">🧼</div>
-<h3>Unutarnje čišćenje</h3>
-<p>Temeljito čišćenje interijera.</p>
-</div>
-
-<div class="card">
-<div class="service-icon">🚗</div>
-<h3>Vanjsko pranje</h3>
-<p>Profesionalno ručno pranje vozila.</p>
-</div>
-
-<div class="card">
-<div class="service-icon">🧽</div>
-<h3>Kemijsko čišćenje sjedala</h3>
-<p>Dubinsko uklanjanje mrlja i prljavštine.</p>
-</div>
-
-<div class="card">
-<div class="service-icon">🌬</div>
-<h3>Antibakterijski tretman klime</h3>
-<p>Dezinfekcija ventilacije i klime.</p>
-</div>
-
-<div class="card">
-<div class="service-icon">💡</div>
-<h3>Poliranje farova</h3>
-<p>Obnova mutnih i izblijedjelih farova.</p>
-</div>
+<div class="card"><div class="service-icon">🧼</div><h3>Unutarnje čišćenje</h3></div>
+<div class="card"><div class="service-icon">🚗</div><h3>Vanjsko pranje</h3></div>
+<div class="card"><div class="service-icon">🧽</div><h3>Kemijsko čišćenje sjedala</h3></div>
+<div class="card"><div class="service-icon">🌬</div><h3>Antibakterijski tretman klime</h3></div>
+<div class="card"><div class="service-icon">💡</div><h3>Poliranje farova</h3></div>
 
 </div>
 
@@ -394,28 +384,72 @@ Profesionalno dubinsko čišćenje i detailing vozila.
 
 <div class="packages">
 
-<div class="package">
-<h3>Basic paket</h3>
-<p>Vanjsko pranje</p>
-<p>Čišćenje interijera</p>
-</div>
-
-<div class="package">
-<h3>Premium paket</h3>
-<p>Dubinsko čišćenje</p>
-<p>Detailing interijera</p>
-</div>
-
-<div class="package">
-<h3>Ultimate paket</h3>
-<p>Kompletno čišćenje vozila</p>
-</div>
+<div class="package"><h3>Basic</h3><p>Vanjsko pranje</p></div>
+<div class="package"><h3>Premium</h3><p>Dubinsko čišćenje</p></div>
+<div class="package"><h3>Ultimate</h3><p>Kompletno čišćenje</p></div>
 
 </div>
 
 </section>
 
-<!-- FOOTER -->
+<!-- GALLERY -->
+
+<section id="gallery">
+
+<h2>Galerija</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c">
+<img src="https://images.unsplash.com/photo-1502877338535-766e1452684a">
+<img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2>O nama</h2>
+
+<p style="text-align:center;max-width:800px;margin:auto;">
+GBAutoCare je specijaliziran za profesionalno dubinsko čišćenje
+i detailing vozila koristeći profesionalnu opremu i proizvode.
+</p>
+
+</section>
+
+<!-- BOOKING -->
+
+<section id="booking">
+
+<h2>Rezervacija</h2>
+
+<p style="text-align:center">Kontaktirajte nas za rezervaciju termina.</p>
+
+<div style="text-align:center">
+<a class="btn">Rezerviraj termin</a>
+</div>
+
+</section>
+
+<!-- WORK HOURS -->
+
+<section>
+
+<h2>Radno vrijeme</h2>
+
+<div class="hours">
+
+<p>Ponedjeljak – Petak: 08:00 – 18:00</p>
+<p>Subota: 08:00 – 14:00</p>
+<p>Nedjelja: zatvoreno</p>
+
+</div>
+
+</section>
 
 <footer id="contact">
 
@@ -431,42 +465,34 @@ Profesionalno dubinsko čišćenje i detailing vozila.
 
 <script>
 
-const toggle = document.querySelector(".menu-toggle");
-const menu = document.querySelector(".menu");
-const services = document.querySelector("#services");
-const arrow = document.querySelector(".scroll-down");
-const hero = document.querySelector(".hero");
+const toggle=document.querySelector(".menu-toggle");
+const menu=document.querySelector(".menu");
+const services=document.querySelector("#services");
+const arrow=document.querySelector(".scroll-down");
+const hero=document.querySelector(".hero");
 
-toggle.addEventListener("click",()=>{
-menu.classList.toggle("active");
-});
+toggle.onclick=()=>menu.classList.toggle("active");
 
 window.addEventListener("scroll",function(){
 
-if(window.scrollY < 100){
+if(window.scrollY<100){
 hero.classList.remove("blur");
 }
 
-const position = services.getBoundingClientRect().top;
-const screen = window.innerHeight;
+const position=services.getBoundingClientRect().top;
+const screen=window.innerHeight;
 
-if(position < screen-200){
+if(position<screen-200){
 services.classList.add("show");
 }
 
 });
 
-arrow.addEventListener("click",function(e){
-
+arrow.onclick=function(e){
 e.preventDefault();
-
 hero.classList.add("blur");
-
-services.scrollIntoView({
-behavior:"smooth"
-});
-
-});
+services.scrollIntoView({behavior:"smooth"});
+};
 
 </script>
 
