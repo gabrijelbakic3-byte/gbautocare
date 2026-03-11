@@ -31,11 +31,8 @@ top:0;
 width:100%;
 display:flex;
 align-items:center;
-gap:40px;
+justify-content:space-between;
 padding:10px 40px;
-z-index:1000;
-transition:0.3s;
-
 background:linear-gradient(90deg,#000000 0%,#000000 55%,#7a0000 100%);
 border-bottom:1px solid #2a2a2a;
 }
@@ -66,8 +63,8 @@ height:55px;
 display:flex;
 align-items:center;
 gap:25px;
+margin-left:auto;
 }
-
 .menu a{
 color:white;
 text-decoration:none;
@@ -109,7 +106,7 @@ padding:20px;
 }
 
 .hero-logo{
-width:140px;
+width:300px;
 margin-bottom:15px;
 
 filter:
@@ -239,6 +236,29 @@ animation:whatsapp-pulse 2s infinite;
 transform:scale(1.1);
 }
 
+/* tooltip */
+
+.whatsapp-float::after{
+content:"Kontaktirajte nas";
+position:absolute;
+bottom:70px;
+right:0;
+background:#111;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+font-size:14px;
+opacity:0;
+transform:translateY(10px);
+transition:0.3s;
+white-space:nowrap;
+}
+
+.whatsapp-float:hover::after{
+opacity:1;
+transform:translateY(0);
+}
+
 @keyframes whatsapp-pulse{
 0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}
 70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}
@@ -365,6 +385,8 @@ font-size:20px;
 display:block;
 margin-left:auto;
 font-size:28px;
+color:white;
+cursor:pointer;
 }
 
 .menu.active{
