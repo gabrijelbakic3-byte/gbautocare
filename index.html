@@ -437,7 +437,7 @@ background:rgba(0,0,0,0.9);
 position:absolute;
 top:70px;
 left:50%;
-transform:translateX(43%);
+transform:translateX(-50%);
 
 width:90%;
 max-width:300px;
@@ -446,6 +446,7 @@ padding:20px 0;
 
 border-radius:12px;
 backdrop-filter:blur(6px);
+z-index:999;
 }
   .menu.active{
 display:flex;
@@ -694,14 +695,17 @@ ili društvenih mreža.
 <a href="https://wa.me/385996471243" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
-
 const toggle = document.querySelector(".menu-toggle");
 const menu = document.querySelector(".menu");
 
-toggle.addEventListener("click", () => {
+toggle.onclick = function(){
 menu.classList.toggle("active");
+}
+document.querySelectorAll(".menu a").forEach(link => {
+link.addEventListener("click", () => {
+menu.classList.remove("active");
 });
-
+});
 window.addEventListener("scroll", function(){
 
 const nav = document.querySelector("nav");
