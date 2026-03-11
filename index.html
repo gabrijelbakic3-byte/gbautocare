@@ -214,8 +214,6 @@ display:inline-block;
 overflow:hidden;
 }
 
-}
-  
 .hero-text{
 font-size:18px;
 opacity:0.85;
@@ -406,6 +404,42 @@ text-decoration:none;
 color:#ff1c1c;
 }
 
+/* SCROLL ARROW */
+
+.scroll-arrow{
+position:absolute;
+bottom:30px;
+left:50%;
+transform:translateX(-50%);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+width:44px;
+height:44px;
+
+border:2px solid #ff1c1c;
+border-radius:50%;
+
+color:#ff1c1c;
+font-size:26px;
+text-decoration:none;
+
+animation:arrowFloat 1.8s infinite;
+transition:0.3s;
+}
+
+.scroll-arrow:hover{
+background:#ff1c1c;
+color:white;
+transform:translateX(-50%) scale(1.1);
+}
+
+section{
+position:relative;
+}
+  
 /* MOBILE */
 
 @media (max-width:768px){
@@ -560,6 +594,8 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 <a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
 
 </div>
+ 
+<a href="#services" class="scroll-arrow">⌄</a>
 
 </div>
 
@@ -587,7 +623,7 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 </div>
 
 </div>
-
+<a href="#packages" class="scroll-arrow">⌄</a>
 </section>
 
 <!-- PACKAGES -->
@@ -617,7 +653,7 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 </div>
 
 </div>
-
+<a href="#gallery" class="scroll-arrow">⌄</a>
 </section>
 
 <!-- GALLERY -->
@@ -633,7 +669,7 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 <img src="https://images.unsplash.com/photo-1542362567-b07e54358753">
 
 </div>
-
+<a href="#about" class="scroll-arrow">⌄</a>
 </section>
 
 <!-- ABOUT -->
@@ -650,7 +686,7 @@ najbolju moguću njegu koristeći profesionalnu opremu
 i kvalitetne proizvode.
 
 </p>
-
+<a href="#booking" class="scroll-arrow">⌄</a>
 </section>
 
 <!-- BOOKING -->
@@ -671,7 +707,7 @@ ili društvenih mreža.
 <a class="btn">Rezerviraj termin</a>
 
 </div>
-
+<a href="#contact" class="scroll-arrow">⌄</a>
 </section>
 
 <!-- WORK HOURS -->
