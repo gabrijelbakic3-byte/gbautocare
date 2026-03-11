@@ -425,17 +425,19 @@ padding:4px 13px;
 nav.scrolled .logo img{
 height:38px;
 }
-  
+
+/* MENU */
+
 .menu{
 position:fixed;
-top:78px;
+top:72px;
 left:50%;
-transform:translateX(-50%) scale(0.95);
-transform-origin:top center;
+transform:translateX(-50%) translateY(-10px);
 
 opacity:0;
 pointer-events:none;
 
+display:flex;
 flex-direction:column;
 align-items:center;
 
@@ -448,15 +450,16 @@ border-radius:16px;
 
 backdrop-filter:blur(8px);
 
-transition:0.2s ease;
+transition:0.25s ease;
 
 z-index:999;
+
 box-shadow:0 10px 40px rgba(0,0,0,0.6);
 }
 
 .menu.active{
 opacity:1;
-transform:translateX(-50%) scale(1);
+transform:translateX(-50%) translateY(0);
 pointer-events:auto;
 }
 
@@ -465,12 +468,17 @@ margin:8px 0;
 font-size:18px;
 white-space:nowrap;
 }
+
+/* HAMBURGER */
+
 .menu-toggle{
 display:block;
 margin-right:20px;
 font-size:28px;
 }
-  
+
+/* HERO MOBILE */
+
 .hero h1{
 font-size:42px;
 }
@@ -486,6 +494,8 @@ width:120px;
 .hero-title{
 flex-direction:column;
 }
+
+/* WHATSAPP */
 
 .whatsapp-float{
 width:42px;
