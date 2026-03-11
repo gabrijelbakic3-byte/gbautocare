@@ -209,39 +209,48 @@ background-position:300px;
 .hero h2{
 font-size:32px;
 font-weight:400;
+color:#ff3b3b;
 margin-top:35px;
+position:relative;
+display:inline-block;
+overflow:hidden;
+}
+
+.hero h2::after{
+content:"";
+position:absolute;
+top:0;
+left:-120%;
+width:50%;
+height:100%;
 
 background:linear-gradient(
 120deg,
-#ff3b3b 0%,
-#ff3b3b 40%,
-#ffffff 50%,
-#ff3b3b 60%,
-#ff3b3b 100%
+transparent,
+rgba(255,255,255,0.9),
+transparent
 );
 
-background-size:200%;
-
--webkit-background-clip:text;
-background-clip:text;
-
-color:transparent;
-
-animation:textShine 6s linear infinite;
+transform:skewX(-25deg);
+animation:sloganShine 5s linear infinite;
 }
-
-@keyframes textShine{
+  
+@keyframes sloganShine{
 
 0%{
-background-position:-200%;
+left:-120%;
+}
+
+60%{
+left:120%;
 }
 
 100%{
-background-position:200%;
+left:120%;
 }
 
 }
-  
+
 .hero-text{
 font-size:18px;
 opacity:0.85;
