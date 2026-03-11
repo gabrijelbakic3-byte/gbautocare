@@ -327,6 +327,41 @@ text-align:center;
 margin-bottom:50px;
 }
 
+.scroll-down{
+margin-top:80px;
+font-size:30px;
+opacity:0.8;
+color:#ff1c1c;
+text-shadow:0 0 10px rgba(255,0,0,0.7);
+animation:scrollBounce 2s infinite;
+}
+
+@keyframes scrollBounce{
+0%,20%,50%,80%,100%{
+transform:translateY(0);
+}
+40%{
+transform:translateY(10px);
+}
+60%{
+transform:translateY(5px);
+}
+}
+.services-intro{
+text-align:center;
+max-width:700px;
+margin:0 auto 80px auto;
+}
+
+.services-intro h2{
+font-size:36px;
+margin-bottom:15px;
+}
+
+.services-intro p{
+opacity:0.8;
+line-height:1.6;
+}
 /* SERVICES */
 
 .services{
@@ -539,15 +574,23 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 
 <a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
 
-</div>
-
-</div>
+<div class="scroll-down">↓</div>
 
 <!-- SERVICES -->
 
 <section id="services">
 
-<h2>Usluge</h2>
+<div class="services-intro">
+
+<h2>Profesionalne usluge detailinga</h2>
+
+<p>
+Brinemo o svakom detalju vašeg vozila koristeći
+profesionalnu opremu i kvalitetne proizvode
+kako bi vaš automobil izgledao kao nov.
+</p>
+
+</div>
 
 <div class="services">
 
