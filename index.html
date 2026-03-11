@@ -312,18 +312,14 @@ transform:translateY(0);
 70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}
 100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
 }
-/* SECTION */
 
-section{
-padding:140px 20px;
-max-width:1300px;
-margin:auto;
-scroll-margin-top:90px;
-}
-
-h2{
-text-align:center;
-margin-bottom:50px;
+body{
+margin:0;
+font-family:Arial;
+background:#0b0b0b;
+color:white;
+scroll-behavior:smooth;
+overflow-x:hidden;
 }
 
 /* SECTION */
@@ -378,8 +374,9 @@ flex-wrap:nowrap;
 /* SERVICE CARD */
 
 .service-card{
-position:relative;
+width:260px;
 height:380px;
+position:relative;
 border-radius:12px;
 overflow:hidden;
 display:flex;
@@ -399,6 +396,7 @@ box-shadow:
 0 0 15px rgba(255,0,0,0.6),
 0 0 40px rgba(255,0,0,0.4);
 }
+
 /* TAMNI OVERLAY */
 
 .service-overlay{
