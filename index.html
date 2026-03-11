@@ -720,14 +720,14 @@ const toggle = document.querySelector(".menu-toggle");
 const menu = document.querySelector(".menu");
 const nav = document.querySelector("nav");
 
-/* HAMBURGER KLIK */
+/* HAMBURGER */
 
 toggle.addEventListener("click",(e)=>{
 e.stopPropagation();
 menu.classList.toggle("active");
 });
 
-/* KLIK NA LINK */
+/* LINK KLIK */
 
 document.querySelectorAll(".menu a").forEach(link=>{
 link.addEventListener("click",()=>{
@@ -735,7 +735,7 @@ menu.classList.remove("active");
 });
 });
 
-/* ZATVARANJE KLIKOM IZVAN MENIJA */
+/* KLIK IZVAN MENIJA */
 
 document.addEventListener("click",(e)=>{
 if(!menu.contains(e.target) && !toggle.contains(e.target)){
@@ -743,9 +743,12 @@ menu.classList.remove("active");
 }
 });
 
-/* SCROLL EFEKT NAVBARA */
+/* SCROLL NAVBAR */
 
 window.addEventListener("scroll",()=>{
+
+/* ako je menu otvoren - ne diraj navbar */
+if(menu.classList.contains("active")) return;
 
 if(window.scrollY > 50){
 nav.classList.add("scrolled");
@@ -756,6 +759,7 @@ nav.classList.remove("scrolled");
 });
 
 </script>
+
 
 
 </body>
