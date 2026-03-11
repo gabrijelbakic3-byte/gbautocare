@@ -430,15 +430,24 @@ height:38px;
 display:none;
 flex-direction:column;
 align-items:center;
+text-align:center;
 
 position:fixed;
-top:70px;
-left:0;
+top:90px;
+left:50%;
+transform:translateX(-50%);
 
-width:100%;
-background:#000;
+width:75%;
+max-width:300px;
 
-padding:20px 0;
+background:rgba(0,0,0,0.6);
+
+padding:30px 20px;
+
+border-radius:20px;
+
+backdrop-filter:blur(10px);
+
 z-index:999;
 }
 
@@ -447,11 +456,10 @@ display:flex;
 }
 
 .menu a{
-margin:12px 0;
-font-size:20px;
-}
-.menu.active{
-display:flex;
+margin:15px 0;
+font-size:22px;
+color:white;
+text-decoration:none;
 }
 
 .menu-toggle{
@@ -694,7 +702,6 @@ ili društvenih mreža.
 <a href="https://wa.me/385996471243" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
 
 const toggle = document.querySelector(".menu-toggle");
 const menu = document.querySelector(".menu");
@@ -702,12 +709,6 @@ const nav = document.querySelector("nav");
 
 toggle.addEventListener("click", function(){
 menu.classList.toggle("active");
-});
-
-document.querySelectorAll(".menu a").forEach(link => {
-link.addEventListener("click", function(){
-menu.classList.remove("active");
-});
 });
 
 window.addEventListener("scroll", function(){
@@ -720,7 +721,6 @@ nav.classList.remove("scrolled");
 
 });
 
-});
 </script>
 
 </body>
