@@ -433,18 +433,18 @@ align-items:center;
 text-align:center;
 
 position:fixed;
-top:90px;
+top:70px; 
 left:50%;
 transform:translateX(-50%);
 
-width:75%;
-max-width:300px;
+width:65%;
+max-width:240px;
 
 background:rgba(0,0,0,0.6);
 
-padding:30px 20px;
+padding:20px 15px;
 
-border-radius:20px;
+border-radius:18px;
 
 backdrop-filter:blur(10px);
 
@@ -456,12 +456,11 @@ display:flex;
 }
 
 .menu a{
-margin:15px 0;
-font-size:22px;
+margin:12px 0;
+font-size:20px;
 color:white;
 text-decoration:none;
 }
-
 .menu-toggle{
 display:block;
 margin-right:20px;
@@ -709,6 +708,12 @@ const nav = document.querySelector("nav");
 
 toggle.addEventListener("click", function(){
 menu.classList.toggle("active");
+});
+
+document.querySelectorAll(".menu a").forEach(link=>{
+link.addEventListener("click",()=>{
+menu.classList.remove("active");
+});
 });
 
 window.addEventListener("scroll", function(){
