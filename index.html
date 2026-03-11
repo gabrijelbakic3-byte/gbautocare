@@ -429,46 +429,43 @@ height:38px;
 .menu{
 
 position:fixed;
-top:70px;
+top:68px;
 left:50%;
-transform:translateX(-50%) scale(0.9);
+transform:translateX(-50%) scale(0.95);
 
 opacity:0;
 pointer-events:none;
 
 flex-direction:column;
 align-items:center;
-text-align:center;
 
-width:60%;
-max-width:220px;
+width:auto;
+min-width:160px;
 
 background:rgba(0,0,0,0.6);
 
-padding:18px 10px;
+padding:14px 18px;
 
-border-radius:18px;
+border-radius:16px;
 
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 
-transition:0.25s ease;
+transition:0.2s ease;
 
 z-index:999;
+box-shadow:0 10px 40px rgba(0,0,0,0.6);
 }
 
 .menu.active{
-
 opacity:1;
 transform:translateX(-50%) scale(1);
 pointer-events:auto;
-
 }
 
 .menu a{
-margin:10px 0;
-font-size:19px;
-color:white;
-text-decoration:none;
+margin:8px 0;
+font-size:18px;
+white-space:nowrap;
 }
 .menu-toggle{
 display:block;
