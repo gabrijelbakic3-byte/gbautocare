@@ -39,6 +39,13 @@ background:
 linear-gradient(90deg,#000000 0%,#000000 55%,#7a0000 100%);
 border-bottom:1px solid #2a2a2a;
 }
+  
+nav.scrolled{
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,0.08);
+transition:0.3s;
+}
 
 .logo img{
 height:70px;
@@ -607,7 +614,22 @@ toggle.addEventListener("click", () => {
 menu.classList.toggle("active");
 });
 
+/* NAVBAR BLUR ON SCROLL */
+
+window.addEventListener("scroll", function(){
+
+const nav = document.querySelector("nav");
+
+if(window.scrollY > 50){
+nav.classList.add("scrolled");
+}else{
+nav.classList.remove("scrolled");
+}
+
+});
+
 </script>
+
 
 </body>
 </html>
