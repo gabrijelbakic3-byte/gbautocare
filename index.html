@@ -412,32 +412,40 @@ bottom:30px;
 left:50%;
 transform:translateX(-50%);
 
-display:flex;
-justify-content:center;
-align-items:center;
-
-width:44px;
-height:44px;
-
-border:2px solid #ff1c1c;
-border-radius:50%;
-
 color:#ff1c1c;
-font-size:26px;
+font-size:34px;
 text-decoration:none;
 
-animation:arrowFloat 1.8s infinite;
+animation:arrowFloat 2.4s ease-in-out infinite;
 transition:0.3s;
 }
 
 .scroll-arrow:hover{
-background:#ff1c1c;
 color:white;
-transform:translateX(-50%) scale(1.1);
+transform:translateX(-50%) scale(1.2);
 }
 
 section{
 position:relative;
+}
+  
+@keyframes arrowFloat{
+
+0%{
+transform:translateX(-50%) translateY(0);
+opacity:0.6;
+}
+
+50%{
+transform:translateX(-50%) translateY(10px);
+opacity:1;
+}
+
+100%{
+transform:translateX(-50%) translateY(0);
+opacity:0.6;
+}
+
 }
   
 /* MOBILE */
