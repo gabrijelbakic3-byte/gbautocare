@@ -326,34 +326,88 @@ text-align:center;
 margin-bottom:50px;
 }
 
-/* SERVICES */
+/* SECTION */
+
+section{
+padding:140px 20px;
+max-width:1300px;
+margin:auto;
+scroll-margin-top:90px;
+}
+
+h2{
+text-align:center;
+margin-bottom:50px;
+}
+
+/* SERVICES SECTION STYLE */
+
+#services{
+position:relative;
+background:linear-gradient(
+180deg,
+#0b0b0b 0%,
+#141414 50%,
+#0b0b0b 100%
+);
+}
+
+#services::before,
+#services::after{
+content:"";
+position:absolute;
+left:0;
+width:100%;
+height:2px;
+background:#ff1c1c;
+
+box-shadow:
+0 0 10px #ff1c1c,
+0 0 25px rgba(255,0,0,0.7),
+0 0 50px rgba(255,0,0,0.4);
+}
+
+#services::before{
+top:0;
+}
+
+#services::after{
+bottom:0;
+}
+
+/* SERVICES GRID */
 
 .services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+display:flex;
+justify-content:center;
 gap:30px;
+flex-wrap:nowrap;
 }
 
 /* SERVICE CARD */
 
 .service-card{
 position:relative;
-height:360px;
+height:380px;
 border-radius:12px;
 overflow:hidden;
 display:flex;
 align-items:flex-end;
 
-background-size:cover;
+background-size:110%;
 background-position:center;
 
 transition:0.4s;
 }
 
 .service-card:hover{
-transform:scale(1.03);
-}
+transform:scale(1.05);
+background-size:120%;
 
+box-shadow:
+0 0 15px rgba(255,0,0,0.6),
+0 0 40px rgba(255,0,0,0.4);
+}
 /* TAMNI OVERLAY */
 
 .service-overlay{
@@ -368,6 +422,7 @@ rgba(0,0,0,0.1) 100%
 padding:28px;
 width:100%;
 }
+
 .service-overlay h3{
 margin:0 0 10px 0;
 font-size:24px;
@@ -381,10 +436,6 @@ opacity:0.9;
 line-height:1.5;
 }
 
-.service-card:hover{
-transform:scale(1.05);
-}
-  
 /* SLIKE ZA USLUGE */
 
 .service-card:nth-child(1){
@@ -405,6 +456,19 @@ background-image:url("https://images.unsplash.com/photo-1625047509168-a7026f36de
 
 .service-card:nth-child(5){
 background-image:url("https://images.unsplash.com/photo-1619642751034-765dfdf7c58e");
+}
+
+/* SCROLL ANIMATION */
+
+.fade-in{
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.fade-in.visible{
+opacity:1;
+transform:translateY(0);
 }
 
 /* PACKAGES */
@@ -677,35 +741,35 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 
 <div class="services">
 
-<div class="service-card">
+<div class="service-card fade-in">
 <div class="service-overlay">
 <h3>Unutarnje čišćenje</h3>
 <p>Temeljito čišćenje interijera vozila uključujući plastiku, tepihe i sve unutarnje površine.</p>
 </div>
 </div>
 
-<div class="service-card">
+<div class="service-card fade-in">
 <div class="service-overlay">
 <h3>Vanjsko pranje</h3>
 <p>Profesionalno ručno pranje vozila uz čišćenje felgi i završno sušenje.</p>
 </div>
 </div>
 
-<div class="service-card">
+<div class="service-card fade-in">
 <div class="service-overlay">
 <h3>Kemijsko čišćenje sjedala</h3>
 <p>Dubinsko kemijsko čišćenje sjedala koje uklanja mrlje i neugodne mirise.</p>
 </div>
 </div>
 
-<div class="service-card">
+<div class="service-card fade-in">
 <div class="service-overlay">
 <h3>Antibakterijski tretman klime</h3>
 <p>Dezinfekcija ventilacijskog sustava koja uklanja bakterije i neugodne mirise.</p>
 </div>
 </div>
 
-<div class="service-card">
+<div class="service-card fade-in">
 <div class="service-overlay">
 <h3>Poliranje farova</h3>
 <p>Obnova i poliranje farova za bolju vidljivost i svjež izgled vozila.</p>
@@ -913,6 +977,21 @@ block:"start"
 
 });
 });
+const faders = document.querySelectorAll(".fade-in");
+
+const observer = new IntersectionObserver((entries) => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+
+});
+
+});
+
+faders.forEach(el => observer.observe(el));
 
 </script>
 
