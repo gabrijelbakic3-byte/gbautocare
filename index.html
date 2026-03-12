@@ -686,6 +686,21 @@ font-size:13px;
 color:#ff1c1c;
 }
 
+/* ODABRANA OPCIJA */
+
+.popup-option input:checked + strong{
+color:#ff1c1c;
+}
+
+.popup-option:has(input:checked){
+background:rgba(255,28,28,0.08);
+border:1px solid rgba(255,28,28,0.6);
+
+box-shadow:
+0 0 10px rgba(255,28,28,0.25),
+0 0 20px rgba(255,28,28,0.1);
+}
+
 /* MOBILE */
 
 @media (max-width:768px){
