@@ -597,27 +597,70 @@ margin-bottom:20px;
 opacity:0.8;
 }
 
-.popup-options label{
+/* OPCIJE */
+
+.popup-option{
 display:block;
-margin-bottom:22px;
+padding:15px;
+margin-bottom:12px;
+border-radius:8px;
 cursor:pointer;
+position:relative;
+transition:all 0.25s ease;
+border:1px solid transparent;
 line-height:1.5;
-padding:10px;
-border-radius:6px;
-transition:0.25s;
 }
 
-.popup-options label:hover{
-background:#1a1a1a;
+/* HOVER */
+
+.popup-option:hover{
+background:rgba(255,255,255,0.05);
 }
 
-.popup-options input{
-margin-right:10px;
+/* RADIO */
+
+.popup-option input{
+margin-right:8px;
 }
 
-.popup-options input:checked + strong{
+/* ODABRANA OPCIJA */
+
+.popup-option:has(input:checked){
+background:rgba(255,28,28,0.08);
+border:1px solid rgba(255,28,28,0.6);
+
+box-shadow:
+0 0 10px rgba(255,28,28,0.25),
+0 0 20px rgba(255,28,28,0.1);
+}
+
+.popup-option input:checked + strong{
 color:#ff1c1c;
 }
+
+/* NAJPOPULARNIJE */
+
+.popular-badge{
+position:absolute;
+top:-8px;
+right:10px;
+background:#ff1c1c;
+color:white;
+font-size:12px;
+padding:4px 8px;
+border-radius:6px;
+font-weight:600;
+}
+
+/* KERAMIKA NAPOMENA */
+
+.ceramic-note{
+margin-top:8px;
+font-size:13px;
+color:#ff1c1c;
+}
+
+/* REZERVIRAJ GUMB */
 
 .popup-btn{
 display:block;
@@ -635,7 +678,7 @@ transition:0.3s;
 background:#ff3b3b;
 }
 
-/* X gumb */
+/* X GUMB */
 
 .close-popup{
 position:absolute;
@@ -644,63 +687,6 @@ right:20px;
 font-size:28px;
 cursor:pointer;
 }
-
-/* POPULAR OPTION */
-
-.popup-option{
-display:block;
-padding:15px;
-margin-bottom:12px;
-border-radius:8px;
-transition:0.3s;
-position:relative;
-cursor:pointer;
-}
-
-.popup-option:hover{
-background:rgba(255,255,255,0.05);
-}
-
-.popup-option input{
-margin-right:8px;
-}
-
-.popup-option input:checked + strong{
-color:#ff1c1c;
-}
-
-.popular-badge{
-position:absolute;
-top:-8px;
-right:10px;
-background:#ff1c1c;
-color:white;
-font-size:12px;
-padding:4px 8px;
-border-radius:6px;
-}
-
-.ceramic-note{
-margin-top:8px;
-font-size:13px;
-color:#ff1c1c;
-}
-
-/* ODABRANA OPCIJA */
-
-.popup-option input:checked + strong{
-color:#ff1c1c;
-}
-
-.popup-option:has(input:checked){
-background:rgba(255,28,28,0.08);
-border:1px solid rgba(255,28,28,0.6);
-
-box-shadow:
-0 0 10px rgba(255,28,28,0.25),
-0 0 20px rgba(255,28,28,0.1);
-}
-
 /* MOBILE */
 
 @media (max-width:768px){
@@ -1039,7 +1025,7 @@ ili društvenih mreža.
 
 </a>
 
-<!-- POPUP UNUTARNJE CISCENJE -->
+<!-- POPUP UNUTARNJE ČIŠĆENJE -->
 
 <div class="popup" id="interiorPopup">
 
@@ -1055,25 +1041,38 @@ Odaberite opciju unutarnjeg čišćenja vozila.
 
 <div class="popup-options">
 
-<label>
+<label class="popup-option">
+
 <input type="radio" name="interior">
+
 <strong>Osnovno usisavanje</strong><br>
 <small>Usisavanje sjedala, tepiha i prtljažnika</small>
+
 </label>
 
-<label>
+
+<label class="popup-option">
+
 <input type="radio" name="interior">
+
 <strong>Usisavanje + čišćenje površina</strong><br>
 <small>Usisavanje interijera i čišćenje plastike / kože / tekstila</small>
+
 </label>
 
-<label class="popular">
+
+<label class="popup-option popular">
+
 <span class="popular-badge">Najpopularnije</span>
 
-<input type="radio" name="interior" value="Kompletno unutarnje čišćenje" checked>
+<input type="radio" name="interior" checked>
 
 <strong>Kompletno unutarnje čišćenje</strong><br>
-<small>Usisavanje, čišćenje površina, pranje stakala i dressing za plastiku ili kožu</small>
+
+<small>
+Usisavanje, čišćenje svih površina, pranje unutarnjih stakala
+i zaštita plastike ili kože ovisno o interijeru vozila
+</small>
 
 </label>
 
