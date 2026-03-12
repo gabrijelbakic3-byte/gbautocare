@@ -645,6 +645,28 @@ font-size:28px;
 cursor:pointer;
 }
 
+/* POPULAR OPTION */
+
+.popup-options label{
+position:relative;
+}
+
+.popular{
+border:1px solid rgba(255,28,28,0.4);
+}
+
+.popular-badge{
+position:absolute;
+top:-10px;
+right:10px;
+background:#ff1c1c;
+color:white;
+font-size:11px;
+padding:4px 8px;
+border-radius:20px;
+font-weight:600;
+}
+
 /* MOBILE */
 
 @media (max-width:768px){
@@ -1011,10 +1033,14 @@ Odaberite opciju unutarnjeg čišćenja vozila.
 <small>Usisavanje interijera i čišćenje plastike / kože / tekstila</small>
 </label>
 
-<label>
-<input type="radio" name="interior">
+<label class="popular">
+<span class="popular-badge">Najpopularnije</span>
+
+<input type="radio" name="interior" value="Kompletno unutarnje čišćenje">
+
 <strong>Kompletno unutarnje čišćenje</strong><br>
 <small>Usisavanje, čišćenje površina, pranje stakala i dressing za plastiku ili kožu</small>
+
 </label>
 
 </div>
