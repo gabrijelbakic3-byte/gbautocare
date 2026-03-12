@@ -1144,6 +1144,72 @@ Keramički efekt pruža dodatni sjaj i zaštitu do 3 tjedna.
 </div>
 </div>
 
+<!-- POPUP KEMIJSKO ČIŠĆENJE -->
+
+<div class="popup" id="chemicalPopup">
+
+<div class="popup-content">
+
+<span class="close-popup chemical-close">×</span>
+
+<h2>Kemijsko čišćenje</h2>
+
+<p class="popup-desc">
+Odaberite dio interijera koji želite kemijski očistiti.  
+Kompletno kemijsko čišćenje interijera dostupno je u Diamond paketu.
+</p>
+
+<div class="popup-options">
+
+<label class="popup-option">
+
+<input type="radio" name="chemical">
+
+<strong>Kemijsko čišćenje sjedala</strong><br>
+
+<small>
+Dubinsko čišćenje tekstilnih ili kožnih sjedala  
+Uklanjanje mrlja i neugodnih mirisa
+</small>
+
+</label>
+
+<label class="popup-option">
+
+<input type="radio" name="chemical">
+
+<strong>Kemijsko čišćenje tepiha</strong><br>
+
+<small>
+Dubinsko čišćenje tekstilnih tepiha  
+Uklanjanje mrlja i neugodnih mirisa
+</small>
+
+</label>
+
+<label class="popup-option popular">
+
+<span class="popular-badge">Najpopularnije</span>
+
+<input type="radio" name="chemical" checked>
+
+<strong>Sjedala + tepisi</strong><br>
+
+<small>
+Dubinsko kemijsko čišćenje sjedala, tepiha i naslona za ruke  
+Uklanjanje tvrdokornih mrlja i neugodnih mirisa
+</small>
+
+</label>
+
+</div>
+
+<a href="#" class="popup-btn">Rezerviraj termin</a>
+
+</div>
+</div>
+
+
 <script>
 
 const toggle = document.querySelector(".menu-toggle");
@@ -1266,6 +1332,26 @@ exteriorPopup.style.display="none";
 window.addEventListener("click",(e)=>{
 if(e.target === exteriorPopup){
 exteriorPopup.style.display="none";
+}
+});
+
+/* POPUP CHEMICAL */
+
+const chemicalCard = document.querySelector(".service-card:nth-child(3)");
+const chemicalPopup = document.getElementById("chemicalPopup");
+const closeChemical = document.querySelector(".chemical-close");
+
+chemicalCard.addEventListener("click",()=>{
+chemicalPopup.style.display="flex";
+});
+
+closeChemical.addEventListener("click",()=>{
+chemicalPopup.style.display="none";
+});
+
+window.addEventListener("click",(e)=>{
+if(e.target === chemicalPopup){
+chemicalPopup.style.display="none";
 }
 });
 
