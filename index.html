@@ -729,6 +729,35 @@ justify-content:flex-end;
 
 @media (max-width:768px){
 
+/* HERO */
+
+.hero{
+min-height:70vh;
+padding:120px 20px;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.hero h2{
+font-size:24px;
+}
+
+.hero-logo{
+width:120px;
+}
+
+.hero-title{
+flex-direction:column;
+}
+
+.scroll-arrow{
+bottom:20px;
+}
+
+/* NAVBAR */
+
 nav{
 padding:5px 13px;
 }
@@ -788,30 +817,96 @@ font-size:18px;
 white-space:nowrap;
 }
 
-/* HAMBURGER */
-
 .menu-toggle{
 display:block;
 margin-right:20px;
 font-size:28px;
 }
 
-/* HERO MOBILE */
+/* SERVICES */
 
-.hero h1{
-font-size:42px;
+.services{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
 }
 
-.hero h2{
+.service-card{
+height:190px;
+}
+
+.service-overlay{
+padding:16px;
+}
+
+.service-overlay h3{
+font-size:17px;
+}
+
+.service-overlay p{
+font-size:12px;
+line-height:1.3;
+}
+
+/* drugi red centriran */
+
+.service-card:nth-child(4){
+grid-column:1 / 2;
+}
+
+.service-card:nth-child(5){
+grid-column:3 / 4;
+}
+
+/* POPUP */
+
+.popup-content{
+padding:25px 20px;
+max-width:95%;
+}
+
+.popup h2{
+font-size:22px;
+}
+
+.popup-desc{
+font-size:14px;
+margin-bottom:15px;
+}
+
+.popup-option{
+padding:12px;
+margin-bottom:10px;
+}
+
+.popup-option strong{
+font-size:15px;
+}
+
+.popup-option small{
+font-size:13px;
+line-height:1.3;
+}
+
+.popup-btn{
+padding:10px;
+font-size:15px;
+}
+
+.popup-nav{
+left:5px;
+right:5px;
+}
+
+.popup-arrow{
+font-size:22px;
+padding:6px 10px;
+}
+
+.close-popup{
+top:10px;
+right:15px;
 font-size:24px;
-}
-
-.hero-logo{
-width:120px;
-}
-
-.hero-title{
-flex-direction:column;
 }
 
 /* WHATSAPP */
