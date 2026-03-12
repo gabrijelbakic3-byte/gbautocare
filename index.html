@@ -667,6 +667,12 @@ border-radius:20px;
 font-weight:600;
 }
 
+.ceramic-note{
+margin-top:8px;
+font-size:13px;
+color:#ff1c1c;
+}
+
 /* MOBILE */
 
 @media (max-width:768px){
@@ -1050,6 +1056,60 @@ Odaberite opciju unutarnjeg čišćenja vozila.
 </div>
 </div>
 
+<!-- POPUP VANJSKO PRANJE -->
+
+<div class="popup" id="exteriorPopup">
+
+<div class="popup-content">
+
+<span class="close-popup exterior-close">&times;</span>
+
+<h2>Vanjsko pranje</h2>
+
+<p class="popup-desc">
+Odaberite opciju vanjskog pranja vozila.
+</p>
+
+<div class="popup-options">
+
+<label>
+<input type="radio" name="exterior">
+<strong>Osnovno vanjsko pranje</strong><br>
+<small>Predpranje aktivnom pjenom, ručno pranje vozila i ispiranje</small>
+</label>
+
+<label>
+<input type="radio" name="exterior">
+<strong>Vanjsko pranje + felge</strong><br>
+<small>Predpranje, ručno pranje vozila, čišćenje felgi i ispiranje</small>
+</label>
+
+<label class="popular">
+
+<span class="popular-badge">Najpopularnije</span>
+
+<input type="radio" name="exterior" checked>
+
+<strong>Kompletno vanjsko pranje</strong><br>
+<small>
+Predpranje aktivnom pjenom, ručno pranje vozila, čišćenje felgi,
+zaštita i sjaj za gume (tire dressing), sušenje vozila i pranje
+šamponom s keramičkim efektom
+</small>
+
+<p class="ceramic-note">
+Keramički efekt pruža dodatni sjaj i zaštitu do 3 tjedna.
+</p>
+
+</label>
+
+</div>
+
+<a href="#" class="popup-btn">Rezerviraj termin</a>
+
+</div>
+</div>
+
 <script>
 
 const toggle = document.querySelector(".menu-toggle");
@@ -1152,6 +1212,26 @@ popup.style.display="none";
 window.addEventListener("click",(e)=>{
 if(e.target === popup){
 popup.style.display="none";
+}
+});
+
+/* POPUP EXTERIOR */
+
+const exteriorCard = document.querySelector(".service-card:nth-child(2)");
+const exteriorPopup = document.getElementById("exteriorPopup");
+const exteriorClose = document.querySelector(".exterior-close");
+
+exteriorCard.addEventListener("click",()=>{
+exteriorPopup.style.display="flex";
+});
+
+exteriorClose.addEventListener("click",()=>{
+exteriorPopup.style.display="none";
+});
+
+window.addEventListener("click",(e)=>{
+if(e.target === exteriorPopup){
+exteriorPopup.style.display="none";
 }
 });
 
