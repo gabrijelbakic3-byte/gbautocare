@@ -751,25 +751,24 @@ text-align:center;
 display:flex;
 flex-direction:column;
 align-items:center;
-justify-content:center;
 text-align:center;
+gap:6px;
 }
 
 .hero-logo{
 width:70px;
-margin-bottom:6px;
-}
-
-.hero h1{
-font-size:28px;
-margin:0;
 }
 
 .hero-line{
 height:3px;
 width:110px;
-margin:6px auto 12px;
 background:#ff1c1c;
+margin-bottom:10px;
+}
+
+.hero h1{
+font-size:28px;
+margin:0;
 }
 
 .hero h2{
@@ -989,13 +988,17 @@ right:16px;
 
 <!-- HERO -->
 
-<div class="hero" id="home">
-
 <div class="hero-content">
+
+<div class="hero-title">
 
 <img src="logo-white.png" class="hero-logo">
 
 <h1>GBAutoCare</h1>
+
+<div class="hero-line"></div>
+
+</div>
 
 <h2>Detalji koji čine razliku.</h2>
 
@@ -1010,10 +1013,6 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 <br>
 
 <a href="#packages" class="btn btn-secondary">Pogledaj pakete</a>
-
-</div>
- 
-<a href="#services" class="scroll-arrow">⌄</a>
 
 </div>
 
