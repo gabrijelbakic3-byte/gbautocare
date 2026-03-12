@@ -563,6 +563,76 @@ opacity:0.6;
 
 }
 
+/* POPUP */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.popup-content{
+background:#111;
+padding:40px;
+max-width:500px;
+width:90%;
+border-radius:10px;
+text-align:left;
+position:relative;
+}
+
+.popup h2{
+margin-top:0;
+}
+
+.popup-desc{
+margin-bottom:20px;
+opacity:0.8;
+}
+
+.popup-options label{
+display:block;
+margin-bottom:18px;
+cursor:pointer;
+}
+
+.popup-options input{
+margin-right:10px;
+}
+
+.popup-btn{
+display:block;
+margin-top:20px;
+background:#ff1c1c;
+color:white;
+text-align:center;
+padding:12px;
+border-radius:6px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.popup-btn:hover{
+background:#ff3b3b;
+}
+
+/* X gumb */
+
+.close-popup{
+position:absolute;
+top:15px;
+right:20px;
+font-size:28px;
+cursor:pointer;
+}
+
 /* MOBILE */
 
 @media (max-width:768px){
@@ -901,6 +971,47 @@ ili društvenih mreža.
 
 </a>
 
+<!-- POPUP UNUTARNJE CISCENJE -->
+
+<div class="popup" id="interiorPopup">
+
+<div class="popup-content">
+
+<span class="close-popup">&times;</span>
+
+<h2>Unutarnje čišćenje</h2>
+
+<p class="popup-desc">
+Odaberite opciju unutarnjeg čišćenja vozila.
+</p>
+
+<div class="popup-options">
+
+<label>
+<input type="radio" name="interior">
+<strong>Osnovno usisavanje</strong><br>
+<small>Usisavanje sjedala, tepiha i prtljažnika</small>
+</label>
+
+<label>
+<input type="radio" name="interior">
+<strong>Usisavanje + čišćenje površina</strong><br>
+<small>Usisavanje interijera i čišćenje plastike / kože / tekstila</small>
+</label>
+
+<label>
+<input type="radio" name="interior">
+<strong>Kompletno unutarnje čišćenje</strong><br>
+<small>Usisavanje, čišćenje površina, pranje stakala i dressing za plastiku ili kožu</small>
+</label>
+
+</div>
+
+<a href="#" class="popup-btn">Rezerviraj termin</a>
+
+</div>
+</div>
+
 <script>
 
 const toggle = document.querySelector(".menu-toggle");
@@ -981,6 +1092,30 @@ entry.target.classList.add("visible");
 });
 
 faders.forEach(el => observer.observe(el));
+
+/* POPUP INTERIOR */
+
+const interiorCard = document.querySelector(".service-card:nth-child(1)");
+const popup = document.getElementById("interiorPopup");
+const closePopup = document.querySelector(".close-popup");
+
+if(interiorCard){
+interiorCard.addEventListener("click",()=>{
+popup.style.display="flex";
+});
+}
+
+if(closePopup){
+closePopup.addEventListener("click",()=>{
+popup.style.display="none";
+});
+}
+
+window.addEventListener("click",(e)=>{
+if(e.target === popup){
+popup.style.display="none";
+}
+});
 
 </script>
 
