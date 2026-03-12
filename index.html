@@ -20,32 +20,32 @@ text-align:center;
 overflow:hidden;
 }
 
-/* ANIMIRANA POZADINA */
+/* POZADINA STRELICA */
 
-body::before{
-content:"";
+.arrows{
 position:fixed;
 top:0;
-left:-100%;
-width:300%;
+left:0;
+width:200%;
 height:100%;
-
-background:
-repeating-linear-gradient(
-90deg,
-rgba(255,0,0,0.08) 0px,
-rgba(255,0,0,0.08) 60px,
-transparent 60px,
-transparent 120px
-);
-
-animation:moveBg 8s linear infinite;
+display:flex;
+align-items:center;
+font-size:140px;
+color:#ff2a2a;
+opacity:0.07;
+filter:blur(4px);
+white-space:nowrap;
+animation:moveArrows 12s linear infinite;
 z-index:0;
 }
 
-@keyframes moveBg{
-0%{transform:translateX(0);}
-100%{transform:translateX(600px);}
+@keyframes moveArrows{
+0%{
+transform:translateX(-50%);
+}
+100%{
+transform:translateX(0%);
+}
 }
 
 /* CONTAINER */
@@ -53,7 +53,7 @@ z-index:0;
 .container{
 max-width:600px;
 position:relative;
-z-index:1;
+z-index:2;
 }
 
 /* LOGO */
@@ -80,7 +80,7 @@ opacity:0.8;
 line-height:1.6;
 }
 
-/* WHATSAPP BUTTON */
+/* WHATSAPP */
 
 .whatsapp{
 display:inline-block;
@@ -102,6 +102,10 @@ background:#ff4444;
 </head>
 
 <body>
+
+<div class="arrows">
+→ → → → → → → → → → → → → → → → → → → → → → → → → → → → → → → → → → →
+</div>
 
 <div class="container">
 
