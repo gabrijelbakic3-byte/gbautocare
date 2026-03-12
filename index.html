@@ -647,24 +647,37 @@ cursor:pointer;
 
 /* POPULAR OPTION */
 
-.popup-options label{
+.popup-option{
+display:block;
+padding:15px;
+margin-bottom:12px;
+border-radius:8px;
+transition:0.3s;
 position:relative;
+cursor:pointer;
 }
 
-.popular{
-border:1px solid rgba(255,28,28,0.4);
+.popup-option:hover{
+background:rgba(255,255,255,0.05);
+}
+
+.popup-option input{
+margin-right:8px;
+}
+
+.popup-option input:checked + strong{
+color:#ff1c1c;
 }
 
 .popular-badge{
 position:absolute;
-top:-10px;
+top:-8px;
 right:10px;
 background:#ff1c1c;
 color:white;
-font-size:11px;
+font-size:12px;
 padding:4px 8px;
-border-radius:20px;
-font-weight:600;
+border-radius:6px;
 }
 
 .ceramic-note{
@@ -1072,25 +1085,32 @@ Odaberite opciju vanjskog pranja vozila.
 
 <div class="popup-options">
 
-<label>
+<label class="popup-option">
+
 <input type="radio" name="exterior">
+
 <strong>Osnovno vanjsko pranje</strong><br>
 <small>Predpranje aktivnom pjenom, ručno pranje vozila i ispiranje</small>
+
 </label>
 
-<label>
+<label class="popup-option">
+
 <input type="radio" name="exterior">
+
 <strong>Vanjsko pranje + felge</strong><br>
 <small>Predpranje, ručno pranje vozila, čišćenje felgi i ispiranje</small>
+
 </label>
 
-<label class="popular">
+<label class="popup-option popular">
 
 <span class="popular-badge">Najpopularnije</span>
 
-<input type="radio" name="exterior" checked>
+<input type="radio" name="exterior">
 
 <strong>Kompletno vanjsko pranje</strong><br>
+
 <small>
 Predpranje aktivnom pjenom, ručno pranje vozila, čišćenje felgi,
 zaštita i sjaj za gume (tire dressing), sušenje vozila i pranje
