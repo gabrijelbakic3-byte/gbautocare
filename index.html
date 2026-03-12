@@ -687,6 +687,36 @@ right:20px;
 font-size:28px;
 cursor:pointer;
 }
+
+/* POPUP NAVIGATION */
+
+.popup-nav{
+position:absolute;
+top:50%;
+left:0;
+width:100%;
+transform:translateY(-50%);
+display:flex;
+justify-content:space-between;
+pointer-events:none;
+}
+
+.popup-arrow{
+pointer-events:auto;
+font-size:28px;
+cursor:pointer;
+padding:10px 16px;
+background:rgba(0,0,0,0.6);
+border-radius:8px;
+transition:0.25s;
+user-select:none;
+}
+
+.popup-arrow:hover{
+background:#ff1c1c;
+transform:scale(1.1);
+}
+
 /* MOBILE */
 
 @media (max-width:768px){
@@ -1033,6 +1063,10 @@ ili društvenih mreža.
 
 <span class="close-popup">&times;</span>
 
+<div class="popup-nav">
+  <span class="popup-arrow next" data-next="exteriorPopup">❯</span>
+</div>
+
 <h2>Unutarnje čišćenje</h2>
 
 <p class="popup-desc">
@@ -1090,6 +1124,11 @@ i zaštita plastike ili kože ovisno o interijeru vozila
 <div class="popup-content">
 
 <span class="close-popup exterior-close">&times;</span>
+
+<div class="popup-nav">
+  <span class="popup-arrow prev" data-prev="interiorPopup">❮</span>
+  <span class="popup-arrow next" data-next="chemicalPopup">❯</span>
+</div>
 
 <h2>Vanjsko pranje</h2>
 
@@ -1151,6 +1190,11 @@ Keramički efekt pruža dodatni sjaj i zaštitu do 3 tjedna.
 <div class="popup-content">
 
 <span class="close-popup chemical-close">×</span>
+
+<div class="popup-nav">
+  <span class="popup-arrow prev" data-prev="exteriorPopup">❮</span>
+  <span class="popup-arrow next" data-next="climatePopup">❯</span>
+</div>
 
 <h2>Kemijsko čišćenje</h2>
 
@@ -1350,6 +1394,30 @@ window.addEventListener("click",(e)=>{
 if(e.target === chemicalPopup){
 chemicalPopup.style.display="none";
 }
+});
+
+/* POPUP NAVIGATION */
+
+document.querySelectorAll(".popup-arrow").forEach(arrow=>{
+
+arrow.addEventListener("click",()=>{
+
+const currentPopup = arrow.closest(".popup");
+currentPopup.style.display="none";
+
+const nextId = arrow.dataset.next;
+const prevId = arrow.dataset.prev;
+
+if(nextId){
+document.getElementById(nextId).style.display="flex";
+}
+
+if(prevId){
+document.getElementById(prevId).style.display="flex";
+}
+
+});
+
 });
 
 </script>
