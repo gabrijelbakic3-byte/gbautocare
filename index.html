@@ -6,54 +6,119 @@
 <title>GBAutoCare</title>
 
 <style>
+
 body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0a0a0a;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:100vh;
-    text-align:center;
+margin:0;
+font-family:Arial, sans-serif;
+background:#0a0a0a;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+text-align:center;
+overflow:hidden;
 }
+
+/* ANIMIRANA POZADINA */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:-100%;
+width:300%;
+height:100%;
+
+background:
+repeating-linear-gradient(
+90deg,
+rgba(255,0,0,0.08) 0px,
+rgba(255,0,0,0.08) 60px,
+transparent 60px,
+transparent 120px
+);
+
+animation:moveBg 8s linear infinite;
+z-index:0;
+}
+
+@keyframes moveBg{
+0%{transform:translateX(0);}
+100%{transform:translateX(600px);}
+}
+
+/* CONTAINER */
 
 .container{
-    max-width:600px;
+max-width:600px;
+position:relative;
+z-index:1;
 }
 
+/* LOGO */
+
+.logo{
+width:120px;
+margin-bottom:15px;
+}
+
+/* NASLOV */
+
 h1{
-    color:#ff2a2a;
-    font-size:48px;
+color:#ff2a2a;
+font-size:48px;
+margin-bottom:10px;
+}
+
+h2{
+margin-top:0;
 }
 
 p{
-    opacity:0.8;
+opacity:0.8;
+line-height:1.6;
 }
 
+/* WHATSAPP BUTTON */
+
 .whatsapp{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:#ff2a2a;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
+display:inline-block;
+margin-top:25px;
+padding:14px 28px;
+background:#ff2a2a;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+transition:0.3s;
 }
+
+.whatsapp:hover{
+background:#ff4444;
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
+<img src="logo-white.png" class="logo">
+
 <h1>GBAutoCare</h1>
 
 <h2>Stranica je trenutno u izradi</h2>
 
-<p>Radimo na novoj web stranici.  
-Za rezervaciju termina kontaktirajte nas.</p>
+<p>
+Radimo na novoj web stranici.  
+Za rezervaciju termina kontaktirajte nas.
+</p>
 
-<a class="whatsapp" href="https://wa.me/385XXXXXXXXX">Pošalji WhatsApp</a>
+<a class="whatsapp" href="https://wa.me/385996471243">
+Pošalji WhatsApp
+</a>
 
 </div>
 
