@@ -725,6 +725,15 @@ transform:scale(1.15);
 justify-content:flex-end;
 }
 
+*{
+box-sizing:border-box;
+}
+
+html,body{
+overflow-x:hidden;
+max-width:100%;
+}
+
 /* MOBILE */
 
 @media (max-width:768px){
@@ -782,21 +791,18 @@ font-size:22px;
 /* NAVBAR */
 
 nav{
-padding:5px 13px;
+padding:8px 14px;
+width:100%;
 }
 
 .logo img{
-height:45px;
+height:42px;
 }
 
-nav.scrolled{
-padding:4px 13px;
+.menu-toggle{
+font-size:24px;
+margin-right:10px;
 }
-
-nav.scrolled .logo img{
-height:38px;
-}
-
 /* MENU */
 
 .menu{
@@ -850,25 +856,26 @@ font-size:28px;
 
 .services{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:0 12px;
 }
 
 .service-card{
-height:190px;
+height:140px;
 }
 
 .service-overlay{
-padding:16px;
+padding:10px;
 }
 
 .service-overlay h3{
-font-size:17px;
+font-size:14px;
 }
 
 .service-overlay p{
-font-size:12px;
-line-height:1.3;
+font-size:11px;
+line-height:1.25;
 }
 
 /* drugi red centriran */
@@ -942,6 +949,10 @@ bottom:16px;
 right:16px;
 }
 
+}
+
+section{
+overflow-x:hidden;
 }
 
 </style>
