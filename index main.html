@@ -324,42 +324,132 @@ overflow-x:hidden;
 
 /* SECTION */
 
-section{
-padding:220px 20px;
-max-width:1300px;
-margin:auto;
-scroll-margin-top:90px;
-}
-
-h2{
-text-align:center;
-margin-bottom:50px;
-}
-
-/* SERVICES SECTION STYLE */
-
 #services{
 position:relative;
+overflow:visible;
+background:#000;
+
+/* VISINA SEKCIJE */
+min-height:90vh;
+
+padding:120px 0;
 }
 
-#services::before,
+/* POZADINSKA SLIKA */
+#services::before{
+content:"";
+position:absolute;
+
+top:0;
+left:50%;
+transform:translateX(-50%);
+
+width:100vw;
+height:100%;
+
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,0.85),
+rgba(0,0,0,0.65),
+rgba(0,0,0,0.85)
+),
+url("https://images.pexels.com/photos/15336274/pexels-photo-15336274.jpeg");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+z-index:0;
+pointer-events:none;
+}
+
+/* GORNJA LINIJA */
 #services::after{
 content:"";
 position:absolute;
+top:0;
 left:50%;
 transform:translateX(-50%);
 width:100vw;
 height:2px;
+
 background:#ff1c1c;
-box-shadow:0 0 20px #ff1c1c;
+
+box-shadow:
+0 0 10px #ff1c1c,
+0 0 25px rgba(255,28,28,0.9),
+0 0 60px rgba(255,28,28,0.6);
+
+z-index:3;
+}
+
+/* DONJA LINIJA */
+#services .bottom-glow{
+position:absolute;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:100vw;
+height:2px;
+
+background:#ff1c1c;
+
+box-shadow:
+0 0 10px #ff1c1c,
+0 0 25px rgba(255,28,28,0.9),
+0 0 60px rgba(255,28,28,0.6);
+
+z-index:3;
+}
+
+/* SADRZAJ IZNAD SLIKE */
+#services{
+position:relative;
+min-height:1050px;
+padding-top:120px;
+padding-bottom:120px;
+}
+
+/* glow */
+box-shadow:
+0 0 10px #ff1c1c,
+0 0 25px rgba(255,28,28,0.9),
+0 0 60px rgba(255,28,28,0.6);
+
+pointer-events:none;
+z-index:1;
 }
 
 #services::before{
-top:0;
+top:-20px;
 }
 
 #services::after{
-bottom:0;
+bottom:-20px;
+}
+
+#services{
+scroll-margin-top:80px;
+}
+
+.services-header{
+text-align:center;
+max-width:700px;
+margin:0 auto 70px auto;
+}
+
+.services-header h2{
+font-size:48px;
+font-weight:700;
+margin-bottom:16px;
+letter-spacing:1px;
+}
+
+.services-header p{
+font-size:18px;
+opacity:0.85;
+line-height:1.6;
 }
 
 /* SERVICES GRID */
@@ -367,17 +457,18 @@ bottom:0;
 .services{
 display:flex;
 justify-content:center;
-gap:30px;
+gap:34px;
 flex-wrap:nowrap;
-}
 
+margin-top:120px;
+}
 /* SERVICE CARD */
 
 .service-card{
-width:260px;
-height:380px;
+width:300px;
+height:420px;
 position:relative;
-border-radius:12px;
+border-radius:14px;
 overflow:hidden;
 display:flex;
 align-items:flex-end;
@@ -416,6 +507,9 @@ width:100%;
 margin:0 0 10px 0;
 font-size:24px;
 font-weight:600;
+
+text-shadow:
+0 0 8px rgba(255,255,255,0.3);
 }
 
 .service-overlay p{
@@ -425,26 +519,55 @@ opacity:0.9;
 line-height:1.5;
 }
 
+
 /* SLIKE ZA USLUGE */
 
 .service-card:nth-child(1){
-background-image:url("https://images.unsplash.com/photo-1607860108855-64acf2078ed9");
+background-image:url("https://images.pexels.com/photos/533562/pexels-photo-533562.jpeg?auto=compress&cs=tinysrgb&w=1200");
+background-size:cover;
+background-position:60% center;
+background-repeat:no-repeat;
 }
 
 .service-card:nth-child(2){
-background-image:url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
+background-image:url("https://images.pexels.com/photos/29504457/pexels-photo-29504457.jpeg?auto=compress&cs=tinysrgb&w=1200");
+background-size:110%;
+background-position:center;
+background-repeat:no-repeat;
 }
 
 .service-card:nth-child(3){
-background-image:url("https://images.unsplash.com/photo-1580273916550-e323be2ae537");
+background-image:url("Kemijskoslika.jpg");
+background-size:110%;
+background-position:center;
+background-repeat:no-repeat;
 }
 
 .service-card:nth-child(4){
-background-image:url("https://images.unsplash.com/photo-1625047509168-a7026f36de04");
+background-image:url("https://images.pexels.com/photos/6074540/pexels-photo-6074540.jpeg");
+
+background-size:100%;
+background-position:50% 0%;
+background-repeat:no-repeat;
 }
 
 .service-card:nth-child(5){
-background-image:url("https://images.unsplash.com/photo-1619642751034-765dfdf7c58e");
+background-image:url("https://images.pexels.com/photos/9381011/pexels-photo-9381011.jpeg");
+background: size 30%;
+background-position:center 50%;
+background-repeat:no-repeat;
+}
+
+.service-card:nth-child(6){
+background-image:url("https://images.pexels.com/photos/2539244/pexels-photo-2539244.jpeg");
+background-size:cover;
+background-position:left;
+}
+
+.service-card:nth-child(7){
+background-image:url("https://images.pexels.com/photos/32164493/pexels-photo-32164493.jpeg");
+background-size:cover;
+background-position:center;
 }
 
 /* SCROLL ANIMATION */
@@ -458,6 +581,34 @@ transition:all 0.8s ease;
 .fade-in.visible{
 opacity:1;
 transform:translateY(0);
+}
+
+.service-hover{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0.8);
+
+background:#ff1c1c;
+color:#fff;
+
+padding:10px 22px;
+border-radius:30px;
+
+font-size:14px;
+font-weight:600;
+letter-spacing:1px;
+
+opacity:0;
+transition:0.35s ease;
+
+z-index:5;
+pointer-events:none;
+}
+
+.service-card:hover .service-hover{
+opacity:1;
+transform:translate(-50%,-50%) scale(1);
 }
 
 /* PACKAGES */
@@ -523,9 +674,10 @@ color:#ff1c1c;
 
 .scroll-arrow{
 position:absolute;
-bottom:60px;
 left:50%;
 transform:translateX(-50%);
+
+bottom:5vh;   /* uvijek 5% od dna ekrana */
 
 color:#ff1c1c;
 font-size:34px;
@@ -734,6 +886,357 @@ overflow-x:hidden;
 max-width:100%;
 }
 
+/* ! PACKAGES */
+#packages{
+position:relative;
+overflow:hidden;
+background:#050505;
+
+padding-top:60px;
+padding-bottom:450px;
+
+scroll-margin-top:120px;
+}
+
+.packages{
+display:flex;
+justify-content:center;
+align-items:center;
+
+gap:220px;
+
+max-width:1300px;
+margin:0 auto;
+
+position:relative;
+z-index:2;
+}
+
+.packages,
+.packages-header{
+position:relative;
+z-index:2;
+}
+
+#packages h2{
+text-align:center;
+font-size:42px;
+margin-bottom:25px;
+}
+
+#packages p{
+text-align:center;
+opacity:0.8;
+margin-bottom:150px;
+}
+
+#packages::before{
+
+content:"";
+position:absolute;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+/* UKOSO HIGHLIGHT LINIJE */
+
+background:
+
+linear-gradient(120deg, transparent 10%, rgba(255,255,255,0.28) 12%, transparent 14%),
+linear-gradient(120deg, transparent 25%, rgba(255,255,255,0.18) 26%, transparent 27%),
+linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.32) 43%, transparent 46%),
+linear-gradient(120deg, transparent 55%, rgba(255,255,255,0.20) 57%, transparent 59%),
+linear-gradient(120deg, transparent 70%, rgba(255,255,255,0.35) 74%, transparent 78%),
+linear-gradient(120deg, transparent 85%, rgba(255,255,255,0.16) 87%, transparent 88%);
+
+animation:shinePulse 7s ease-in-out infinite;
+
+filter:blur(8px);
+opacity:0.5;
+
+pointer-events:none;
+z-index:0;
+
+}
+
+@keyframes shinePulse{
+
+0%{
+opacity:0.45;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+opacity:0.45;
+}
+
+}
+
+/* GRID */
+
+#packages{
+position:relative;
+overflow:hidden;
+background:#050505;
+padding-bottom:140px;
+}
+
+/* CARD */
+
+.package-card{
+width:380px;
+padding:50px;
+border-radius:18px;
+
+background:#111;
+
+position:relative;
+
+transition:0.4s;
+}
+
+/* DIAMOND */
+
+.package-card.diamond{
+
+transform-origin:center;
+transform:scale(1.25);
+
+border:2px solid #6ee7ff;
+
+box-shadow:
+0 0 25px rgba(110,231,255,0.8),
+0 0 80px rgba(110,231,255,0.35);
+
+}
+
+/* GOLD */
+
+.package-card.gold{
+
+width:320px;
+min-height:520px;
+
+border:2px solid transparent;
+border-radius:18px;
+padding:30px;
+
+background:
+linear-gradient(#0b0b0b,#0b0b0b) padding-box,
+linear-gradient(90deg,#ff3c00,#ff7a00,#ffd000,#ff7a00,#ff3c00) border-box;
+
+background-size:100% 100%,250% 250%;
+
+box-shadow:
+0 0 15px rgba(255,170,0,0.4),
+0 0 35px rgba(255,120,0,0.3);
+
+animation:
+goldBorder 6s linear infinite,
+cardPulse 5s ease-in-out infinite;
+
+transition:0.3s;
+
+will-change:transform,background-position;
+}
+
+/* GOLD BORDER */
+
+@keyframes goldBorder{
+
+0%{
+background-position:0% 50%;
+}
+
+100%{
+background-position:200% 50%;
+}
+
+}
+
+/* BRONZE */
+
+.package-card.bronze{
+
+width:320px;
+min-height:520px;
+
+border:2px solid transparent;
+border-radius:18px;
+padding:30px;
+
+background:
+linear-gradient(#0b0b0b,#0b0b0b) padding-box,
+linear-gradient(90deg,#cd7f32,#b87333,#a05a2c,#b87333,#cd7f32) border-box;
+
+background-size:100% 100%,250% 250%;
+
+box-shadow:
+0 0 8px rgba(205,127,50,0.25);
+
+animation:
+bronzeBorder 10s linear infinite,
+cardPulse 5s ease-in-out infinite;
+
+transition:0.3s;
+
+will-change:transform,background-position;
+}
+
+/* BRONZE BORDER */
+
+@keyframes bronzeBorder{
+
+0%{
+background-position:0% 50%;
+}
+
+100%{
+background-position:200% 50%;
+}
+
+}
+
+/* PULSE ZA BRONZE I GOLD */
+
+@keyframes cardPulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.025);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* HOVER */
+
+.package-card.gold:hover{
+transform:scale(1.06);
+}
+
+.package-card.bronze:hover{
+transform:scale(1.05);
+}
+
+/* ICON */
+
+.package-icon{
+font-size:52px;
+margin-bottom:14px;
+}
+
+/* TITLE */
+
+.package-card h3{
+font-size:38px;
+margin-bottom:20px;
+font-weight:700;
+}
+
+/* LIST */
+
+.package-card ul{
+list-style:none;
+padding:0;
+margin-bottom:30px;
+}
+
+.package-card li{
+margin-bottom:10px;
+opacity:0.9;
+}
+
+/* BUTTON */
+
+.package-btn{
+background:#ff1c1c;
+color:white;
+
+border:none;
+padding:12px 18px;
+
+border-radius:8px;
+cursor:pointer;
+
+font-weight:600;
+}
+
+/* BEST OFFER */
+
+.best-offer{
+position:absolute;
+top:-16px;
+left:50%;
+transform:translateX(-50%);
+
+background:linear-gradient(45deg,#ff1c1c,#ff8a00);
+
+padding:8px 18px;
+
+border-radius:20px;
+font-size:14px;
+
+box-shadow:
+0 0 10px #ff1c1c,
+0 0 20px #ff8a00;
+}
+
+.package-card.bronze h3{
+color:#cd7f32;
+}
+
+.package-card.gold h3{
+color:#ffcc33;
+}
+
+.package-card.diamond h3{
+color:#6ee7ff;
+}
+
+/* RANDOM LIGHT LINES */
+
+.light-lines{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:1;
+overflow:hidden;
+}
+
+@keyframes lineGlow{
+
+0%{
+opacity:0.1;
+filter:blur(0.5px);
+}
+
+50%{
+opacity:0.6;
+filter:blur(1px);
+}
+
+100%{
+opacity:0.1;
+filter:blur(0.5px);
+}
+
+}
+
 /* MOBILE */
 
 @media (max-width:768px){
@@ -862,14 +1365,27 @@ font-size:28px;
 /* SERVICES */
 
 .services{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:0 12px;
+display:flex;
+justify-content:center;
+gap:34px;
+flex-wrap:nowrap;
+
+margin-top:120px;
 }
 
 .service-card{
-height:140px;
+width:300px;
+height:420px;
+position:relative;
+border-radius:14px;
+overflow:hidden;
+display:flex;
+align-items:flex-end;
+
+background-size:110%;
+background-position:center;
+
+transition:0.4s;
 }
 
 .service-overlay{
@@ -1024,11 +1540,20 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 
 <section id="services">
 
+<div class="services-header fade-in">
+
 <h2>Usluge</h2>
+
+<p>
+Pregledajte usluge i odaberite opciju koja najbolje odgovara vašem vozilu.
+</p>
+
+</div>
 
 <div class="services">
 
 <div class="service-card fade-in">
+  <span class="service-hover">Pogledaj</span>
 <div class="service-overlay">
 <h3>Unutarnje čišćenje</h3>
 <p>Temeljito čišćenje interijera vozila uključujući plastiku, tepihe i sve unutarnje površine.</p>
@@ -1036,6 +1561,7 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 </div>
 
 <div class="service-card fade-in">
+  <span class="service-hover">Pogledaj</span>
 <div class="service-overlay">
 <h3>Vanjsko pranje</h3>
 <p>Profesionalno ručno pranje vozila uz čišćenje felgi i završno sušenje.</p>
@@ -1043,6 +1569,7 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 </div>
 
 <div class="service-card fade-in">
+  <span class="service-hover">Pogledaj</span>
 <div class="service-overlay">
 <h3>Kemijsko čišćenje sjedala</h3>
 <p>Dubinsko kemijsko čišćenje sjedala koje uklanja mrlje i neugodne mirise.</p>
@@ -1050,6 +1577,7 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 </div>
 
 <div class="service-card fade-in">
+  <span class="service-hover">Pogledaj</span>
 <div class="service-overlay">
 <h3>Antibakterijski tretman klime</h3>
 <p>Dezinfekcija ventilacijskog sustava koja uklanja bakterije i neugodne mirise.</p>
@@ -1057,9 +1585,26 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 </div>
 
 <div class="service-card fade-in">
+  <span class="service-hover">Pogledaj</span>
 <div class="service-overlay">
 <h3>Poliranje farova</h3>
 <p>Obnova i poliranje farova za bolju vidljivost i svjež izgled vozila.</p>
+</div>
+</div>
+
+<div class="service-card fade-in">
+  <span class="service-hover">Pogledaj</span>
+<div class="service-overlay">
+<h3>Keramička zaštita laka</h3>
+<p>Nanošenje keramičkog spray sealanta koji daje duboki sjaj, hidrofobni efekt i dodatnu zaštitu laka.</p>
+</div>
+</div>
+
+<div class="service-card fade-in">
+  <span class="service-hover">Pogledaj</span>
+<div class="service-overlay">
+<h3>Čišćenje motornog prostora</h3>
+<p>Sigurno i temeljito čišćenje motornog prostora uz uklanjanje prljavštine, masnoće i naslaga.</p>
 </div>
 </div>
 
@@ -1067,36 +1612,107 @@ detailing vozila kako bi vaš automobil uvijek izgledao
 
 <a href="#packages" class="scroll-arrow">⌄</a>
 
+<div class="bottom-glow"></div>
+
 </section>
 
-<!-- PACKAGES -->
+<!-- ! PACKAGES -->
 
 <section id="packages">
 
-<h2>Detailing paketi</h2>
+<div class="packages-header">
+
+<h2>Detailing Paketi</h2>
+<p>Odaberite paket koji najbolje odgovara vašem vozilu.</p>
+
+</div>
 
 <div class="packages">
-
-<div class="package">
-<h3>Basic paket</h3>
-<p>Vanjsko pranje</p>
-<p>Čišćenje interijera</p>
+  
+<div class="light-lines">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
 </div>
 
-<div class="package">
-<h3>Premium paket</h3>
-<p>Dubinsko čišćenje</p>
-<p>Detailing interijera</p>
+
+<!-- BRONZE -->
+
+<div class="package-card bronze">
+
+<div class="package-icon bronze-icon">🛞</div>
+
+<h3>Bronze</h3>
+
+<ul>
+<li>Ručno pranje karoserije</li>
+<li>Osnovno čišćenje felgi i guma</li>
+<li>Sušenje mikrofiber ručnikom</li>
+<li>Premazivanje guma za sjaj</li>
+<li>Usisavanje unutrašnjosti</li>
+<li>Brisanje plastike</li>
+<li>Čišćenje unutarnjih stakala</li>
+</ul>
+
+<button class="package-btn">Izaberi paket</button>
+
 </div>
 
-<div class="package">
-<h3>Ultimate paket</h3>
-<p>Kompletno čišćenje vozila</p>
-<p>Njega interijera</p>
+
+<!-- DIAMOND -->
+
+<div class="package-card diamond">
+
+<div class="package-icon diamond-icon">💎</div>
+
+<h3>Diamond</h3>
+
+<ul>
+<li>Sve iz Gold paketa</li>
+<li>Vrlo detaljno pranje karoserije</li>
+<li>Čišćenje rubova vrata i spojeva</li>
+<li>Keramički spray sealant (do 3 mjeseca)</li>
+<li>Dubinsko čišćenje interijera</li>
+<li>Dubinsko pranje sjedala i tepiha</li>
+<li>Antibakterijski tretman</li>
+</ul>
+
+<button class="package-btn">Izaberi paket</button>
+
+</div>
+
+
+<!-- GOLD -->
+
+<div class="package-card gold">
+
+<div class="best-offer">
+🔥 Najbolja ponuda
+</div>
+
+<div class="package-icon gold-icon">✨</div>
+
+<h3>Gold</h3>
+
+<ul>
+<li>Sve iz Bronze paketa</li>
+<li>Detaljnije ručno pranje karoserije</li>
+<li>Detaljnije čišćenje felgi</li>
+<li>Temeljito usisavanje tepiha</li>
+<li>Pranje tepiha po potrebi</li>
+<li>Dressing plastike</li>
+<li>Poliranje stakala</li>
+</ul>
+
+<button class="package-btn">Izaberi paket</button>
+
 </div>
 
 </div>
-<a href="#gallery" class="scroll-arrow">⌄</a>
+
 </section>
 
 <!-- GALLERY -->
@@ -1167,6 +1783,8 @@ ili društvenih mreža.
 
 </div>
 
+<div class="services-bottom-line"></div>
+
 </section>
 
 <!-- FOOTER -->
@@ -1198,17 +1816,15 @@ ili društvenih mreža.
 </svg>
 
 </a>
-
 <!-- POPUP UNUTARNJE ČIŠĆENJE -->
 
 <div class="popup" id="interiorPopup">
-
 <div class="popup-content">
 
 <span class="close-popup">&times;</span>
 
 <div class="popup-nav single-next">
-  <span class="popup-arrow next" data-next="exteriorPopup">❯</span>
+<span class="popup-arrow next" data-next="exteriorPopup">❯</span>
 </div>
 
 <h2>Unutarnje čišćenje</h2>
@@ -1220,24 +1836,16 @@ Odaberite opciju unutarnjeg čišćenja vozila.
 <div class="popup-options">
 
 <label class="popup-option">
-
 <input type="radio" name="interior">
-
 <strong>Osnovno usisavanje</strong><br>
 <small>Usisavanje sjedala, tepiha i prtljažnika</small>
-
 </label>
-
 
 <label class="popup-option">
-
 <input type="radio" name="interior">
-
 <strong>Usisavanje + čišćenje površina</strong><br>
 <small>Usisavanje interijera i čišćenje plastike / kože / tekstila</small>
-
 </label>
-
 
 <label class="popup-option popular">
 
@@ -1256,22 +1864,23 @@ i zaštita plastike ili kože ovisno o interijeru vozila
 
 </div>
 
-<a href="#" class="popup-btn">Rezerviraj termin</a>
+<a href="#" class="popup-btn">izaberi</a>
 
 </div>
 </div>
+
+
 
 <!-- POPUP VANJSKO PRANJE -->
 
 <div class="popup" id="exteriorPopup">
-
 <div class="popup-content">
 
-<span class="close-popup exterior-close">&times;</span>
+<span class="close-popup">&times;</span>
 
 <div class="popup-nav">
-  <span class="popup-arrow prev" data-prev="interiorPopup">❮</span>
-  <span class="popup-arrow next" data-next="chemicalPopup">❯</span>
+<span class="popup-arrow prev" data-prev="interiorPopup">❮</span>
+<span class="popup-arrow next" data-next="chemicalPopup">❯</span>
 </div>
 
 <h2>Vanjsko pranje</h2>
@@ -1283,21 +1892,15 @@ Odaberite opciju vanjskog pranja vozila.
 <div class="popup-options">
 
 <label class="popup-option">
-
 <input type="radio" name="exterior">
-
 <strong>Osnovno vanjsko pranje</strong><br>
 <small>Predpranje aktivnom pjenom, ručno pranje vozila i ispiranje</small>
-
 </label>
 
 <label class="popup-option">
-
 <input type="radio" name="exterior">
-
 <strong>Vanjsko pranje + felge</strong><br>
 <small>Predpranje, ručno pranje vozila, čišćenje felgi i ispiranje</small>
-
 </label>
 
 <label class="popup-option popular">
@@ -1322,55 +1925,45 @@ Keramički efekt pruža dodatni sjaj i zaštitu do 3 tjedna.
 
 </div>
 
-<a href="#" class="popup-btn">Rezerviraj termin</a>
+<a href="#" class="popup-btn">izaberi</a>
+
 
 </div>
 </div>
+
+
 
 <!-- POPUP KEMIJSKO ČIŠĆENJE -->
 
 <div class="popup" id="chemicalPopup">
-
 <div class="popup-content">
 
-<span class="close-popup chemical-close">×</span>
+<span class="close-popup">&times;</span>
 
 <div class="popup-nav">
-  <span class="popup-arrow prev" data-prev="exteriorPopup">❮</span>
-  <span class="popup-arrow next" data-next="climatePopup">❯</span>
+<span class="popup-arrow prev" data-prev="exteriorPopup">❮</span>
+<span class="popup-arrow next" data-next="acPopup">❯</span>
 </div>
 
 <h2>Kemijsko čišćenje</h2>
 
 <p class="popup-desc">
-Odaberite dio interijera koji želite kemijski očistiti.  
+Odaberite dio interijera koji želite kemijski očistiti.
 Kompletno kemijsko čišćenje interijera dostupno je u Diamond paketu.
 </p>
 
 <div class="popup-options">
 
 <label class="popup-option">
-
 <input type="radio" name="chemical">
-
 <strong>Kemijsko čišćenje sjedala</strong><br>
-
-<small>
-dubinsko čišćenje tekstilnih ili kožnih sjedala, uklanjanje mrlja i neugodnih mirisa
-</small>
-
+<small>Dubinsko čišćenje sjedala, uklanjanje mrlja i mirisa</small>
 </label>
 
 <label class="popup-option">
-
 <input type="radio" name="chemical">
-
 <strong>Kemijsko čišćenje tepiha</strong><br>
-
-<small>
-dubinsko čišćenje tekstilnih tepiha, uklanjanje mrlja i neugodnih mirisa
-</small>
-
+<small>Dubinsko čišćenje tepiha, uklanjanje mrlja i mirisa</small>
 </label>
 
 <label class="popup-option popular">
@@ -1382,18 +1975,214 @@ dubinsko čišćenje tekstilnih tepiha, uklanjanje mrlja i neugodnih mirisa
 <strong>Sjedala + tepisi + naslon za ruku</strong><br>
 
 <small>
-dubinsko kemijsko čišćenje sjedala, tepiha i naslona za ruku, uklanjanje mrlja i neugodnih mirisa
+Dubinsko kemijsko čišćenje sjedala, tepiha i naslona za ruku
 </small>
 
 </label>
 
 </div>
 
-<a href="#" class="popup-btn">Rezerviraj termin</a>
+<a href="#" class="popup-btn">izaberi</a>
+
 
 </div>
 </div>
 
+
+
+<!-- POPUP KLIMA -->
+
+<div class="popup" id="acPopup">
+<div class="popup-content">
+
+<span class="close-popup">&times;</span>
+
+<div class="popup-nav">
+<span class="popup-arrow prev" data-prev="chemicalPopup">❮</span>
+<span class="popup-arrow next" data-next="headlightPopup">❯</span>
+</div>
+
+<h2>Antibakterijski tretman klime</h2>
+
+<p class="popup-desc">
+Dezinfekcija ventilacijskog sustava vozila koja uklanja bakterije,
+gljivice i neugodne mirise.
+</p>
+
+<div class="popup-options">
+
+<label class="popup-option">
+<input type="radio" name="ac" checked>
+
+<strong>Antibakterijski tretman klime</strong><br>
+
+<small>
+Dezinfekcija ventilacijskog sustava i uklanjanje neugodnih mirisa
+</small>
+
+</label>
+
+</div>
+
+<a href="#" class="popup-btn">izaberi</a>
+
+
+</div>
+</div>
+
+
+
+<!-- POPUP POLIRANJE FAROVA -->
+
+<div class="popup" id="headlightPopup">
+<div class="popup-content">
+
+<span class="close-popup">&times;</span>
+
+<div class="popup-nav">
+<span class="popup-arrow prev" data-prev="acPopup">❮</span>
+<span class="popup-arrow next" data-next="ceramicPopup">❯</span>
+</div>
+
+<h2>Poliranje farova</h2>
+
+<p class="popup-desc">
+Obnova i poliranje farova vraća prozirnost plastike
+i poboljšava vidljivost noću.
+</p>
+
+<div class="popup-options">
+
+<label class="popup-option popular">
+
+<span class="popular-badge">Preporučeno</span>
+
+<input type="radio" name="headlight" checked>
+
+<strong>Obnova i poliranje farova</strong><br>
+
+<small>
+Uklanjanje oksidacije i zamućenja te zaštita farova
+</small>
+
+</label>
+
+</div>
+
+<a href="#" class="popup-btn">izaberi</a>
+
+
+</div>
+</div>
+
+
+
+<!-- POPUP KERAMIKA -->
+
+<div class="popup" id="ceramicPopup">
+<div class="popup-content">
+
+<span class="close-popup">&times;</span>
+
+<div class="popup-nav">
+<span class="popup-arrow prev" data-prev="headlightPopup">❮</span>
+<span class="popup-arrow next" data-next="enginePopup">❯</span>
+</div>
+
+<h2>Keramička zaštita laka</h2>
+
+<p class="popup-desc">
+Keramička zaštita daje vozilu dodatni sjaj i hidrofobni efekt.
+</p>
+
+<div class="popup-options">
+
+<label class="popup-option popular">
+
+<span class="popular-badge">Preporučeno</span>
+
+<input type="radio" name="ceramic" checked>
+
+<strong>Keramička zaštita laka</strong><br>
+
+<small>
+Zaštitni sloj koji odbija vodu i prljavštinu.
+Trajanje do 3 mjeseca.
+</small>
+
+</label>
+
+</div>
+
+<a href="#" class="popup-btn">izaberi</a>
+
+
+</div>
+</div>
+
+<!-- POPUP Engine -->
+
+<div class="popup" id="enginePopup">
+
+<div class="popup-content">
+
+<span class="close-popup">&times;</span>
+
+<div class="popup-nav single-prev">
+<span class="popup-arrow prev" data-prev="ceramicPopup">❮</span>
+</div>
+
+<h2>Čišćenje motornog prostora</h2>
+
+<p class="popup-desc">
+Sigurno i pažljivo čišćenje motornog prostora uz uklanjanje
+prašine, masnoće i naslaga bez oštećenja električnih komponenti.
+</p>
+
+<div class="popup-options">
+
+<label class="popup-option">
+
+<input type="radio" name="engine">
+
+<strong>Osnovno čišćenje motornog prostora</strong><br>
+
+<small>
+Uklanjanje površinske prašine i prljavštine uz sigurno čišćenje
+motornog prostora.
+</small>
+
+</label>
+<label class="popup-option popular">
+
+<span class="popular-badge">Preporučeno</span>
+
+<input type="radio" name="wheels" checked>
+
+<strong>Kompletno čišćenje motornog prostora</strong>
+
+<small>
+Dubinsko čišćenje motornog prostora,
+uklanjanje masnoće i prljavštine te
+zaštita plastičnih dijelova.
+</small>
+
+<p class="ceramic-note">
+Napomena: motor se čisti sigurnim metodama bez pranja
+osjetljivih električnih komponenti.
+</p>
+
+</label>
+
+</div>
+
+<a href="#" class="popup-btn">izaberi</a>
+
+
+</div>
+</div>
+
+<div class="bottom-line"></div>
 
 <script>
 
@@ -1474,45 +2263,81 @@ entry.target.classList.add("visible");
 
 });
 
+
 faders.forEach(el => observer.observe(el));
+
+/* POPUP NAVIGATION (STRELICA) */
+
+document.querySelectorAll(".popup-arrow").forEach(arrow => {
+
+arrow.addEventListener("click", () => {
+
+const currentPopup = arrow.closest(".popup");
+currentPopup.style.display = "none";
+
+const nextId = arrow.dataset.next;
+const prevId = arrow.dataset.prev;
+
+if(nextId){
+const nextPopup = document.getElementById(nextId);
+if(nextPopup){
+nextPopup.style.display = "flex";
+}
+}
+
+if(prevId){
+const prevPopup = document.getElementById(prevId);
+if(prevPopup){
+prevPopup.style.display = "flex";
+}
+}
+
+});
+
+});
 
 /* POPUP INTERIOR */
 
 const interiorCard = document.querySelector(".service-card:nth-child(1)");
-const popup = document.getElementById("interiorPopup");
-const closePopup = document.querySelector(".close-popup");
+const interiorPopup = document.getElementById("interiorPopup");
+const interiorClose = interiorPopup.querySelector(".close-popup");
 
 if(interiorCard){
 interiorCard.addEventListener("click",()=>{
-popup.style.display="flex";
+interiorPopup.style.display="flex";
 });
 }
 
-if(closePopup){
-closePopup.addEventListener("click",()=>{
-popup.style.display="none";
+if(interiorClose){
+interiorClose.addEventListener("click",()=>{
+interiorPopup.style.display="none";
 });
 }
 
 window.addEventListener("click",(e)=>{
-if(e.target === popup){
-popup.style.display="none";
+if(e.target === interiorPopup){
+interiorPopup.style.display="none";
 }
 });
+
 
 /* POPUP EXTERIOR */
 
 const exteriorCard = document.querySelector(".service-card:nth-child(2)");
 const exteriorPopup = document.getElementById("exteriorPopup");
-const exteriorClose = document.querySelector(".exterior-close");
+const exteriorClose = exteriorPopup.querySelector(".close-popup");
 
+if(exteriorCard){
 exteriorCard.addEventListener("click",()=>{
 exteriorPopup.style.display="flex";
 });
+}
 
+if(exteriorClose){
 exteriorClose.addEventListener("click",()=>{
 exteriorPopup.style.display="none";
 });
+}
 
 window.addEventListener("click",(e)=>{
 if(e.target === exteriorPopup){
@@ -1520,19 +2345,24 @@ exteriorPopup.style.display="none";
 }
 });
 
+
 /* POPUP CHEMICAL */
 
 const chemicalCard = document.querySelector(".service-card:nth-child(3)");
 const chemicalPopup = document.getElementById("chemicalPopup");
-const closeChemical = document.querySelector(".chemical-close");
+const chemicalClose = chemicalPopup.querySelector(".close-popup");
 
+if(chemicalCard){
 chemicalCard.addEventListener("click",()=>{
 chemicalPopup.style.display="flex";
 });
+}
 
-closeChemical.addEventListener("click",()=>{
+if(chemicalClose){
+chemicalClose.addEventListener("click",()=>{
 chemicalPopup.style.display="none";
 });
+}
 
 window.addEventListener("click",(e)=>{
 if(e.target === chemicalPopup){
@@ -1540,28 +2370,104 @@ chemicalPopup.style.display="none";
 }
 });
 
-/* POPUP NAVIGATION */
 
-document.querySelectorAll(".popup-arrow").forEach(arrow=>{
+/* POPUP AC */
 
-arrow.addEventListener("click",()=>{
+const acCard = document.querySelector(".service-card:nth-child(4)");
+const acPopup = document.getElementById("acPopup");
+const acClose = acPopup.querySelector(".close-popup");
 
-const currentPopup = arrow.closest(".popup");
-currentPopup.style.display="none";
-
-const nextId = arrow.dataset.next;
-const prevId = arrow.dataset.prev;
-
-if(nextId){
-document.getElementById(nextId).style.display="flex";
+if(acCard){
+acCard.addEventListener("click",()=>{
+acPopup.style.display="flex";
+});
 }
 
-if(prevId){
-document.getElementById(prevId).style.display="flex";
+if(acClose){
+acClose.addEventListener("click",()=>{
+acPopup.style.display="none";
+});
 }
 
+window.addEventListener("click",(e)=>{
+if(e.target === acPopup){
+acPopup.style.display="none";
+}
 });
 
+
+/* POPUP HEADLIGHT */
+
+const headlightCard = document.querySelector(".service-card:nth-child(5)");
+const headlightPopup = document.getElementById("headlightPopup");
+const headlightClose = headlightPopup.querySelector(".close-popup");
+
+if(headlightCard){
+headlightCard.addEventListener("click",()=>{
+headlightPopup.style.display="flex";
+});
+}
+
+if(headlightClose){
+headlightClose.addEventListener("click",()=>{
+headlightPopup.style.display="none";
+});
+}
+
+window.addEventListener("click",(e)=>{
+if(e.target === headlightPopup){
+headlightPopup.style.display="none";
+}
+});
+
+
+/* POPUP CERAMIC */
+
+const ceramicCard = document.querySelector(".service-card:nth-child(6)");
+const ceramicPopup = document.getElementById("ceramicPopup");
+const ceramicClose = ceramicPopup.querySelector(".close-popup");
+
+if(ceramicCard){
+ceramicCard.addEventListener("click",()=>{
+ceramicPopup.style.display="flex";
+});
+}
+
+if(ceramicClose){
+ceramicClose.addEventListener("click",()=>{
+ceramicPopup.style.display="none";
+});
+}
+
+window.addEventListener("click",(e)=>{
+if(e.target === ceramicPopup){
+ceramicPopup.style.display="none";
+}
+});
+
+
+/* POPUP ENGINE */
+
+const engineCard = document.querySelector(".service-card:nth-child(7)");
+const enginePopup = document.getElementById("enginePopup");
+const engineClose = enginePopup.querySelector(".close-popup");
+
+if(engineCard){
+engineCard.addEventListener("click",()=>{
+enginePopup.style.display="flex";
+});
+}
+
+if(engineClose){
+engineClose.addEventListener("click",()=>{
+enginePopup.style.display="none";
+});
+}
+
+window.addEventListener("click",(e)=>{
+if(e.target === enginePopup){
+enginePopup.style.display="none";
+}
 });
 
 </script>
