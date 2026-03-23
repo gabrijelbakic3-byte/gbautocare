@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moj profil</title>
+ <link rel="stylesheet" href="auth.css">
+<link rel="stylesheet" href="profile.css">
+</head>
+<body class="auth-page">
+<div class="profile-topbar">
+  <span>Moj profil</span>
+
+  <a href="index main.html" class="topbar-link">
+    Početna
+  </a>
+</div>
+<div class="profile-wrapper">
+
+  <section class="profile-section personal-section">
+    <div class="section-heading left-heading">
+      <h2>Osobni podaci</h2>
+    </div>
+
+    <div class="profile-card personal-card">
+      <form id="profile-form" class="auth-form">
+        <label for="firstName">Ime</label>
+        <input type="text" id="firstName" placeholder="Unesite ime">
+
+        <label for="lastName">Prezime</label>
+        <input type="text" id="lastName" placeholder="Unesite prezime">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Email" disabled>
+
+        <label for="phone">Telefon</label>
+        <input type="text" id="phone" placeholder="Unesite telefon">
+
+        <button type="submit" class="auth-btn">Spremi podatke</button>
+      </form>
+
+      <p id="profile-message" class="auth-message"></p>
+    </div>
+  </section>
+
+  <section class="vehicles-section">
+    <div class="vehicles-divider"></div>
+
+    <div class="section-heading">
+      <span class="section-line"></span>
+      <h2>Moja vozila</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <div id="vehicles-list" class="vehicles-grid"></div>
+  </section>
+
+</div>
+
+</div>
+
+</div>
+  <div id="vehicle-modal" class="vehicle-popup-overlay">
+    <div class="vehicle-popup-box">
+      <button type="button" class="vehicle-popup-close" id="close-vehicle-modal">✕</button>
+      <h2>Dodaj vozilo</h2>
+
+      <div class="auth-form">
+        <label for="vehicle-make">Marka vozila</label>
+        <input type="text" id="vehicle-make" placeholder="npr. Volkswagen">
+
+        <label for="vehicle-model">Model vozila</label>
+        <input type="text" id="vehicle-model" placeholder="npr. Golf 4">
+
+        <label for="vehicle-year">Godina</label>
+<input type="number" id="vehicle-year" placeholder="npr. 2010">
+
+        <label>Vrsta vozila</label>
+        <button type="button" id="choose-type" class="vehicle-type-btn">
+          Odaberi vrstu vozila
+        </button>
+
+        <div id="selected-type" class="vehicle-selected">
+          Nije odabrano vozilo
+        </div>
+
+        <input type="hidden" id="vehicle-type">
+        <input type="hidden" id="vehicle-subtype">
+
+        <button type="button" id="save-vehicle" class="auth-btn">
+          Spremi vozilo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="vehicle-popup-overlay" id="vehicle-type-popup">
+    <div class="vehicle-popup-box">
+      <button type="button" class="vehicle-popup-close" data-close-popup="vehicle-type-popup">✕</button>
+      <h2>Odaberi vrstu vozila</h2>
+
+      <div class="vehicle-grid">
+        <div class="vehicle-card" data-type="Hatchback">
+          <img src="imag-vehicle/hatchback.png" class="vehicle-img">
+          <span>Hatchback</span>
+        </div>
+
+        <div class="vehicle-card" data-type="Sedan">
+          <img src="imag-vehicle/sedan.png" class="vehicle-img">
+          <span>Sedan</span>
+        </div>
+
+        <div class="vehicle-card" data-type="Karavan">
+          <img src="imag-vehicle/karavan.png" class="vehicle-img">
+          <span>Karavan</span>
+        </div>
+
+        <div class="vehicle-card" data-type="SUV">
+          <img src="imag-vehicle/suv.png" class="vehicle-img">
+          <span>SUV</span>
+        </div>
+
+        <div class="vehicle-card" data-type="Coupe">
+          <img src="imag-vehicle/coupe.png" class="vehicle-img">
+          <span>Coupe</span>
+        </div>
+
+        <div class="vehicle-card" data-type="Kombi">
+          <img src="imag-vehicle/kombi.png" class="vehicle-img">
+          <span>Kombi</span>
+          </div>
+
+  <div class="vehicle-card" data-type="Motor">
+    <img src="imag-vehicle/motor.png" class="vehicle-img" alt="Motor">
+    <span>Motor</span>
+  </div>
+
+  <div class="vehicle-card" data-type="Kvad">
+  <img src="imag-vehicle/kvad.png" class="vehicle-img" alt="Kvad">
+  <span>Kvad</span>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vehicle-popup-overlay" id="kombi-subtype-popup">
+    <div class="vehicle-popup-box">
+      <button type="button" class="vehicle-popup-close" data-close-popup="kombi-subtype-popup">✕</button>
+      <h2>Odaberi vrstu kombija</h2>
+
+      <div class="vehicle-grid">
+        <div class="vehicle-card kombi-subtype-card" data-subtype="Mali kombi">
+          <div class="vehicle-card-image">🚐</div>
+          <span>Mali kombi</span>
+        </div>
+
+        <div class="vehicle-card kombi-subtype-card" data-subtype="Srednji kombi">
+          <div class="vehicle-card-image">🚐</div>
+          <span>Srednji kombi</span>
+        </div>
+
+        <div class="vehicle-card kombi-subtype-card" data-subtype="Veliki kombi">
+          <div class="vehicle-card-image">🚐</div>
+          <span>Veliki kombi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/vehicles.js"></script>
+</body>
+</html>

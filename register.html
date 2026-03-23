@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registracija</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-shell">
+    <a class="auth-top-link" href="index main.html">← Natrag na početnu</a>
+
+    <div class="auth-card">
+      <div class="auth-logo">GBAutoCare</div>
+      <h1 class="auth-title">Registracija</h1>
+      <p class="auth-subtitle">
+        Napravi račun i spremi svoje podatke za bržu rezervaciju termina.
+      </p>
+
+      <form id="register-form" class="auth-form">
+        <input type="text" id="register-name" placeholder="Ime i prezime" required>
+        <input type="email" id="register-email" placeholder="Email adresa" required>
+        <input type="password" id="register-password" placeholder="Lozinka" required>
+        <button type="submit" class="auth-btn">Registriraj se</button>
+      </form>
+
+      <p id="register-message" class="auth-message"></p>
+
+      <div class="auth-links">
+        Već imaš račun? <a href="login.html">Prijavi se</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
