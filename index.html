@@ -8067,6 +8067,67 @@ document.addEventListener("DOMContentLoaded", () => {
     img.src = src;
 }
 
+/* SWIPE (MOBITEL) */
+let startX = 0;
+
+lightbox.addEventListener("touchstart", e=>{
+startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend", e=>{
+let endX = e.changedTouches[0].clientX;
+
+if(startX - endX > 50) btnNext.onclick();
+if(endX - startX > 50) btnPrev.onclick();
+});
+
+lightbox.addEventListener("click", (e)=>{
+// ako klikneš na pozadinu (ne na sliku ni gumb)
+if(e.target === lightbox){
+lightbox.classList.remove("active");
+}
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const pairs = [
+        ["kia-before.webp", "kia-after.webp"],
+        ["prije-poslije/chevi-1.webp", "prije-poslije/chevi-2.webp"],
+        ["prije-poslije/jaguar-r-1.webp", "prije-poslije/jaguar-r-2.webp"],
+        ["prije-poslije/jaguar-s-1.webp", "prije-poslije/jaguar-s-2.webp"],
+        ["prije-poslije/jaguar-z-1.webp", "prije-poslije/jaguar-z-2.webp"],
+        ["prije-poslije/kombi-p-1.webp", "prije-poslije/kombi-p-2.webp"],
+        ["prije-poslije/kombi-r-1.webp", "prije-poslije/kombi-r-2.webp"],
+        ["prije-poslije/kombi-s-1.webp", "prije-poslije/kombi-s-2.webp"],
+        ["prije-poslije/lancia-1-1.webp", "prije-poslije/lancia-1-2.webp"],
+        ["prije-poslije/lancia-v-1.webp", "prije-poslije/lancia-v-2.webp"],
+        ["prije-poslije/lancia-z-1.webp", "prije-poslije/lancia-z-2.webp"],
+        ["prije-poslije/merc-1-1.webp", "prije-poslije/merc-1-2.webp"],
+        ["prije-poslije/merc-2-1.webp", "prije-poslije/merc-2-2.webp"],
+        ["prije-poslije/merc-3-1.webp", "prije-poslije/merc-3-2.webp"],
+        ["prije-poslije/merc-4-1.webp", "prije-poslije/merc-4-2.webp"],
+        ["prije-poslije/merc-5-1.webp", "prije-poslije/merc-5-2.webp"],
+        ["prije-poslije/range-1.webp", "prije-poslije/range-2.webp"]
+    ];
+
+    let index = 0;
+
+    const base = document.querySelector(".compare-base");
+    const top = document.querySelector(".compare-top");
+    const bg = document.querySelector(".compare-bg");
+
+    const slider = document.querySelector(".compare-slider");
+    const overlay = document.querySelector(".compare-overlay");
+    const handle = document.querySelector(".compare-handle");
+    const divider = document.querySelector(".compare-divider");
+
+    const prev = document.querySelector(".compare-nav.prev");
+    const next = document.querySelector(".compare-nav.next");
+
+    function preloadImage(src) {
+    const img = new Image();
+    img.src = src;
+}
+
 function update(instant = false) {
     const dirty = pairs[index][0];
     const clean = pairs[index][1];
@@ -8125,6 +8186,50 @@ function update(instant = false) {
     });
 
     update(true);
+});
+
+const tiktokCard = document.querySelector(".video-card");
+const tiktokVideo = document.querySelector(".tiktok-preview");
+const playBtn = document.querySelector(".video-card .play-icon");
+
+if (playBtn && tiktokVideo && tiktokCard) {
+    playBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (tiktokVideo.paused) {
+            tiktokVideo.play();
+            playBtn.style.opacity = "0";
+        } else {
+            tiktokVideo.pause();
+            playBtn.style.opacity = "1";
+        }
+    });
+
+    tiktokVideo.addEventListener("ended", () => {
+        playBtn.style.opacity = "1";
+    });
+
+    tiktokVideo.addEventListener("pause", () => {
+        playBtn.style.opacity = "1";
+    });
+
+    tiktokVideo.addEventListener("play", () => {
+        playBtn.style.opacity = "0";
+    });
+}
+
+tiktokVideo.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (tiktokVideo.paused) {
+        tiktokVideo.play();
+    } else {
+        tiktokVideo.pause();
+    }
+});
+
 });
 
 const tiktokCard = document.querySelector(".video-card");
