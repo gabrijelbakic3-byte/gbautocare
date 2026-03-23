@@ -8009,184 +8009,122 @@ lightboxImg.style.transform = `scale(${scale})`;
 /* SWIPE (MOBITEL) */
 let startX = 0;
 
-lightbox.addEventListener("touchstart", e=>{
-startX = e.touches[0].clientX;
+lightbox.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
 });
 
-lightbox.addEventListener("touchend", e=>{
-let endX = e.changedTouches[0].clientX;
+lightbox.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
 
-if(startX - endX > 50) btnNext.onclick();
-if(endX - startX > 50) btnPrev.onclick();
+    if (startX - endX > 50) btnNext.onclick();
+    if (endX - startX > 50) btnPrev.onclick();
 });
 
-lightbox.addEventListener("click", (e)=>{
-// ako klikneš na pozadinu (ne na sliku ni gumb)
-if(e.target === lightbox){
-lightbox.classList.remove("active");
-}
+lightbox.addEventListener("click", (e) => {
+    // ako klikneš na pozadinu (ne na sliku ni gumb)
+    if (e.target === lightbox) {
+        lightbox.classList.remove("active");
+    }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const pairs = [
-        ["kia-before.webp", "kia-after.webp"],
-        ["prije-poslije/chevi-1.webp", "prije-poslije/chevi-2.webp"],
-        ["prije-poslije/jaguar-r-1.webp", "prije-poslije/jaguar-r-2.webp"],
-        ["prije-poslije/jaguar-s-1.webp", "prije-poslije/jaguar-s-2.webp"],
-        ["prije-poslije/jaguar-z-1.webp", "prije-poslije/jaguar-z-2.webp"],
-        ["prije-poslije/kombi-p-1.webp", "prije-poslije/kombi-p-2.webp"],
-        ["prije-poslije/kombi-r-1.webp", "prije-poslije/kombi-r-2.webp"],
-        ["prije-poslije/kombi-s-1.webp", "prije-poslije/kombi-s-2.webp"],
-        ["prije-poslije/lancia-1-1.webp", "prije-poslije/lancia-1-2.webp"],
-        ["prije-poslije/lancia-v-1.webp", "prije-poslije/lancia-v-2.webp"],
-        ["prije-poslije/lancia-z-1.webp", "prije-poslije/lancia-z-2.webp"],
-        ["prije-poslije/merc-1-1.webp", "prije-poslije/merc-1-2.webp"],
-        ["prije-poslije/merc-2-1.webp", "prije-poslije/merc-2-2.webp"],
-        ["prije-poslije/merc-3-1.webp", "prije-poslije/merc-3-2.webp"],
-        ["prije-poslije/merc-4-1.webp", "prije-poslije/merc-4-2.webp"],
-        ["prije-poslije/merc-5-1.webp", "prije-poslije/merc-5-2.webp"],
-        ["prije-poslije/range-1.webp", "prije-poslije/range-2.webp"]
-    ];
+/* ========================= */
+/* BEFORE / AFTER */
+/* ========================= */
 
-    let index = 0;
+const pairs = [
+    ["kia-before.webp", "kia-after.webp"],
+    ["prije-poslije/chevi-1.webp", "prije-poslije/chevi-2.webp"],
+    ["prije-poslije/jaguar-r-1.webp", "prije-poslije/jaguar-r-2.webp"],
+    ["prije-poslije/jaguar-s-1.webp", "prije-poslije/jaguar-s-2.webp"],
+    ["prije-poslije/jaguar-z-1.webp", "prije-poslije/jaguar-z-2.webp"],
+    ["prije-poslije/kombi-p-1.webp", "prije-poslije/kombi-p-2.webp"],
+    ["prije-poslije/kombi-r-1.webp", "prije-poslije/kombi-r-2.webp"],
+    ["prije-poslije/kombi-s-1.webp", "prije-poslije/kombi-s-2.webp"],
+    ["prije-poslije/lancia-1-1.webp", "prije-poslije/lancia-1-2.webp"],
+    ["prije-poslije/lancia-v-1.webp", "prije-poslije/lancia-v-2.webp"],
+    ["prije-poslije/lancia-z-1.webp", "prije-poslije/lancia-z-2.webp"],
+    ["prije-poslije/merc-1-1.webp", "prije-poslije/merc-1-2.webp"],
+    ["prije-poslije/merc-2-1.webp", "prije-poslije/merc-2-2.webp"],
+    ["prije-poslije/merc-3-1.webp", "prije-poslije/merc-3-2.webp"],
+    ["prije-poslije/merc-4-1.webp", "prije-poslije/merc-4-2.webp"],
+    ["prije-poslije/merc-5-1.webp", "prije-poslije/merc-5-2.webp"],
+    ["prije-poslije/range-1.webp", "prije-poslije/range-2.webp"]
+];
 
-    const base = document.querySelector(".compare-base");
-    const top = document.querySelector(".compare-top");
-    const bg = document.querySelector(".compare-bg");
+let compareIndex = 0;
 
-    const slider = document.querySelector(".compare-slider");
-    const overlay = document.querySelector(".compare-overlay");
-    const handle = document.querySelector(".compare-handle");
-    const divider = document.querySelector(".compare-divider");
+const base = document.querySelector(".compare-base");
+const top = document.querySelector(".compare-top");
+const bg = document.querySelector(".compare-bg");
 
-    const prev = document.querySelector(".compare-nav.prev");
-    const next = document.querySelector(".compare-nav.next");
+const slider = document.querySelector(".compare-slider");
+const overlay = document.querySelector(".compare-overlay");
+const handle = document.querySelector(".compare-handle");
+const divider = document.querySelector(".compare-divider");
 
-    function preloadImage(src) {
+const comparePrev = document.querySelector(".compare-nav.prev");
+const compareNext = document.querySelector(".compare-nav.next");
+
+function preloadImage(src) {
     const img = new Image();
     img.src = src;
 }
 
-/* SWIPE (MOBITEL) */
-let startX = 0;
-
-lightbox.addEventListener("touchstart", e=>{
-startX = e.touches[0].clientX;
+// preload svih before/after slika da prijelaz bude smooth
+pairs.forEach(pair => {
+    pair.forEach(src => preloadImage(src));
 });
 
-lightbox.addEventListener("touchend", e=>{
-let endX = e.changedTouches[0].clientX;
-
-if(startX - endX > 50) btnNext.onclick();
-if(endX - startX > 50) btnPrev.onclick();
-});
-
-lightbox.addEventListener("click", (e)=>{
-// ako klikneš na pozadinu (ne na sliku ni gumb)
-if(e.target === lightbox){
-lightbox.classList.remove("active");
-}
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const pairs = [
-        ["kia-before.webp", "kia-after.webp"],
-        ["prije-poslije/chevi-1.webp", "prije-poslije/chevi-2.webp"],
-        ["prije-poslije/jaguar-r-1.webp", "prije-poslije/jaguar-r-2.webp"],
-        ["prije-poslije/jaguar-s-1.webp", "prije-poslije/jaguar-s-2.webp"],
-        ["prije-poslije/jaguar-z-1.webp", "prije-poslije/jaguar-z-2.webp"],
-        ["prije-poslije/kombi-p-1.webp", "prije-poslije/kombi-p-2.webp"],
-        ["prije-poslije/kombi-r-1.webp", "prije-poslije/kombi-r-2.webp"],
-        ["prije-poslije/kombi-s-1.webp", "prije-poslije/kombi-s-2.webp"],
-        ["prije-poslije/lancia-1-1.webp", "prije-poslije/lancia-1-2.webp"],
-        ["prije-poslije/lancia-v-1.webp", "prije-poslije/lancia-v-2.webp"],
-        ["prije-poslije/lancia-z-1.webp", "prije-poslije/lancia-z-2.webp"],
-        ["prije-poslije/merc-1-1.webp", "prije-poslije/merc-1-2.webp"],
-        ["prije-poslije/merc-2-1.webp", "prije-poslije/merc-2-2.webp"],
-        ["prije-poslije/merc-3-1.webp", "prije-poslije/merc-3-2.webp"],
-        ["prije-poslije/merc-4-1.webp", "prije-poslije/merc-4-2.webp"],
-        ["prije-poslije/merc-5-1.webp", "prije-poslije/merc-5-2.webp"],
-        ["prije-poslije/range-1.webp", "prije-poslije/range-2.webp"]
-    ];
-
-    let index = 0;
-
-    const base = document.querySelector(".compare-base");
-    const top = document.querySelector(".compare-top");
-    const bg = document.querySelector(".compare-bg");
-
-    const slider = document.querySelector(".compare-slider");
-    const overlay = document.querySelector(".compare-overlay");
-    const handle = document.querySelector(".compare-handle");
-    const divider = document.querySelector(".compare-divider");
-
-    const prev = document.querySelector(".compare-nav.prev");
-    const next = document.querySelector(".compare-nav.next");
-
-    function preloadImage(src) {
-    const img = new Image();
-    img.src = src;
-}
-
-function update(instant = false) {
-    const dirty = pairs[index][0];
-    const clean = pairs[index][1];
+function updateCompare(instant = false) {
+    const dirty = pairs[compareIndex][0];
+    const clean = pairs[compareIndex][1];
     const val = slider.value;
 
-    // slider pozicija
     overlay.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
     overlay.style.webkitClipPath = `inset(0 ${100 - val}% 0 0)`;
     handle.style.left = val + "%";
     divider.style.left = val + "%";
 
-    if (instant) {
-        top.src = dirty;
-        base.src = clean;
-        bg.style.backgroundImage = `url(${clean})`;
-        return;
-    }
-
-    // preload (sprječava trzanje)
-    preloadImage(dirty);
-    preloadImage(clean);
-
-    // ODMAH promijeni slike (ključ fix)
     top.src = dirty;
     base.src = clean;
     bg.style.backgroundImage = `url(${clean})`;
 
-    // samo fade-in (bez pauze!)
-    top.classList.add("compare-fade-in");
-    base.classList.add("compare-fade-in");
-    bg.classList.add("compare-fade-in");
+    if (!instant) {
+        top.classList.add("compare-fade-in");
+        base.classList.add("compare-fade-in");
+        bg.classList.add("compare-fade-in");
 
-    setTimeout(() => {
-        top.classList.remove("compare-fade-in");
-        base.classList.remove("compare-fade-in");
-        bg.classList.remove("compare-fade-in");
-    }, 300);
+        setTimeout(() => {
+            top.classList.remove("compare-fade-in");
+            base.classList.remove("compare-fade-in");
+            bg.classList.remove("compare-fade-in");
+        }, 200);
+    }
 }
 
-    slider.addEventListener("input", () => {
-        const val = slider.value;
-        overlay.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
-        overlay.style.webkitClipPath = `inset(0 ${100 - val}% 0 0)`;
-        handle.style.left = val + "%";
-        divider.style.left = val + "%";
-    });
-
-    next.addEventListener("click", () => {
-        index = (index + 1) % pairs.length;
-        update();
-    });
-
-    prev.addEventListener("click", () => {
-        index = (index - 1 + pairs.length) % pairs.length;
-        update();
-    });
-
-    update(true);
+slider.addEventListener("input", () => {
+    const val = slider.value;
+    overlay.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+    overlay.style.webkitClipPath = `inset(0 ${100 - val}% 0 0)`;
+    handle.style.left = val + "%";
+    divider.style.left = val + "%";
 });
+
+compareNext.addEventListener("click", () => {
+    compareIndex = (compareIndex + 1) % pairs.length;
+    updateCompare();
+});
+
+comparePrev.addEventListener("click", () => {
+    compareIndex = (compareIndex - 1 + pairs.length) % pairs.length;
+    updateCompare();
+});
+
+updateCompare(true);
+
+/* ========================= */
+/* TIKTOK VIDEO */
+/* ========================= */
 
 const tiktokCard = document.querySelector(".video-card");
 const tiktokVideo = document.querySelector(".tiktok-preview");
@@ -8217,63 +8155,18 @@ if (playBtn && tiktokVideo && tiktokCard) {
     tiktokVideo.addEventListener("play", () => {
         playBtn.style.opacity = "0";
     });
-}
 
-tiktokVideo.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (tiktokVideo.paused) {
-        tiktokVideo.play();
-    } else {
-        tiktokVideo.pause();
-    }
-});
-
-});
-
-const tiktokCard = document.querySelector(".video-card");
-const tiktokVideo = document.querySelector(".tiktok-preview");
-const playBtn = document.querySelector(".video-card .play-icon");
-
-if (playBtn && tiktokVideo && tiktokCard) {
-    playBtn.addEventListener("click", (e) => {
+    tiktokVideo.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
 
         if (tiktokVideo.paused) {
             tiktokVideo.play();
-            playBtn.style.opacity = "0";
         } else {
             tiktokVideo.pause();
-            playBtn.style.opacity = "1";
         }
     });
-
-    tiktokVideo.addEventListener("ended", () => {
-        playBtn.style.opacity = "1";
-    });
-
-    tiktokVideo.addEventListener("pause", () => {
-        playBtn.style.opacity = "1";
-    });
-
-    tiktokVideo.addEventListener("play", () => {
-        playBtn.style.opacity = "0";
-    });
 }
-
-tiktokVideo.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (tiktokVideo.paused) {
-        tiktokVideo.play();
-    } else {
-        tiktokVideo.pause();
-    }
-});
-
 /* ========================= */
 /* BOOKING FORM */
 /* ========================= */
