@@ -8051,6 +8051,13 @@ const pairs = [
     ["prije-poslije/range-1.webp", "prije-poslije/range-2.webp"]
 ];
 
+pairs.forEach(pair => {
+    pair.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+});
+
 let compareIndex = 0;
 
 const base = document.querySelector(".compare-base");
@@ -8075,9 +8082,9 @@ pairs.forEach(pair => {
     pair.forEach(src => preloadImage(src));
 });
 
-function updateCompare(instant = false) {
-    const dirty = pairs[compareIndex][0];
-    const clean = pairs[compareIndex][1];
+function update(instant = false) {
+    const dirty = pairs[index][0];
+    const clean = pairs[index][1];
     const val = slider.value;
 
     overlay.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
@@ -8085,6 +8092,7 @@ function updateCompare(instant = false) {
     handle.style.left = val + "%";
     divider.style.left = val + "%";
 
+    // ODMAH pokaži slike
     top.src = dirty;
     base.src = clean;
     bg.style.backgroundImage = `url(${clean})`;
@@ -8092,16 +8100,13 @@ function updateCompare(instant = false) {
     if (!instant) {
         top.classList.add("compare-fade-in");
         base.classList.add("compare-fade-in");
-        bg.classList.add("compare-fade-in");
 
         setTimeout(() => {
             top.classList.remove("compare-fade-in");
             base.classList.remove("compare-fade-in");
-            bg.classList.remove("compare-fade-in");
         }, 200);
     }
 }
-
 slider.addEventListener("input", () => {
     const val = slider.value;
     overlay.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
