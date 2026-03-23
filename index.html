@@ -8037,47 +8037,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const prev = document.querySelector(".compare-nav.prev");
     const next = document.querySelector(".compare-nav.next");
 
-    function update(instant = false) {
-        const dirty = pairs[index][0];
-        const clean = pairs[index][1];
-        const val = slider.value;
+    function preloadImage(src) {
+    const img = new Image();
+    img.src = src;
+}
 
-        overlay.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
-        overlay.style.webkitClipPath = `inset(0 ${100 - val}% 0 0)`;
-        handle.style.left = val + "%";
-        divider.style.left = val + "%";
+function update(instant = false) {
+    const dirty = pairs[index][0];
+    const clean = pairs[index][1];
+    const val = slider.value;
 
-        if (instant) {
-            top.src = dirty;
-            base.src = clean;
-            bg.style.backgroundImage = `url(${clean})`;
-            return;
-        }
+    // slider pozicija
+    overlay.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+    overlay.style.webkitClipPath = `inset(0 ${100 - val}% 0 0)`;
+    handle.style.left = val + "%";
+    divider.style.left = val + "%";
 
-        top.classList.add("compare-fade-out");
-        base.classList.add("compare-fade-out");
-        bg.classList.add("compare-fade-out");
-
-        setTimeout(() => {
-            top.src = dirty;
-            base.src = clean;
-            bg.style.backgroundImage = `url(${clean})`;
-
-            top.classList.remove("compare-fade-out");
-            base.classList.remove("compare-fade-out");
-            bg.classList.remove("compare-fade-out");
-
-            top.classList.add("compare-fade-in");
-            base.classList.add("compare-fade-in");
-            bg.classList.add("compare-fade-in");
-
-            setTimeout(() => {
-                top.classList.remove("compare-fade-in");
-                base.classList.remove("compare-fade-in");
-                bg.classList.remove("compare-fade-in");
-            }, 350);
-        }, 180);
+    if (instant) {
+        top.src = dirty;
+        base.src = clean;
+        bg.style.backgroundImage = `url(${clean})`;
+        return;
     }
+
+    // preload (sprječava trzanje)
+    preloadImage(dirty);
+    preloadImage(clean);
+
+    // ODMAH promijeni slike (ključ fix)
+    top.src = dirty;
+    base.src = clean;
+    bg.style.backgroundImage = `url(${clean})`;
+
+    // samo fade-in (bez pauze!)
+    top.classList.add("compare-fade-in");
+    base.classList.add("compare-fade-in");
+    bg.classList.add("compare-fade-in");
+
+    setTimeout(() => {
+        top.classList.remove("compare-fade-in");
+        base.classList.remove("compare-fade-in");
+        bg.classList.remove("compare-fade-in");
+    }, 300);
+}
 
     slider.addEventListener("input", () => {
         const val = slider.value;
