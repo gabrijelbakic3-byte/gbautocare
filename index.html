@@ -13,6 +13,11 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
+<link rel="preload" as="image" href="logo-white.png">
+<link rel="preload" as="image" href="logo.png">
+<link rel="preload" as="image" href="kia-before.webp">
+<link rel="preload" as="image" href="kia-after.webp">
+
 <style>
 
 body{
@@ -128,8 +133,7 @@ text-align:center;
 
 background:
 linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.95)),
-url("https://images.unsplash.com/photo-1503376780353-7e6692767b70")
-center/cover;
+url("webpic/pozadina.webp") center/cover;
 }
 
 .hero-content{
@@ -5647,15 +5651,15 @@ Izaberi paket
 <section class="brands-section">
   <div class="brands-strip">
     <div class="brands-track">
-      <img src="brands/karcher.png">
-      <img src="brands/sonax.png">
-      <img src="brands/deturner.png">
-      <img src="brands/koch.png">
+      <img src="brands/karcher.webp" loading="lazy" decoding="async" alt="Karcher">
+      <img src="brands/sonax.webp" loading="lazy" decoding="async" alt="Sonax">
+      <img src="brands/deturner.webp" loading="lazy" decoding="async" alt="Deturner">
+      <img src="brands/koch.webp" loading="lazy" decoding="async" alt="Koch">
 
-      <img src="brands/karcher.png">
-      <img src="brands/sonax.png">
-      <img src="brands/deturner.png">
-      <img src="brands/koch.png">
+      <img src="brands/karcher.webp" loading="lazy" decoding="async" alt="Karcher">
+      <img src="brands/sonax.webp" loading="lazy" decoding="async" alt="Sonax">
+      <img src="brands/deturner.webp" loading="lazy" decoding="async" alt="Deturner">
+      <img src="brands/koch.webp" loading="lazy" decoding="async" alt="Koch">
     </div>
   </div>
 </section>
@@ -5678,10 +5682,10 @@ Izaberi paket
         <div class="compare-wrapper">
             <div class="compare-bg"></div>
 
-            <img class="compare-base" src="kia-after.jpg" alt="Poslije čišćenja">
+           <img class="compare-base" src="kia-after.webp" alt="Poslije čišćenja" loading="lazy" decoding="async">
 
             <div class="compare-overlay">
-                <img class="compare-top" src="kia-before.jpg" alt="Prije čišćenja">
+               <img class="compare-top" src="kia-before.webp" alt="Prije čišćenja" loading="lazy" decoding="async">
             </div>
 
             <div class="compare-divider"></div>
@@ -5710,7 +5714,7 @@ Izaberi paket
             </div>
 
             <div class="social-media">
-                <img src="objave/instagram-post.jpg" alt="Instagram objava">
+                <img src="objave/instagram-post.webp" alt="Instagram objava" loading="lazy" decoding="async">
             </div>
 
             <div class="social-desc">
@@ -5728,7 +5732,7 @@ Izaberi paket
             </div>
 
             <div class="video-wrapper">
-                <video class="tiktok-preview" muted playsinline preload="metadata">
+                <video class="tiktok-preview" muted playsinline preload="none" poster="objave/tiktok-poster.webp">
                     <source src="objave/tiktok.mp4" type="video/mp4">
                 </video>
                 <button class="play-icon" type="button" aria-label="Pokreni video"></button>
@@ -5749,7 +5753,7 @@ Izaberi paket
             </div>
 
             <div class="social-media">
-                <img src="objave/facebook-post.jpg" alt="Facebook objava">
+                <img src="objave/facebook-post.webp" alt="Facebook objava" loading="lazy" decoding="async">
             </div>
 
             <div class="social-desc">
@@ -7853,11 +7857,32 @@ const images = [
 let current = 0;
 let imgs = [];
 
-images.forEach(src=>{
-const img = document.createElement("img");
-img.src = "slike-web-galerija-radova/" + src;
-carousel.appendChild(img);
-imgs.push(img);
+function preloadCarouselNeighbors() {
+  const indexes = [
+    current,
+    (current - 1 + imgs.length) % imgs.length,
+    (current + 1) % imgs.length,
+    (current - 2 + imgs.length) % imgs.length,
+    (current + 2) % imgs.length
+  ];
+
+  indexes.forEach(i => {
+    const img = imgs[i];
+    if (img && !img.dataset.preloaded) {
+      const preload = new Image();
+      preload.src = img.src;
+      img.dataset.preloaded = "true";
+    }
+  });
+}
+
+images.forEach(src => {
+  const img = document.createElement("img");
+  img.loading = "lazy";
+  img.decoding = "async";
+  img.src = "slike-web-galerija-radova/" + src;
+  carousel.appendChild(img);
+  imgs.push(img);
 });
 
 function updateCarousel(){
