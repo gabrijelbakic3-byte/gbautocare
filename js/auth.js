@@ -60,7 +60,7 @@ if (loginForm) {
 console.log('Login uspješan:', data);
 
 setTimeout(() => {
-  window.location.href = 'index main.html';
+  window.location.href = 'index.html';
 }, 800);
   });
 }
