@@ -8031,7 +8031,8 @@ lightbox.addEventListener("click", (e) => {
 /* BEFORE / AFTER */
 /* ========================= */
 
-const pairs = [
+document.addEventListener("DOMContentLoaded", () => {
+  const pairs = [
     ["kia-before.webp", "kia-after.webp"],
     ["prije-poslije/chevi-1.webp", "prije-poslije/chevi-2.webp"],
     ["prije-poslije/jaguar-r-1.webp", "prije-poslije/jaguar-r-2.webp"],
@@ -8049,40 +8050,30 @@ const pairs = [
     ["prije-poslije/merc-4-1.webp", "prije-poslije/merc-4-2.webp"],
     ["prije-poslije/merc-5-1.webp", "prije-poslije/merc-5-2.webp"],
     ["prije-poslije/range-1.webp", "prije-poslije/range-2.webp"]
-];
+  ];
 
-pairs.forEach(pair => {
+  pairs.forEach(pair => {
     pair.forEach(src => {
-        const img = new Image();
-        img.src = src;
+      const img = new Image();
+      img.src = src;
     });
-});
+  });
 
-let compareIndex = 0;
+  let index = 0;
 
-const base = document.querySelector(".compare-base");
-const top = document.querySelector(".compare-top");
-const bg = document.querySelector(".compare-bg");
+  const base = document.querySelector(".compare-base");
+  const top = document.querySelector(".compare-top");
+  const bg = document.querySelector(".compare-bg");
 
-const slider = document.querySelector(".compare-slider");
-const overlay = document.querySelector(".compare-overlay");
-const handle = document.querySelector(".compare-handle");
-const divider = document.querySelector(".compare-divider");
+  const slider = document.querySelector(".compare-slider");
+  const overlay = document.querySelector(".compare-overlay");
+  const handle = document.querySelector(".compare-handle");
+  const divider = document.querySelector(".compare-divider");
 
-const comparePrev = document.querySelector(".compare-nav.prev");
-const compareNext = document.querySelector(".compare-nav.next");
+  const prev = document.querySelector(".compare-nav.prev");
+  const next = document.querySelector(".compare-nav.next");
 
-function preloadImage(src) {
-    const img = new Image();
-    img.src = src;
-}
-
-// preload svih before/after slika da prijelaz bude smooth
-pairs.forEach(pair => {
-    pair.forEach(src => preloadImage(src));
-});
-
-function update(instant = false) {
+  function update(instant = false) {
     const dirty = pairs[index][0];
     const clean = pairs[index][1];
     const val = slider.value;
@@ -8092,40 +8083,43 @@ function update(instant = false) {
     handle.style.left = val + "%";
     divider.style.left = val + "%";
 
-    // ODMAH pokaži slike
     top.src = dirty;
     base.src = clean;
     bg.style.backgroundImage = `url(${clean})`;
 
     if (!instant) {
-        top.classList.add("compare-fade-in");
-        base.classList.add("compare-fade-in");
+      top.classList.add("compare-fade-in");
+      base.classList.add("compare-fade-in");
+      bg.classList.add("compare-fade-in");
 
-        setTimeout(() => {
-            top.classList.remove("compare-fade-in");
-            base.classList.remove("compare-fade-in");
-        }, 200);
+      setTimeout(() => {
+        top.classList.remove("compare-fade-in");
+        base.classList.remove("compare-fade-in");
+        bg.classList.remove("compare-fade-in");
+      }, 200);
     }
-}
-slider.addEventListener("input", () => {
+  }
+
+  slider.addEventListener("input", () => {
     const val = slider.value;
     overlay.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
     overlay.style.webkitClipPath = `inset(0 ${100 - val}% 0 0)`;
     handle.style.left = val + "%";
     divider.style.left = val + "%";
-});
+  });
 
-compareNext.addEventListener("click", () => {
-    compareIndex = (compareIndex + 1) % pairs.length;
-    updateCompare();
-});
+  next.addEventListener("click", () => {
+    index = (index + 1) % pairs.length;
+    update();
+  });
 
-comparePrev.addEventListener("click", () => {
-    compareIndex = (compareIndex - 1 + pairs.length) % pairs.length;
-    updateCompare();
-});
+  prev.addEventListener("click", () => {
+    index = (index - 1 + pairs.length) % pairs.length;
+    update();
+  });
 
-updateCompare(true);
+  update(true);
+});
 
 /* ========================= */
 /* TIKTOK VIDEO */
