@@ -10,9 +10,9 @@ async function loadProfile() {
     .from("profiles")
     .select("*")
     .eq("id", user.id)
-    .single();
+    .maybeSingle();
 
-  if (error && error.code !== "PGRST116") {
+  if (error) {
     console.error("Greška:", error);
     return;
   }
