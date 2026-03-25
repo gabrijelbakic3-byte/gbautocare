@@ -1,68 +1,59 @@
-
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moj profil</title>
- <link rel="stylesheet" href="auth.css">
-<link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="profile.css">
 </head>
 <body class="auth-page">
-<div class="profile-topbar">
-  <span>Moj profil</span>
 
-  <a href="index.html" class="topbar-link">
-    Početna
-  </a>
-</div>
-<div class="profile-wrapper">
+  <div class="profile-topbar">
+    <span>Moj profil</span>
+    <a href="index.html" class="topbar-link">Početna</a>
+  </div>
 
-  <section class="profile-section personal-section">
-    <div class="section-heading left-heading">
-      <h2>Osobni podaci</h2>
-    </div>
+  <div class="profile-wrapper">
+    <section class="profile-section personal-section">
+      <div class="section-heading left-heading">
+        <h2>Osobni podaci</h2>
+      </div>
 
-    <div class="profile-card personal-card">
-      <form id="profile-form" class="auth-form">
-        <label for="firstName">Ime</label>
-        <input type="text" id="firstName" placeholder="Unesite ime">
+      <div class="profile-card personal-card">
+        <form id="profile-form" class="auth-form">
+          <label for="firstName">Ime</label>
+          <input type="text" id="firstName" placeholder="Unesite ime">
 
-        <label for="lastName">Prezime</label>
-        <input type="text" id="lastName" placeholder="Unesite prezime">
+          <label for="lastName">Prezime</label>
+          <input type="text" id="lastName" placeholder="Unesite prezime">
 
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Email" disabled>
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Email" disabled>
 
-        <label for="phone">Telefon</label>
-        <input type="text" id="phone" placeholder="Unesite telefon">
+          <label for="phone">Telefon</label>
+          <input type="text" id="phone" placeholder="Unesite telefon">
 
-        <button type="submit" class="auth-btn">Spremi podatke</button>
-      </form>
+          <button type="submit" class="auth-btn">Spremi podatke</button>
+        </form>
 
-      <p id="profile-message" class="auth-message"></p>
-    </div>
-  </section>
+        <p id="profile-message" class="auth-message"></p>
+      </div>
+    </section>
 
-  <section class="vehicles-section">
-    <div class="vehicles-divider"></div>
+    <section class="vehicles-section">
+      <div class="vehicles-divider"></div>
 
-    <div class="section-heading">
-      <span class="section-line"></span>
-      <h2>Moja vozila</h2>
-      <span class="section-line"></span>
-    </div>
+      <div class="section-heading">
+        <span class="section-line"></span>
+        <h2>Moja vozila</h2>
+        <span class="section-line"></span>
+      </div>
 
-    <div id="vehicles-list" class="vehicles-grid"></div>
-  </section>
+      <div id="vehicles-list" class="vehicles-grid"></div>
+    </section>
+  </div>
 
-</div>
-
-</div>
-
-</div>
   <div id="vehicle-modal" class="vehicle-popup-overlay">
     <div class="vehicle-popup-box">
       <button type="button" class="vehicle-popup-close" id="close-vehicle-modal">✕</button>
@@ -76,7 +67,7 @@
         <input type="text" id="vehicle-model" placeholder="npr. Golf 4">
 
         <label for="vehicle-year">Godina</label>
-<input type="number" id="vehicle-year" placeholder="npr. 2010">
+        <input type="number" id="vehicle-year" placeholder="npr. 2010">
 
         <label>Vrsta vozila</label>
         <button type="button" id="choose-type" class="vehicle-type-btn">
@@ -104,44 +95,43 @@
 
       <div class="vehicle-grid">
         <div class="vehicle-card" data-type="Hatchback">
-          <img src="imag-vehicle/hatchback.png" class="vehicle-img">
+          <img src="imag-vehicle/hatchback.png" class="vehicle-img" alt="Hatchback">
           <span>Hatchback</span>
         </div>
 
         <div class="vehicle-card" data-type="Sedan">
-          <img src="imag-vehicle/sedan.png" class="vehicle-img">
+          <img src="imag-vehicle/sedan.png" class="vehicle-img" alt="Sedan">
           <span>Sedan</span>
         </div>
 
         <div class="vehicle-card" data-type="Karavan">
-          <img src="imag-vehicle/karavan.png" class="vehicle-img">
+          <img src="imag-vehicle/karavan.png" class="vehicle-img" alt="Karavan">
           <span>Karavan</span>
         </div>
 
         <div class="vehicle-card" data-type="SUV">
-          <img src="imag-vehicle/suv.png" class="vehicle-img">
+          <img src="imag-vehicle/suv.png" class="vehicle-img" alt="SUV">
           <span>SUV</span>
         </div>
 
         <div class="vehicle-card" data-type="Coupe">
-          <img src="imag-vehicle/coupe.png" class="vehicle-img">
+          <img src="imag-vehicle/coupe.png" class="vehicle-img" alt="Coupe">
           <span>Coupe</span>
         </div>
 
         <div class="vehicle-card" data-type="Kombi">
-          <img src="imag-vehicle/kombi.png" class="vehicle-img">
+          <img src="imag-vehicle/kombi.png" class="vehicle-img" alt="Kombi">
           <span>Kombi</span>
-          </div>
+        </div>
 
-  <div class="vehicle-card" data-type="Motor">
-    <img src="imag-vehicle/motor.png" class="vehicle-img" alt="Motor">
-    <span>Motor</span>
-  </div>
+        <div class="vehicle-card" data-type="Motor">
+          <img src="imag-vehicle/motor.png" class="vehicle-img" alt="Motor">
+          <span>Motor</span>
+        </div>
 
-  <div class="vehicle-card" data-type="Kvad">
-  <img src="imag-vehicle/kvad.png" class="vehicle-img" alt="Kvad">
-  <span>Kvad</span>
-</div>
+        <div class="vehicle-card" data-type="Kvad">
+          <img src="imag-vehicle/kvad.png" class="vehicle-img" alt="Kvad">
+          <span>Kvad</span>
         </div>
       </div>
     </div>
