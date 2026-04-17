@@ -737,41 +737,9 @@ opacity:0.6;
 
 }
 
-/* POPUP */
 
-.popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999;
 
-animation:popupFade 0.25s ease;
-}
 
-/* POPUP BOX */
-
-.popup-content{
-
-background:#1a1a1a;
-padding:45px;
-border-radius:18px;
-
-max-width:620px;
-width:92%;
-
-position:relative;
-
-box-shadow:
-0 0 30px rgba(0,0,0,0.7);
-
-animation:popupScale 0.25s ease forwards;
-}
 
 /* POPUP NASLOV */
 
@@ -969,15 +937,6 @@ transform:rotate(90deg);
 
 /* ANIMACIJE */
 
-@keyframes popupFade{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-@keyframes popupScale{
-from{transform:scale(0.9);}
-to{transform:scale(1);}
-}
 
 /* NAJPOPULARNIJE */
 
@@ -1774,64 +1733,13 @@ color:white;
 transform:translateX(5px);
 }
 
-/* =========================
-   POPUP OVERLAY
-========================= */
 
-.popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.75);
-
-justify-content:center;
-align-items:center;
-
-z-index:1000;
-
-animation: popupFade 0.3s ease;
-}
-
-/* =========================
-   POPUP BOX
-========================= */
-
-.popup-content{
-
-background:#1a1a1a;
-
-padding:55px;
-
-border-radius:20px;
-
-max-width:760px;
-width:95%;
-
-position:relative;
-
-box-shadow:
-0 0 35px rgba(0,0,0,0.8);
-
-transform:scale(0.92);
-animation: popupScale 0.3s ease forwards;
-}
 
 /* =========================
    ANIMACIJE
 ========================= */
 
-@keyframes popupFade{
-from{opacity:0;}
-to{opacity:1;}
-}
 
-@keyframes popupScale{
-from{transform:scale(0.92);}
-to{transform:scale(1);}
-}
 
 /* =========================
    CLOSE BUTTON
@@ -2239,33 +2147,6 @@ display:block;
 margin:30px auto 0 auto;
 }
 
-.popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-opacity:0;
-visibility:hidden;
-transform:scale(.97);
-transition:opacity .35s ease, transform .35s ease;
-z-index:1000;
-background:rgba(0,0,0,0.75);
-}
-
-.popup.show{
-opacity:1;
-visibility:visible;
-transform:scale(1);
-}
-
-.popup.fade-out{
-opacity:0;
-transform:scale(.97);
-}
 
 .package-header{
 font-size:28px;
@@ -3601,20 +3482,6 @@ object-position:center;
   }
 
   /* POPUPOVI iznad svega i normalne veličine */
-  .popup{
-    z-index:99999 !important;
-    display:flex !important;
-    opacity:0 !important;
-    visibility:hidden !important;
-    transform:scale(.97) !important;
-    background:rgba(0,0,0,0.75) !important;
-  }
-
-  .popup.show{
-    opacity:1 !important;
-    visibility:visible !important;
-    transform:scale(1) !important;
-  }
 
   .popup-content{
     max-width:760px !important;
@@ -3653,35 +3520,20 @@ object-position:center;
 }
 
 .popup{
-    position:fixed !important;
-    inset:0 !important;
-    display:flex !important;
-    justify-content:center !important;
-    align-items:center !important;
-    background:rgba(0,0,0,0.78) !important;
-    z-index:999999 !important;
-
-    opacity:0 !important;
-    visibility:hidden !important;
-    pointer-events:none !important;
-    transform:none !important;
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.78);
+  z-index: 999999;
 }
 
 .popup.show{
-    opacity:1 !important;
-    visibility:visible !important;
-    pointer-events:auto !important;
+  display: flex;
 }
 
-.popup-content{
-    position:relative !important;
-    z-index:2 !important;
-    width:min(760px, 95vw) !important;
-    max-width:760px !important;
-    padding:45px !important;
-    border-radius:20px !important;
-    margin:0 auto !important;
-}
+
 
 .package-card,
 #packages,
@@ -4858,6 +4710,42 @@ max-width:none;
     border:none;
     border-radius:24px;
 }
+
+.popup{
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.78);
+  z-index: 999999;
+}
+
+.popup.show{
+  display: flex;
+}
+
+.popup-content{
+  background: #1a1a1a;
+  width: min(760px, 95vw);
+  max-width: 760px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 45px;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 0 35px rgba(0,0,0,0.8);
+
+  opacity: 0;
+  transform: translateY(12px) scale(.98);
+  transition: opacity .22s ease, transform .22s ease;
+  will-change: transform, opacity;
+}
+
+.popup.show .popup-content{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 /* MOBILE */
 
 @media (max-width:599px){
@@ -5143,12 +5031,12 @@ transform:scale(0.97);
 /* POPUP */
 
 .popup-content{
-width:92vw;
-max-width:92vw;
-max-height:85vh;
-overflow-y:auto;
-padding:20px 16px;
-border-radius:16px;
+  width:92vw;
+  max-width:92vw;
+  max-height:85vh;
+  overflow-y:auto;
+  padding:20px 16px;
+  border-radius:16px;
 }
 
 .popup h2{
@@ -8325,21 +8213,6 @@ closeAllPopups();
 });
 
 
-document.querySelectorAll(".close-popup").forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-const popup = btn.closest(".popup");
-
-if(popup){
-popup.classList.remove("show");
-}
-
-document.body.classList.remove("popup-open");
-
-});
-
-});
 
 /* ========================= */
 /* PACKAGE SELECTION */
@@ -8642,33 +8515,39 @@ closeAllPopups();
 /* SERVICES → MOJ IZBOR */
 /* ========================= */
 
-document.querySelectorAll(".popup-btn").forEach(btn=>{
+[
+  "interiorPopup",
+  "exteriorPopup",
+  "chemicalPopup",
+  "acPopup",
+  "headlightPopup",
+  "ceramicPopup",
+  "enginePopup"
+].forEach(popupId => {
+  const popup = document.getElementById(popupId);
+  if (!popup) return;
 
-btn.addEventListener("click",(e)=>{
+  const btn = popup.querySelector(".popup-btn");
+  if (!btn) return;
 
-e.preventDefault();
-e.stopPropagation();
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-const popup = btn.closest(".popup");
+    const selected = popup.querySelector("input[type='radio']:checked");
+    if (!selected) return;
 
-const selected = popup.querySelector("input[type='radio']:checked");
+    const serviceName = selected
+      .closest(".popup-option")
+      .querySelector("strong")
+      .innerText
+      .trim();
 
-if(!selected) return;
-
-const serviceName =
-selected.closest(".popup-option").querySelector("strong").innerText;
-
-/* dodaj uslugu */
-addService(serviceName);
-
-/* zatvori popup */
-popup.classList.remove("show");
-
-/* otvori moj izbor */
-document.getElementById("selection-panel").classList.add("active");
-
-});
-
+    addService(serviceName);
+    popup.classList.remove("show");
+    document.getElementById("selection-panel").classList.add("active");
+    syncBookingSelection();
+  });
 });
 
 /* MOJ IZBOR */
@@ -8744,15 +8623,6 @@ document.addEventListener("click", function(e) {
     syncBookingSelection();
   }
 });
-function addPrice(total, price) {
-  if (typeof price === "number") {
-    total.min += price;
-    total.max += price;
-  } else {
-    total.min += price.min;
-    total.max += price.max;
-  }
-}
 
 
 
