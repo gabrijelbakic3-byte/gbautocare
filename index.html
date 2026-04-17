@@ -4723,6 +4723,128 @@ max-width:none;
   }
 }
 
+#location{
+    position:relative;
+    padding:90px 20px 110px;
+    background:
+        linear-gradient(180deg, rgba(255,0,0,0.06), rgba(0,0,0,0.88) 28%, #050505 100%);
+    overflow:hidden;
+    scroll-margin-top:80px;
+}
+
+#location::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,0,0,0.10), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.04), transparent 25%),
+        radial-gradient(circle at 50% 100%, rgba(255,0,0,0.06), transparent 35%);
+    pointer-events:none;
+}
+
+.location-container{
+    position:relative;
+    z-index:1;
+    width:min(1250px, 94vw);
+    margin:0 auto;
+}
+
+.location-header{
+    text-align:center;
+    max-width:760px;
+    margin:0 auto 40px;
+}
+
+.location-header h2{
+    font-size:42px;
+    margin-bottom:16px;
+}
+
+.location-header p{
+    color:rgba(255,255,255,0.82);
+    line-height:1.7;
+    font-size:16px;
+}
+
+.location-grid{
+    display:grid;
+    grid-template-columns:0.95fr 1.25fr;
+    gap:34px;
+    align-items:stretch;
+    margin-top:40px;
+}
+
+.location-info,
+.location-map{
+    border-radius:24px;
+    padding:32px;
+    background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    box-shadow:
+        0 18px 50px rgba(0,0,0,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.location-info{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.location-card{
+    padding:18px 20px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+.location-card h3{
+    margin:0 0 12px 0;
+    font-size:20px;
+    color:#fff;
+}
+
+.location-card p{
+    margin:0 0 10px 0;
+    color:rgba(255,255,255,0.82);
+    line-height:1.6;
+    font-size:15px;
+}
+
+.location-card p:last-child{
+    margin-bottom:0;
+}
+
+.location-card a{
+    color:#ff4b4b;
+    text-decoration:none;
+    transition:0.25s;
+}
+
+.location-card a:hover{
+    color:white;
+}
+
+.location-actions{
+    margin-top:6px;
+}
+
+.location-map{
+    min-height:460px;
+    overflow:hidden;
+    padding:0;
+}
+
+.location-map iframe{
+    width:100%;
+    height:100%;
+    display:block;
+    border:none;
+    border-radius:24px;
+}
 /* MOBILE */
 
 @media (max-width:768px){
@@ -4804,6 +4926,53 @@ transform:translateX(-50%) scale(1.25);
   .brands-track img{
     height:35px;
   }
+
+#location{
+    padding:60px 12px 100px;
+}
+
+.location-header h2{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.location-header p{
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:0;
+}
+
+.location-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+    margin-top:24px;
+}
+
+.location-info,
+.location-map{
+    padding:18px 16px;
+    border-radius:20px;
+}
+
+.location-card{
+    padding:16px;
+    border-radius:14px;
+}
+
+.location-card h3{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.location-card p{
+    font-size:13px;
+    line-height:1.5;
+}
+
+.location-map{
+    min-height:320px;
+    padding:0;
+}
 
 /* NAVBAR */
 
@@ -5428,6 +5597,7 @@ margin-bottom:8px;
 <a href="#gallery">Galerija</a>
 <a href="#about">O nama</a>
 <a href="#booking">Rezervacija</a>
+<a href="#location">Lokacija</a>
 <a href="#contact">Kontakt</a>
 <span id="auth-links"></span>
 </div>
@@ -5896,7 +6066,7 @@ Izaberi paket
                     <h4>Kontakt</h4>
                     <p><strong>Telefon:</strong> +385 99 647 1243</p>
                     <p><strong>WhatsApp:</strong> dostupno za brzi dogovor</p>
-                    <p><strong>Radno vrijeme:</strong> Pon–Pet 08:00 – 18:00, Sub 08:00 – 14:00</p>
+                    <p><strong>Radno vrijeme:</strong> Pon–Pet 08:00 – 16:00, Sub 08:00 – 13S:00</p>
                 </div>
             </div>
 
@@ -6034,7 +6204,64 @@ Izaberi paket
     <div class="section-bottom-glow"></div>
 
 </section>
+
+<section id="location">
+    <div class="location-container">
+        <div class="location-header fade-in">
+            <div class="about-badge">Lokacija</div>
+            <h2>Gdje se nalazimo</h2>
+            <p>
+                Nalazimo se na adresi <strong>Gornjac 13, Dugo Selo Lukačko</strong>.
+                Dolazak je moguć uz prethodnu najavu i dogovor termina.
+            </p>
+        </div>
+
+        <div class="location-grid fade-in">
+            <div class="location-info">
+                <div class="location-card">
+                    <h3>Adresa</h3>
+                    <p>Gornjac 13<br>Dugo Selo Lukačko, Hrvatska</p>
+                </div>
+
+                <div class="location-card">
+                    <h3>Kontakt</h3>
+                    <p>Telefon: <a href="tel:+385996471243">+385 99 647 1243</a></p>
+                    <p>WhatsApp: <a href="https://wa.me/385996471243" target="_blank">Pošalji poruku</a></p>
+                </div>
+
+                <div class="location-card">
+                    <h3>Napomena</h3>
+                    <p>
+                        Prije dolaska javite se kako bismo potvrdili termin i dostupnost.
+                    </p>
+                </div>
+
+                <div class="location-actions">
+                    <a href="https://maps.app.goo.gl/fMzv8CV4b95hqhnP9" target="_blank" class="btn">
+    Otvori GBAutoCare na kartama
+</a>
+                    
+                </div>
+            </div>
+
+            <div class="location-map">
+              <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2777.6036791795314!2d17.442000577418156!3d45.87923820564951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b36574d30056329%3A0x213892f2cdcc1003!2sGBAutoCare!5e0!3m2!1shr!2shr!4v1776450580798!5m2!1shr!2shr"
+    width="100%"
+    height="100%"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy">
+</iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-bottom-glow"></div>
+</section>
+
 <!-- FOOTER -->
+
 
 <footer id="contact">
 
@@ -7899,26 +8126,30 @@ else if(i === (current + 2) % imgs.length) img.classList.add("right2");
 
 
 updateCarousel();
-
+preloadCarouselNeighbors();
 document.addEventListener("keydown", (e)=>{
 if(e.key === "ArrowRight"){
 current = (current + 1) % imgs.length;
 updateCarousel();
+preloadCarouselNeighbors();
 }
 if(e.key === "ArrowLeft"){
 current = (current - 1 + imgs.length) % imgs.length;
 updateCarousel();
+preloadCarouselNeighbors();
 }
 });
 
 document.querySelector(".carousel-wrapper .nav.next").onclick = () => {
     current = (current + 1) % imgs.length;
     updateCarousel();
+    preloadCarouselNeighbors();
 };
 
 document.querySelector(".carousel-wrapper .nav.prev").onclick = () => {
     current = (current - 1 + imgs.length) % imgs.length;
     updateCarousel();
+    preloadCarouselNeighbors();
 };
 
 const lightbox = document.getElementById("lightbox");
@@ -8032,32 +8263,29 @@ lightbox.addEventListener("click", (e) => {
 /* ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const pairs = [
-    ["kia-before.webp", "kia-after.webp"],
-    ["prije-poslije/chevi-1.webp", "prije-poslije/chevi-2.webp"],
-    ["prije-poslije/jaguar-r-1.webp", "prije-poslije/jaguar-r-2.webp"],
-    ["prije-poslije/jaguar-s-1.webp", "prije-poslije/jaguar-s-2.webp"],
-    ["prije-poslije/jaguar-z-1.webp", "prije-poslije/jaguar-z-2.webp"],
-    ["prije-poslije/kombi-p-1.webp", "prije-poslije/kombi-p-2.webp"],
-    ["prije-poslije/kombi-r-1.webp", "prije-poslije/kombi-r-2.webp"],
-    ["prije-poslije/kombi-s-1.webp", "prije-poslije/kombi-s-2.webp"],
-    ["prije-poslije/lancia-1-1.webp", "prije-poslije/lancia-1-2.webp"],
-    ["prije-poslije/lancia-v-1.webp", "prije-poslije/lancia-v-2.webp"],
-    ["prije-poslije/lancia-z-1.webp", "prije-poslije/lancia-z-2.webp"],
-    ["prije-poslije/merc-1-1.webp", "prije-poslije/merc-1-2.webp"],
-    ["prije-poslije/merc-2-1.webp", "prije-poslije/merc-2-2.webp"],
-    ["prije-poslije/merc-3-1.webp", "prije-poslije/merc-3-2.webp"],
-    ["prije-poslije/merc-4-1.webp", "prije-poslije/merc-4-2.webp"],
-    ["prije-poslije/merc-5-1.webp", "prije-poslije/merc-5-2.webp"],
-    ["prije-poslije/range-1.webp", "prije-poslije/range-2.webp"]
-  ];
+const pairs = [
+  ["kia-before.webp", "kia-after.webp"],
+  ["prije-poslije/chevi-1.webp", "prije-poslije/chevi-2.webp"],
+  ["prije-poslije/jaguar-r-1.webp", "prije-poslije/jaguar-r-2.webp"],
+  ["prije-poslije/jaguar-s-1.webp", "prije-poslije/jaguar-s-2.webp"],
+  ["prije-poslije/jaguar-z-1.webp", "prije-poslije/jaguar-z-2.webp"],
+  ["prije-poslije/kombi-p-1.webp", "prije-poslije/kombi-p-2.webp"],
+  ["prije-poslije/kombi-r-1.webp", "prije-poslije/kombi-r-2.webp"],
+  ["prije-poslije/kombi-s-1.webp", "prije-poslije/kombi-s-2.webp"],
+  ["prije-poslije/lancia-g-1.webp", "prije-poslije/lancia-g-2.webp"],
+  ["prije-poslije/lancia-t-1.webp", "prije-poslije/lancia-t-2.webp"],
+  ["prije-poslije/lancia-v-1.webp", "prije-poslije/lancia-v-2.webp"],
+  ["prije-poslije/lancia-v-v-1.webp", "prije-poslije/lancia-v-v-2.webp"],
+  ["prije-poslije/lancia-z-1.webp", "prije-poslije/lancia-z-2.webp"],
+  ["prije-poslije/merc-s-1.webp", "prije-poslije/merc-s-2.webp"],
+ ["prije-poslije/merc-t-1.webp", "prije-poslije/merc-t-2.webp"],
+  ["prije-poslije/merc-t-3.webp", "prije-poslije/merc-t-4.webp"],
+  ["prije-poslije/merc-s-s-1.webp", "prije-poslije/merc-s-s-2.webp"],
+  ["prije-poslije/merc-s-s-3.webp", "prije-poslije/merc-s-s-4.webp"],
+  ["prije-poslije/merc-s-s-5.webp", "prije-poslije/merc-s-s-6.webp"],
+  ["prije-poslije/range-1.webp", "prije-poslije/range-2.webp"]
+];
 
-  pairs.forEach(pair => {
-    pair.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  });
 
   let index = 0;
 
