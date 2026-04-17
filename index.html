@@ -4746,6 +4746,35 @@ max-width:none;
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+.popup-nav{
+  position:absolute;
+  top:50%;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-between;
+  transform:translateY(-50%);
+  pointer-events:none;
+  z-index:10;
+}
+
+.popup-arrow{
+  pointer-events:auto;
+  background:rgba(0,0,0,0.6);
+  border:1px solid rgba(255,255,255,0.2);
+  color:white;
+  font-size:20px;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.popup-arrow:hover{
+  background:rgba(255,0,0,0.7);
+  transform:scale(1.1);
+}
 /* MOBILE */
 
 @media (max-width:599px){
