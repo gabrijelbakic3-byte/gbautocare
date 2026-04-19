@@ -6735,15 +6735,15 @@ Izaberi paket
                         <input type="text" id="bookingTime" name="bookingTime" placeholder="HH:mm" maxlength="5" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="contactMethod">Način kontakta</label>
-                        <select id="contactMethod" name="contactMethod">
-                            <option value="WhatsApp">WhatsApp</option>
-                            <option value="Poziv">Poziv</option>
-                            <option value="SMS">SMS</option>
-                        </select>
-                    </div>
-
+                   <div class="form-group">
+    <label for="contactMethod">Način kontakta</label>
+    <select id="contactMethod" name="contactMethod">
+        <option value="WhatsApp">WhatsApp</option>
+        <option value="Messenger">Facebook Messenger</option>
+        <option value="Poziv">Poziv</option>
+        <option value="SMS">SMS</option>
+    </select>
+</div>
                     <div class="booking-summary">
                         <div class="booking-summary-head">
                             <h3>Vaš odabir</h3>
@@ -7691,6 +7691,23 @@ Izaberi paket
 </button>
 
 </div>
+</div>
+
+<div class="popup" id="messengerPopup">
+    <div class="popup-content" style="max-width: 450px; text-align: center;">
+        <span class="close-popup" id="closeMessengerPopup">×</span>
+        
+        <h2 style="color: #ff1c1c; margin-bottom: 15px;">Uspješno kopirano! 📋</h2>
+        
+        <p class="popup-desc" style="font-size: 16px; margin-bottom: 25px; line-height: 1.6;">
+            Tekst vaše rezervacije je automatski kopiran.<br><br>
+            Kada se otvori Messenger, samo kliknite u polje za unos poruke i odaberite <strong>"Zalijepi" (Paste)</strong>.
+        </p>
+        
+        <button class="popup-btn" id="openMessengerBtn" style="width: 100%; margin-top: 10px;">
+            U redu, otvori Messenger
+        </button>
+    </div>
 </div>
 
 <div id="lightbox">
@@ -9130,6 +9147,33 @@ ${bookingNote || "-"}`;
 
 const encodedMessage = encodeURIComponent(message);
 const phoneNumber = "385996471243";
+
+if (contactMethod === "Messenger") {
+    const messengerUrl = `https://m.me/61585371756913`;
+    
+    // Kopiramo poruku u međuspremnik
+    navigator.clipboard.writeText(message).then(() => {
+        // Otvaramo naš lijepi popup
+        const msgPopup = document.getElementById('messengerPopup');
+        msgPopup.classList.add('show');
+        
+        // Što se događa kada korisnik klikne "U redu"
+        document.getElementById('openMessengerBtn').onclick = function() {
+            msgPopup.classList.remove('show'); // Zatvori popup
+            window.open(messengerUrl, "_blank"); // Otvori Messenger
+        };
+        
+        // Što se događa ako korisnik klikne X (samo zatvori)
+        document.getElementById('closeMessengerPopup').onclick = function() {
+            msgPopup.classList.remove('show');
+        };
+        
+    }).catch(err => {
+        // Ako mobitel blokira kopiranje, samo otvori Messenger direktno
+        console.error("Greška pri kopiranju:", err);
+        window.open(messengerUrl, "_blank");
+    });
+}
 
 if (contactMethod === "WhatsApp") {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
