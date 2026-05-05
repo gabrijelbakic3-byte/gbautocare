@@ -712,3 +712,19 @@ body.auth-page {
     font-size: 13px;
   }
 }
+/* Stil za ikonu za prikaz lozinke */
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    user-select: none;
+    transition: 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: white;
+}

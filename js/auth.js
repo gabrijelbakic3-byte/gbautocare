@@ -104,3 +104,16 @@ async function updateNavbar() {
 }
 
 updateNavbar();
+
+// Funkcija za prikazivanje/skrivanje lozinke
+function togglePassword(inputId, icon) {
+    const input = document.getElementById(inputId);
+    
+    if (input.type === "password") {
+        input.type = "text";
+        icon.textContent = "🙈"; // Mijenja ikonu u prekriveno oko kad je lozinka vidljiva
+    } else {
+        input.type = "password";
+        icon.textContent = "👁️"; // Vraća na obično oko kad je lozinka skrivena
+    }
+}
