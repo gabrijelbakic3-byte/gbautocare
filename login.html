@@ -18,16 +18,20 @@
         Prijavi se i automatski popuni rezervacijsku formu svojim podacima.
       </p>
 
- <form id="login-form" class="auth-form">
+<form id="login-form" class="auth-form">
         <input type="email" id="login-email" placeholder="Email adresa" required>
         
         <div style="position: relative;">
             <input type="password" id="login-password" placeholder="Lozinka" style="margin-bottom: 0;" required>
-            <span class="toggle-password" onclick="togglePassword('login-password', this)">👁️</span>
+            <span class="toggle-password" onclick="togglePassword('login-password', this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </span>
         </div>
         
         <button type="submit" class="auth-btn" style="margin-top: 4px;">Prijavi se</button>
       </form>
+
+      
       <p id="login-message" class="auth-message"></p>
 
       <div class="auth-links">

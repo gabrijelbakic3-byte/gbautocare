@@ -18,17 +18,21 @@
         Napravi račun i spremi svoje podatke za bržu rezervaciju termina.
       </p>
 
-      <form id="register-form" class="auth-form">
+     <form id="register-form" class="auth-form">
         <input type="text" id="register-name" placeholder="Ime i prezime" required>
         <input type="email" id="register-email" placeholder="Email adresa" required>
         
         <div style="position: relative;">
             <input type="password" id="register-password" placeholder="Lozinka" style="margin-bottom: 0;" required>
-            <span class="toggle-password" onclick="togglePassword('register-password', this)">👁️</span>
+            <span class="toggle-password" onclick="togglePassword('register-password', this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </span>
         </div>
         
         <button type="submit" class="auth-btn" style="margin-top: 4px;">Registriraj se</button>
       </form>
+
+      
       <p id="register-message" class="auth-message"></p>
 
       <div class="auth-links">
