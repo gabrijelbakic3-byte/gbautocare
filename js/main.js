@@ -768,7 +768,7 @@ currentSelection = {
   engine: false
 };
 
-displayTotalPrice({ min: 80, max: 110 });
+displayTotalPrice({ min: 80, max: 100 });
 
 closeAllPopups();
 
@@ -1602,9 +1602,9 @@ const PRICES = {
     full: 20
   },
   exterior: {
-    basic: 15,
-    wash_and_rims: 17,
-    full: 20
+    basic: 10,
+    wash_and_rims: 12,
+    full: 15
   },
   chemical: {
     seats: { min: 50, max: 70 },
@@ -1615,7 +1615,7 @@ const PRICES = {
     antibacterial: 15,
     headlights_polishing: { min: 50, max: 80 },
     ceramic_protection: { min: 30, max: 60 },
-    engine_cleaning: { min: 20, max: 40 }
+    engine_cleaning: { min: 20, max: 35 }
   }
 };
 
