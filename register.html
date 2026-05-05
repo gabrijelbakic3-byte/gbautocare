@@ -21,10 +21,14 @@
       <form id="register-form" class="auth-form">
         <input type="text" id="register-name" placeholder="Ime i prezime" required>
         <input type="email" id="register-email" placeholder="Email adresa" required>
-        <input type="password" id="register-password" placeholder="Lozinka" required>
-        <button type="submit" class="auth-btn">Registriraj se</button>
+        
+        <div style="position: relative;">
+            <input type="password" id="register-password" placeholder="Lozinka" style="margin-bottom: 0;" required>
+            <span class="toggle-password" onclick="togglePassword('register-password', this)">👁️</span>
+        </div>
+        
+        <button type="submit" class="auth-btn" style="margin-top: 4px;">Registriraj se</button>
       </form>
-
       <p id="register-message" class="auth-message"></p>
 
       <div class="auth-links">
