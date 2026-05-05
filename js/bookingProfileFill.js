@@ -145,3 +145,63 @@ document.addEventListener("DOMContentLoaded", async () => {
   await autofillBookingForm();
   await loadSavedVehiclesForBooking();
 });
+
+// Globalna varijabla koja pamti je li kod uspješno primijenjen
+window.appliedPromo = null;
+
+document.getElementById('apply-promo-btn')?.addEventListener('click', async () => {
+    const inputField = document.getElementById('promo-code-input');
+    const messageDiv = document.getElementById('promo-message');
+    
+    if (!inputField || !messageDiv) return;
+
+    // .toUpperCase() automatski pretvara gbplus, GbPlus, itd. u GBPLUS
+    const code = inputField.value.trim().toUpperCase(); 
+
+    messageDiv.style.display = 'block';
+
+    if (code !== 'GBPLUS') {
+        messageDiv.style.color = '#ff1f1f'; // Crvena
+        messageDiv.innerText = 'Nevažeći kod.';
+        return;
+    }
+
+    // 1. Provjera datuma (do 31.5.2026)
+    const today = new Date();
+    const expiryDate = new Date('2026-05-31T23:59:59');
+    if (today > expiryDate) {
+        messageDiv.style.color = '#ff1f1f';
+        messageDiv.innerText = 'Ovaj kod je istekao.';
+        return;
+    }
+
+    // 2. Provjera je li korisnik prijavljen
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+        messageDiv.style.color = '#ff1f1f';
+        messageDiv.innerText = 'Morate biti prijavljeni da biste koristili kod.';
+        return;
+    }
+
+    const userId = session.user.id;
+
+    // 3. Provjera u bazi (je li korisnik već iskoristio ovaj kod)
+    const { data: usedCodes, error } = await supabaseClient
+        .from('promo_usage')
+        .select('*')
+        .eq('user_id', userId)
+        .eq('promo_code', 'GBPLUS');
+
+    if (usedCodes && usedCodes.length > 0) {
+        messageDiv.style.color = '#ff1f1f';
+        messageDiv.innerText = 'Ovaj kod ste već iskoristili.';
+        return;
+    }
+
+    // 4. Uspjeh! Kod prolazi sve provjere.
+    messageDiv.style.color = '#4CAF50'; // Zelena
+    messageDiv.innerText = 'Kod uspješno primijenjen! 20% popusta će biti zabilježeno u narudžbi.';
+    
+    // Pamtimo da je kod aktivan za ovu sesiju
+    window.appliedPromo = 'GBPLUS';
+});

@@ -1330,7 +1330,7 @@ document.querySelectorAll(".popup-btn").forEach(btn => {
 
 document.addEventListener("DOMContentLoaded", syncBookingSelection);
 
-bookingForm?.addEventListener("submit", function(e){
+bookingForm?.addEventListener("submit", async function(e){
     e.preventDefault();
 
     const fullName = document.getElementById("fullName").value.trim();
@@ -1402,7 +1402,7 @@ bookingForm?.addEventListener("submit", function(e){
         ? selectedItems.map(item => `- ${item}`).join("\n")
         : "- Nije odabran paket/usluga";
 
-    const message =
+let message =
 `Pozdrav, želim rezervirati termin.
 
 Ime i prezime: ${fullName}
@@ -1419,7 +1419,25 @@ ${servicesText}
 Napomena:
 ${bookingNote || "-"}`;
 
-const encodedMessage = encodeURIComponent(message);
+    // NOVO: Zapisivanje koda u bazu i dodavanje u poruku
+    if (window.appliedPromo === 'GBPLUS') {
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        if (session) {
+            // Generiramo nasumični kod (npr. #V7X2K)
+            const verifCode = '#V' + Math.random().toString(36).substring(2, 7).toUpperCase();
+            
+            // Zapisujemo u Supabase da je kod sada iskorišten
+            await supabaseClient.from('promo_usage').insert([
+                { user_id: session.user.id, promo_code: 'GBPLUS', verification_code: verifCode }
+            ]);
+            
+            // Dodajemo to na kraj WhatsApp/Messenger poruke
+            message += `\n\n🎁 Korišten promo kod: GBPLUS (20% popusta)`;
+            message += `\n🔐 Verifikacija: ${verifCode}`;
+        }
+    }
+
+    const encodedMessage = encodeURIComponent(message);
 const phoneNumber = "385996471243";
 
 if (contactMethod === "Messenger") {
