@@ -1741,3 +1741,37 @@ document.querySelector('#enginePopup .popup-btn')
     updateTotal();
 
 });
+
+// Brojač posjeta
+async function recordVisit() {
+    // Zapisujemo samo ako korisnik prvi put otvara stranicu u ovom tabu
+    // kako ne bismo brojali svako osvježavanje (F5) kao novi posjet
+    if (!sessionStorage.getItem('visited_already')) {
+        const { error } = await supabaseClient.from('page_visits').insert([{}]);
+        
+        if (!error) {
+            sessionStorage.setItem('visited_already', 'true');
+        }
+    }
+}
+
+// Pokreni brojač čim se stranica učita
+document.addEventListener("DOMContentLoaded", recordVisit);
+
+// SUPABASE: Privatni brojač posjeta
+async function recordVisit() {
+    // Zapisujemo posjet samo ako ga nismo već zapisali u ovoj sesiji (da ne broji svako osvježavanje stranice)
+    if (!sessionStorage.getItem('visited_already')) {
+        const { error } = await supabaseClient.from('page_visits').insert([{}]);
+        
+        if (!error) {
+            sessionStorage.setItem('visited_already', 'true');
+            console.log("Posjet uspješno zabilježen!");
+        } else {
+            console.error("Greška kod brojača:", error.message);
+        }
+    }
+}
+
+// Pokreni brojač čim se učita naslovna stranica
+document.addEventListener("DOMContentLoaded", recordVisit);
