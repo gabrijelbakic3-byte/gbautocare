@@ -1402,7 +1402,10 @@ bookingForm?.addEventListener("submit", async function(e){
         ? selectedItems.map(item => `- ${item}`).join("\n")
         : "- Nije odabran paket/usluga";
 
-let message =
+// 1. Izvlačimo tekstualnu cijenu iz elementa na ekranu (npr. "Procijenjena cijena: 30€ – 50€")
+    const totalPriceText = document.getElementById("total-price")?.textContent.trim() || "- Nije izračunato";
+
+    let message =
 `Pozdrav, želim rezervirati termin.
 
 Ime i prezime: ${fullName}
@@ -1415,6 +1418,8 @@ Način kontakta: ${contactMethod}
 
 Odabrane usluge / paket:
 ${servicesText}
+
+${totalPriceText}
 
 Napomena:
 ${bookingNote || "-"}`;
