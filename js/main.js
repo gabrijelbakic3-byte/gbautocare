@@ -1402,9 +1402,26 @@ bookingForm?.addEventListener("submit", async function(e){
         ? selectedItems.map(item => `- ${item}`).join("\n")
         : "- Nije odabran paket/usluga";
 
-// 1. Izvlačimo tekstualnu cijenu iz elementa na ekranu (npr. "Procijenjena cijena: 30€ – 50€")
-    const totalPriceText = document.getElementById("total-price")?.textContent.trim() || "- Nije izračunato";
+// 1. Ručno pokrećemo izračun cijene u trenutku slanja kako bismo bili 100% sigurni u iznos
+    const currentPriceObj = calculateTotalPrice(currentSelection);
+    let priceString = "- Nije izračunato";
 
+    if (currentPriceObj.min > 0 || currentPriceObj.max > 0) {
+        if (currentPriceObj.min === currentPriceObj.max) {
+            priceString = `Procijenjena cijena: ${currentPriceObj.min}€`;
+        } else {
+            priceString = `Procijenjena cijena: ${currentPriceObj.min}€ – ${currentPriceObj.max}€`;
+        }
+    } else {
+        // Ako je klijent uzeo gotov paket (Bronze, Gold, Diamond), cijena se ne računa kroz currentSelection
+        // pa je prepisujemo direktno iz onoga što piše na ekranu
+        const screenPrice = document.getElementById("total-price")?.textContent.trim();
+        if (screenPrice) {
+            priceString = screenPrice;
+        }
+    }
+
+    // 2. Slažemo konačnu poruku s izračunatom cijenom
     let message =
 `Pozdrav, želim rezervirati termin.
 
@@ -1419,7 +1436,7 @@ Način kontakta: ${contactMethod}
 Odabrane usluge / paket:
 ${servicesText}
 
-${totalPriceText}
+${priceString}
 
 Napomena:
 ${bookingNote || "-"}`;
