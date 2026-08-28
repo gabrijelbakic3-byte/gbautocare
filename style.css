@@ -5959,6 +5959,184 @@ margin-bottom:8px;
   }
 }
 
+/* Kompaktnije usluge i pregledniji paketi. */
+#services{
+  padding-top:100px;
+  padding-bottom:110px;
+}
+
+.services{
+  max-width:1280px;
+  margin:58px auto 0;
+  gap:22px;
+  flex-wrap:wrap;
+}
+
+.service-card{
+  width:285px;
+  height:340px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  background-size:cover !important;
+  box-shadow:0 16px 38px rgba(0,0,0,.28);
+}
+
+.service-card:hover{
+  transform:translateY(-7px);
+  background-size:cover !important;
+}
+
+.service-overlay{
+  box-sizing:border-box;
+  padding:22px 20px;
+}
+
+.service-overlay h3{
+  font-size:20px;
+}
+
+.service-overlay p{
+  font-size:13px;
+  line-height:1.45;
+  color:rgba(255,255,255,.78);
+}
+
+.packages{
+  max-width:1120px;
+  gap:24px;
+  align-items:stretch;
+}
+
+.package-card,
+.package-card.bronze,
+.package-card.gold,
+.package-card.diamond{
+  box-sizing:border-box;
+  width:340px;
+  min-height:500px;
+  padding:38px 30px 30px;
+  transform:none;
+  animation:none;
+}
+
+.package-card.bronze{ order:1; }
+.package-card.gold{ order:2; }
+.package-card.diamond{ order:3; }
+
+.package-card.gold{
+  transform:translateY(-12px);
+  box-shadow:0 18px 55px rgba(255,150,0,.18), 0 0 28px rgba(255,180,0,.26);
+}
+
+.package-card:hover,
+.package-card.bronze:hover,
+.package-card.gold:hover,
+.package-card.diamond:hover{
+  transform:translateY(-8px);
+}
+
+.package-card.gold:hover{
+  transform:translateY(-18px);
+}
+
+.package-card h3{
+  font-size:34px;
+  margin-bottom:16px;
+}
+
+.package-card .package-highlights{
+  width:100%;
+  flex-grow:0;
+  box-sizing:border-box;
+  margin:0 0 24px;
+  padding:18px 18px 12px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:14px;
+  background:rgba(255,255,255,.025);
+  text-align:left;
+}
+
+.package-card .package-highlights li{
+  margin-bottom:10px;
+  padding-left:20px;
+  font-size:13px;
+  line-height:1.35;
+  color:rgba(255,255,255,.82);
+}
+
+.package-card .package-highlights li::before{
+  width:6px;
+  height:6px;
+  top:6px;
+}
+
+.package-price-box{
+  margin-top:0;
+}
+
+.package-more{
+  min-height:38px;
+}
+
+@media (max-width:1100px){
+  .services{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    max-width:760px;
+  }
+
+  .service-card{
+    width:100%;
+  }
+
+  .packages{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .package-card.gold{
+    transform:none;
+  }
+}
+
+@media (max-width:599px){
+  #services{
+    padding-top:72px;
+    padding-bottom:80px;
+  }
+
+  .services{
+    gap:12px;
+    margin-top:30px;
+    padding:0 12px;
+  }
+
+  .service-card{
+    height:220px;
+  }
+
+  .service-overlay{
+    padding:13px 12px;
+  }
+
+  .service-overlay h3{
+    font-size:14px;
+  }
+
+  .service-overlay p{
+    font-size:10px;
+  }
+
+  .package-card,
+  .package-card.bronze,
+  .package-card.gold,
+  .package-card.diamond{
+    width:min(90vw, 360px);
+    min-height:auto;
+    padding:30px 20px 24px;
+  }
+}
+
 /* Vizualno osvježenje početnog ekrana. Ova pravila namjerno su zadnja. */
 .hero{
   isolation:isolate;
