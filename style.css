@@ -6420,6 +6420,27 @@ display:none !important;
     transform: scale(1.1); /* 1.1 znači 110%. Možeš staviti i 1.15 ili 1.2 ako želiš veću */
 }
 
+.gallery-page-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:18px;
+  padding:13px 24px;
+  border:1px solid #ff1c1c;
+  border-radius:10px;
+  background:rgba(255,28,28,.1);
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  transition:.25s ease;
+}
+
+.gallery-page-link:hover{
+  transform:translateY(-3px);
+  background:#ff1c1c;
+  box-shadow:0 12px 30px rgba(255,28,28,.3);
+}
+
 /* Brži prikaz sadržaja ispod početnog ekrana. */
 section{
   content-visibility:auto;
