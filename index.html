@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://gbautocare.hr/">
 <meta property="og:type" content="website">
 
-<link rel="stylesheet" href="style.css?v=20260828-5">
+<link rel="stylesheet" href="style.css?v=20260828-6">
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -443,7 +443,7 @@ Izaberi paket
             </p>
         </div>
 
-        <a href="#about-story" class="about-story-button">Pročitaj cijelu priču</a>
+        <button type="button" class="about-story-button" id="open-about-story">Pročitaj cijelu priču</button>
 
         <div class="about-stats">
             <div class="about-stat">
@@ -467,10 +467,10 @@ Izaberi paket
     <div class="about-bottom-glow"></div>
 </section>
 
-<div class="about-story-modal" id="about-story" role="dialog" aria-modal="true" aria-labelledby="about-story-title">
-    <a href="#about" class="about-story-backdrop" aria-label="Zatvori priču"></a>
+<div class="about-story-modal" id="about-story" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="about-story-title">
+    <button type="button" class="about-story-backdrop" aria-label="Zatvori priču"></button>
     <div class="about-story-dialog">
-        <a href="#about" class="about-story-close" aria-label="Zatvori">×</a>
+        <button type="button" class="about-story-close" aria-label="Zatvori">×</button>
         <div class="about-badge">Moja priča</div>
         <h2 id="about-story-title">Od ljubavi prema automobilima do GBAutoCare obrta</h2>
 
@@ -1588,7 +1588,7 @@ Izaberi paket
 <script src="js/auth.js?v=20260828-2"></script>
 <script src="js/bookingProfileFill.js"></script>
 
-<script src="js/main.js?v=20260828-2"></script>
+<script src="js/main.js?v=20260828-3"></script>
 
 <script async src="https://www.instagram.com/embed.js"></script>
 
