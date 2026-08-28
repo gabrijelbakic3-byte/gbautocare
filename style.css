@@ -5959,6 +5959,153 @@ margin-bottom:8px;
   }
 }
 
+/* Vizualno osvježenje početnog ekrana. Ova pravila namjerno su zadnja. */
+.hero{
+  isolation:isolate;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,28,28,.13), transparent 34%),
+    linear-gradient(180deg, transparent 65%, rgba(120,0,0,.18));
+  pointer-events:none;
+}
+
+.hero-content{
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:28px;
+  background:linear-gradient(145deg, rgba(8,8,8,.52), rgba(8,8,8,.18));
+  box-shadow:0 24px 80px rgba(0,0,0,.34);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+}
+
+.hero-kicker{
+  margin-bottom:14px;
+  color:#ff4545;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2.4px;
+}
+
+.hero-actions{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin-top:28px;
+}
+
+.hero-actions .btn{
+  min-width:150px;
+  margin:0 !important;
+  padding:13px 24px;
+  border-radius:10px;
+  font-weight:700;
+}
+
+.hero-points{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:24px;
+  color:rgba(255,255,255,.72);
+  font-size:12px;
+}
+
+.hero-points span{
+  white-space:nowrap;
+}
+
+@media (min-width:1101px){
+  nav{
+    gap:24px !important;
+    padding:8px 34px !important;
+  }
+
+  .logo img{
+    height:58px !important;
+  }
+
+  .menu{
+    gap:18px !important;
+  }
+
+  .menu a{
+    font-size:15px !important;
+  }
+
+  .hero{
+    min-height:780px !important;
+    height:92vh !important;
+    padding-top:68px !important;
+  }
+
+  .hero-content{
+    max-width:760px !important;
+    padding:30px 46px 28px !important;
+  }
+
+  .hero-logo{
+    width:165px !important;
+    margin-bottom:2px !important;
+  }
+
+  .hero h1{
+    font-size:64px !important;
+    line-height:1 !important;
+  }
+
+  .hero h2{
+    font-size:26px !important;
+    margin-top:24px !important;
+  }
+
+  .hero-text{
+    max-width:610px !important;
+    font-size:16px !important;
+    line-height:1.55 !important;
+    margin-top:12px !important;
+  }
+}
+
+@media (max-width:599px){
+  .hero-content{
+    width:calc(100% - 12px);
+    box-sizing:border-box;
+    padding:22px 16px !important;
+    border-radius:22px;
+  }
+
+  .hero-kicker{
+    font-size:9px;
+    letter-spacing:1.4px;
+  }
+
+  .hero-actions{
+    width:100%;
+    flex-direction:column;
+    gap:10px;
+    margin-top:20px;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+    box-sizing:border-box;
+  }
+
+  .hero-points{
+    flex-wrap:wrap;
+    gap:7px 12px;
+    margin-top:18px;
+    font-size:10px;
+  }
+}
+
 /* =========================
    FOOTER
 ========================= */

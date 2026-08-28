@@ -97,8 +97,7 @@ async function updateNavbar() {
 
   } else {
     authLinks.innerHTML = `
-      <a href="login.html">Login</a>
-      <a href="register.html">Registracija</a>
+      <a href="login.html" aria-label="Prijava korisnika">Prijava</a>
     `;
   }
 }
