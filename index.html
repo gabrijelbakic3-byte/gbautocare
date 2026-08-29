@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://gbautocare.hr/">
 <meta property="og:type" content="website">
 
-<link rel="stylesheet" href="style.css?v=20260829-2">
+<link rel="stylesheet" href="style.css?v=20260829-3">
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -602,7 +602,11 @@ Izaberi paket
                     <div class="form-row booking-time-row">
                         <div class="form-group">
                             <label for="bookingDate">Željeni datum <span aria-hidden="true">*</span></label>
-                            <input type="date" id="bookingDate" name="bookingDate" required>
+                            <div class="booking-date-field">
+                                <input type="date" id="bookingDate" name="bookingDate" lang="hr" required>
+                                <span id="booking-date-display" aria-hidden="true">Odaberite datum</span>
+                                <span class="booking-date-icon" aria-hidden="true">▦</span>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -1617,7 +1621,7 @@ Izaberi paket
 <script src="js/auth.js?v=20260828-2"></script>
 <script src="js/bookingProfileFill.js"></script>
 
-<script src="js/main.js?v=20260828-3"></script>
+<script src="js/main.js?v=20260829-1"></script>
 
 <script async src="https://www.instagram.com/embed.js"></script>
 
