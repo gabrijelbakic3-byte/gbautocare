@@ -5034,6 +5034,65 @@ text-align:center;
   }
 }
 
+/* Europski prikaz datuma uz zadržan izvorni kalendar. */
+.booking-date-field{
+  position:relative;
+  width:100%;
+  height:50px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:11px;
+  background:#0b0b0b;
+  transition:.25s;
+}
+
+.booking-date-field:hover{
+  border-color:rgba(255,255,255,.2);
+}
+
+.booking-date-field:focus-within{
+  border-color:#ff1c1c;
+  box-shadow:0 0 10px rgba(255,28,28,.22);
+}
+
+.booking-date-field input{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  width:100% !important;
+  height:100% !important;
+  margin:0;
+  padding:0 !important;
+  border:0 !important;
+  opacity:0;
+  cursor:pointer;
+}
+
+#booking-date-display{
+  position:absolute;
+  top:50%;
+  left:14px;
+  transform:translateY(-50%);
+  color:#fff;
+  font-size:14px;
+  pointer-events:none;
+}
+
+.booking-date-icon{
+  position:absolute;
+  top:50%;
+  right:14px;
+  transform:translateY(-50%);
+  color:rgba(255,255,255,.62);
+  font-size:13px;
+  pointer-events:none;
+}
+
+@media(max-width:599px){
+  .booking-date-field{height:48px}
+  #booking-date-display{left:13px;font-size:13px}
+  .booking-date-icon{right:13px}
+}
+
 @media(max-width:599px){
   #booking{
     padding:72px 12px 100px;
