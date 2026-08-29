@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://gbautocare.hr/">
 <meta property="og:type" content="website">
 
-<link rel="stylesheet" href="style.css?v=20260829-6">
+<link rel="stylesheet" href="style.css?v=20260829-7">
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -31,13 +31,13 @@
 
 <!-- NAVBAR -->
 
-<nav>
+<nav aria-label="Glavna navigacija">
 
 <div class="logo">
-<img src="logo.png">
+<img src="logo.png" alt="GBAutoCare">
 </div>
 
-<div class="menu">
+<div class="menu" id="main-menu">
 <a href="#home">Početna</a>
 <a href="#services">Usluge</a>
 <a href="#packages">Paketi</a>
@@ -53,7 +53,7 @@
 Moj izbor
 </a>
 
-<div class="menu-toggle">☰</div>
+<button type="button" class="menu-toggle" aria-label="Otvori izbornik" aria-controls="main-menu" aria-expanded="false">☰</button>
 
 </nav>
 
@@ -1629,7 +1629,7 @@ Izaberi paket
 <script src="js/auth.js?v=20260828-2"></script>
 <script src="js/bookingProfileFill.js"></script>
 
-<script src="js/main.js?v=20260829-1"></script>
+<script src="js/main.js?v=20260829-2"></script>
 
 <script async src="https://www.instagram.com/embed.js"></script>
 
