@@ -86,18 +86,33 @@ const nav = document.querySelector("nav");
 toggle.addEventListener("click",(e)=>{
 e.stopPropagation();
 menu.classList.toggle("active");
+const isOpen = menu.classList.contains("active");
+toggle.setAttribute("aria-expanded", String(isOpen));
+toggle.setAttribute("aria-label", isOpen ? "Zatvori izbornik" : "Otvori izbornik");
+toggle.textContent = isOpen ? "×" : "☰";
 });
+
+function closeMainMenu(){
+menu.classList.remove("active");
+toggle.setAttribute("aria-expanded", "false");
+toggle.setAttribute("aria-label", "Otvori izbornik");
+toggle.textContent = "☰";
+}
 
 document.querySelectorAll(".menu a").forEach(link=>{
 link.addEventListener("click",()=>{
-menu.classList.remove("active");
+closeMainMenu();
 });
 });
 
 document.addEventListener("click",(e)=>{
 if(!menu.contains(e.target) && !toggle.contains(e.target)){
-menu.classList.remove("active");
+closeMainMenu();
 }
+});
+
+document.addEventListener("keydown",(e)=>{
+if(e.key === "Escape") closeMainMenu();
 });
 
 window.addEventListener("scroll",()=>{
@@ -109,6 +124,31 @@ nav.classList.add("scrolled");
 nav.classList.remove("scrolled");
 }
 });
+
+/* OZNAKA TRENUTNE SEKCIJE U NAVIGACIJI */
+const navigationLinks = [...document.querySelectorAll('.menu > a[href^="#"]')];
+const navigationSections = navigationLinks
+  .map(link => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+if ("IntersectionObserver" in window) {
+  const navigationObserver = new IntersectionObserver(entries => {
+    const visibleEntry = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (!visibleEntry) return;
+
+    navigationLinks.forEach(link => {
+      const isActive = link.getAttribute("href") === `#${visibleEntry.target.id}`;
+      link.classList.toggle("active", isActive);
+      if (isActive) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+  }, { rootMargin: "-30% 0px -58% 0px", threshold: [0, 0.1, 0.25] });
+
+  navigationSections.forEach(section => navigationObserver.observe(section));
+}
 
 /* ========================= */
 /* SMOOTH SCROLL */
