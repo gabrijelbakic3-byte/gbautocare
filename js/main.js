@@ -1243,7 +1243,17 @@ const bookingForm = document.getElementById("booking-form");
 const bookingSelectedServices = document.getElementById("booking-selected-services");
 const bookingOpenSelection = document.getElementById("booking-open-selection");
 const bookingDateInput = document.getElementById("bookingDate");
+const bookingDateDisplay = document.getElementById("booking-date-display");
 const bookingTimeInput = document.getElementById("bookingTime");
+
+function updateBookingDateDisplay() {
+    if (!bookingDateInput || !bookingDateDisplay) return;
+
+    const [year, month, day] = bookingDateInput.value.split("-");
+    bookingDateDisplay.textContent = year && month && day
+        ? `${day}. ${month}. ${year}.`
+        : "Odaberite datum";
+}
 
 if (bookingDateInput) {
     const today = new Date();
@@ -1254,6 +1264,14 @@ if (bookingDateInput) {
     const todayFormatted = `${yyyy}-${mm}-${dd}`;
     bookingDateInput.value = todayFormatted;
     bookingDateInput.min = todayFormatted;
+    updateBookingDateDisplay();
+    bookingDateInput.addEventListener("change", updateBookingDateDisplay);
+    bookingDateInput.addEventListener("input", updateBookingDateDisplay);
+    bookingDateInput.addEventListener("click", () => {
+        if (typeof bookingDateInput.showPicker === "function") {
+            bookingDateInput.showPicker();
+        }
+    });
 }
 
 if (bookingTimeInput) {
