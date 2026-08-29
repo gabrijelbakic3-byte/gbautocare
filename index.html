@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://gbautocare.hr/">
 <meta property="og:type" content="website">
 
-<link rel="stylesheet" href="style.css?v=20260828-6">
+<link rel="stylesheet" href="style.css?v=20260829-1">
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -528,23 +528,29 @@ Izaberi paket
                 <div class="booking-contact-box">
                     <h4>Kontakt</h4>
                     <a href="tel:+385996471243">+385 99 647 1243</a>
-                    <p><strong>WhatsApp:</strong> dostupno za brzi dogovor</p>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/385996471243" target="_blank" rel="noopener">dostupno za brzi dogovor</a></p>
                     <p><strong>Radno vrijeme:</strong> Pon–Pet 08:00 – 16:00, Sub 08:00 – 14:00</p>
                 </div>
             </div>
 
             <!-- RIGHT -->
             <div class="booking-form-wrap fade-in">
+                <div class="booking-form-heading">
+                    <span>Upit za termin</span>
+                    <h3>Podaci za rezervaciju</h3>
+                    <p>Polja označena zvjezdicom potrebno je ispuniti.</p>
+                </div>
+
                 <form id="booking-form" class="booking-form">
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="fullName">Ime i prezime</label>
+                            <label for="fullName">Ime i prezime <span aria-hidden="true">*</span></label>
                             <input type="text" id="fullName" name="fullName" placeholder="Upišite ime i prezime" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="phone">Broj telefona</label>
+                            <label for="phone">Broj telefona <span aria-hidden="true">*</span></label>
                             <input type="tel" id="phone" name="phone" placeholder="+385..." pattern="[\+0-9\s\-]+" title="Dozvoljeni su samo brojevi, razmaci i znak plus" required>
                         </div>
                     </div>
@@ -575,14 +581,16 @@ Izaberi paket
     </div>
 </div>
 
-                    <div class="form-group">
-                        <label for="bookingDate">Željeni datum</label>
-                        <input type="date" id="bookingDate" name="bookingDate" required>
-                    </div>
+                    <div class="form-row booking-time-row">
+                        <div class="form-group">
+                            <label for="bookingDate">Željeni datum <span aria-hidden="true">*</span></label>
+                            <input type="date" id="bookingDate" name="bookingDate" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="bookingTime">Željeno vrijeme</label>
-                        <input type="text" id="bookingTime" name="bookingTime" placeholder="HH:mm" maxlength="5" required>
+                        <div class="form-group">
+                            <label for="bookingTime">Željeno vrijeme <span aria-hidden="true">*</span></label>
+                            <input type="text" id="bookingTime" name="bookingTime" placeholder="HH:mm" maxlength="5" required>
+                        </div>
                     </div>
 
                    <div class="form-group">
@@ -622,8 +630,13 @@ Izaberi paket
                     </div>
 
                     <button type="submit" class="booking-submit">
-                        Pošalji upit za rezervaciju
+                        <span>Pošalji upit za rezervaciju</span>
+                        <span class="booking-submit-arrow" aria-hidden="true">→</span>
                     </button>
+
+                    <p class="booking-confirmation-note">
+                        Slanje upita ne potvrđuje automatski termin. Javit ćemo vam se za konačnu potvrdu.
+                    </p>
 
                 </form>
             </div>
