@@ -160,6 +160,18 @@ body.auth-page {
   color: #ff8b8b;
 }
 
+.auth-privacy {
+  margin: 15px 2px 0;
+  color: rgba(255,255,255,0.55);
+  font-size: 11px;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.auth-privacy a {
+  color: #ff5b5b;
+}
+
 .vehicle-picker {
   display: flex;
   flex-direction: column;
