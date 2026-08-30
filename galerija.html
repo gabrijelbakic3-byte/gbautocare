@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galerija GBAutoCare detailing radova i rezultata prije i poslije.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <title>Galerija radova | GBAutoCare</title>
+  <link rel="canonical" href="https://gbautocare.hr/galerija.html">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preload" as="image" href="logo.png">
+  <link rel="stylesheet" href="gallery-page.css?v=20260828-1">
+</head>
+<body>
+  <header class="gallery-nav">
+    <a class="gallery-brand" href="index.html#home" aria-label="GBAutoCare početna">
+      <img src="logo.png" alt="GBAutoCare logo">
+      <span>GBAutoCare</span>
+    </a>
+    <nav aria-label="Navigacija galerije">
+      <a href="index.html">Početna</a>
+      <a href="index.html#packages">Paketi</a>
+      <a href="index.html#booking">Rezervacija</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="gallery-hero">
+      <span class="eyebrow">GBAUTOCARE RADOVI</span>
+      <h1>Cijela galerija</h1>
+      <p>Pregledajte detalje odrađenih vozila i transformacije prije i poslije.</p>
+      <div class="gallery-filters" role="group" aria-label="Filtriranje galerije">
+        <button class="filter-button active" data-filter="all">Sve</button>
+        <button class="filter-button" data-filter="works">Radovi</button>
+        <button class="filter-button" data-filter="before-after">Prije i poslije</button>
+      </div>
+    </section>
+
+    <section class="gallery-section" data-section="works">
+      <div class="section-heading">
+        <div>
+          <span class="section-number">01</span>
+          <h2>Galerija radova</h2>
+        </div>
+        <p>Detalji interijera, vanjskog pranja i završenih vozila.</p>
+      </div>
+      <div class="works-grid" id="works-grid"></div>
+    </section>
+
+    <section class="gallery-section before-after-section" data-section="before-after">
+      <div class="section-heading">
+        <div>
+          <span class="section-number">02</span>
+          <h2>Prije i poslije</h2>
+        </div>
+        <p>Usporedite stanje vozila prije tretmana i konačni rezultat.</p>
+      </div>
+      <div class="comparison-grid" id="comparison-grid"></div>
+    </section>
+
+    <section class="gallery-cta">
+      <p>Sviđa vam se rezultat?</p>
+      <h2>Rezervirajte termin za svoje vozilo.</h2>
+      <a href="index.html#booking">Rezerviraj termin</a>
+    </section>
+  </main>
+
+  <div class="gallery-lightbox" id="gallery-lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Zatvori">×</button>
+    <button class="lightbox-arrow lightbox-prev" aria-label="Prethodna slika">‹</button>
+    <figure>
+      <img id="gallery-lightbox-image" alt="GBAutoCare rad">
+      <figcaption id="gallery-lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox-arrow lightbox-next" aria-label="Sljedeća slika">›</button>
+  </div>
+
+  <footer>
+    <span>© 2026 GBAutoCare</span>
+    <a href="index.html">Povratak na početnu</a>
+  </footer>
+
+  <script src="js/gallery-page.js?v=20260828-1"></script>
+</body>
+</html>

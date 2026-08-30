@@ -66,14 +66,14 @@ setTimeout(() => {
 }
 
 async function getCurrentUser() {
-  const { data, error } = await supabaseClient.auth.getUser();
+  const { data, error } = await supabaseClient.auth.getSession();
 
   if (error) {
     console.error('Greška kod dohvaćanja usera:', error.message);
     return null;
   }
 
-  return data.user;
+  return data.session?.user ?? null;
 }
 
 
@@ -97,7 +97,7 @@ async function updateNavbar() {
 
   } else {
     authLinks.innerHTML = `
-      <a href="login.html">Login</a>
+      <a href="login.html">Prijava</a>
       <a href="register.html">Registracija</a>
     `;
   }

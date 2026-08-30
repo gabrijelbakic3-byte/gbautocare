@@ -9,6 +9,21 @@ let currentSelection = {
 };
 
 function rebuildSelectionFromList() {
+  if (getSelectedPackageKey()) {
+    currentSelection = {
+      interior: null,
+      exterior: null,
+      chemical: null,
+      ac: false,
+      headlight: false,
+      ceramic: false,
+      engine: false
+    };
+
+    displaySelectedPackagePrice();
+    return;
+  }
+
   const items = [...document.querySelectorAll("#selection-list li span")].map(el => el.textContent.trim());
 
   currentSelection = {
@@ -58,23 +73,6 @@ function rebuildSelectionFromList() {
   updateTotal();
 }
 
-document.querySelectorAll('#interiorPopup .popup-btn')[0]
-  ?.addEventListener('click', () => {
-
-    const selected = document.querySelector('input[name="interior"]:checked');
-
-    if (!selected) return;
-
-    const text = selected.parentElement.innerText;
-
-    if (text.includes("Osnovno")) currentSelection.interior = "basic";
-    if (text.includes("čišćenje površina")) currentSelection.interior = "wipe";
-    if (text.includes("Kompletno")) currentSelection.interior = "full";
-
-    updateTotal();
-});
- 
-
 /* ========================= */
 /* HAMBURGER MENU */
 /* ========================= */
@@ -86,18 +84,33 @@ const nav = document.querySelector("nav");
 toggle.addEventListener("click",(e)=>{
 e.stopPropagation();
 menu.classList.toggle("active");
+const isOpen = menu.classList.contains("active");
+toggle.setAttribute("aria-expanded", String(isOpen));
+toggle.setAttribute("aria-label", isOpen ? "Zatvori izbornik" : "Otvori izbornik");
+toggle.textContent = isOpen ? "×" : "☰";
 });
+
+function closeMainMenu(){
+menu.classList.remove("active");
+toggle.setAttribute("aria-expanded", "false");
+toggle.setAttribute("aria-label", "Otvori izbornik");
+toggle.textContent = "☰";
+}
 
 document.querySelectorAll(".menu a").forEach(link=>{
 link.addEventListener("click",()=>{
-menu.classList.remove("active");
+closeMainMenu();
 });
 });
 
 document.addEventListener("click",(e)=>{
 if(!menu.contains(e.target) && !toggle.contains(e.target)){
-menu.classList.remove("active");
+closeMainMenu();
 }
+});
+
+document.addEventListener("keydown",(e)=>{
+if(e.key === "Escape") closeMainMenu();
 });
 
 window.addEventListener("scroll",()=>{
@@ -109,6 +122,31 @@ nav.classList.add("scrolled");
 nav.classList.remove("scrolled");
 }
 });
+
+/* OZNAKA TRENUTNE SEKCIJE U NAVIGACIJI */
+const navigationLinks = [...document.querySelectorAll('.menu > a[href^="#"]')];
+const navigationSections = navigationLinks
+  .map(link => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
+
+if ("IntersectionObserver" in window) {
+  const navigationObserver = new IntersectionObserver(entries => {
+    const visibleEntry = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (!visibleEntry) return;
+
+    navigationLinks.forEach(link => {
+      const isActive = link.getAttribute("href") === `#${visibleEntry.target.id}`;
+      link.classList.toggle("active", isActive);
+      if (isActive) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+  }, { rootMargin: "-30% 0px -58% 0px", threshold: [0, 0.1, 0.25] });
+
+  navigationSections.forEach(section => navigationObserver.observe(section));
+}
 
 /* ========================= */
 /* SMOOTH SCROLL */
@@ -570,6 +608,15 @@ if(popupId === "interiorPopup" || popupId === "exteriorPopup"){
 showWarning("Ova usluga je već uključena u Gold paket.");
 return;
 }
+
+if(
+popupId === "chemicalPopup" &&
+serviceName.includes("Kemijsko čišćenje sjedala") &&
+!serviceName.includes("tepisi")
+){
+showWarning("Kemijsko čišćenje sjedala već je uključeno u Gold paket.");
+return;
+}
 }
 
 /* DIAMOND */
@@ -588,13 +635,25 @@ return;
 }
 
 /* provjeri postoji li već */
-const exists = [...list.querySelectorAll("li")]
-.some(li => li.textContent === serviceName);
+const existingGroupItem = popupId
+  ? list.querySelector(`li[data-service-group="${popupId}"]`)
+  : null;
+
+if(existingGroupItem){
+existingGroupItem.querySelector("span").textContent = serviceName;
+panel.classList.add("active");
+return;
+}
+
+const exists = [...list.querySelectorAll("li span")]
+.some(span => span.textContent.trim() === serviceName);
 
 if(exists) return;
 
 /* dodaj u moj izbor */
 const item = document.createElement("li");
+
+if(popupId) item.dataset.serviceGroup = popupId;
 
 item.innerHTML = `
 <span>${serviceName}</span>
@@ -606,6 +665,48 @@ list.appendChild(item);
 /* otvori panel */
 panel.classList.add("active");
 
+}
+
+function convertCompleteCleaningToBronze() {
+  if (currentSelection.interior !== "full" || currentSelection.exterior !== "full") {
+    return false;
+  }
+
+  const list = document.getElementById("selection-list");
+  if (!list) return false;
+
+  const additionalServices = [...list.children].filter(item => {
+    const text = item.textContent;
+    return !item.classList.contains("selected-package") &&
+      !text.includes("Kompletno unutarnje čišćenje") &&
+      !text.includes("Kompletno vanjsko pranje");
+  });
+
+  list.innerHTML = `
+    <li class="selected-package">
+      <span>Bronze paket</span>
+      <button class="remove-package">✕</button>
+    </li>
+    <li class="package-sub">Kompletno unutarnje čišćenje</li>
+    <li class="package-sub">Kompletno vanjsko pranje</li>
+  `;
+
+  additionalServices.forEach(item => list.appendChild(item));
+
+  currentSelection = {
+    interior: null,
+    exterior: null,
+    chemical: null,
+    ac: false,
+    headlight: false,
+    ceramic: false,
+    engine: false
+  };
+
+  displaySelectedPackagePrice();
+  syncBookingSelection();
+  showWarning("Kompletno unutarnje i vanjsko čišćenje objedinjeni su u Bronze paket.");
+  return true;
 }
 
 /* ========================= */
@@ -713,7 +814,7 @@ currentSelection = {
   engine: false
 };
 
-displayTotalPrice({ min: 30, max: 50 });
+displaySelectedPackagePrice();
 
 closeAllPopups();
 
@@ -768,7 +869,7 @@ currentSelection = {
   engine: false
 };
 
-displayTotalPrice({ min: 80, max: 100 });
+displaySelectedPackagePrice();
 
 closeAllPopups();
 
@@ -825,7 +926,7 @@ currentSelection = {
   engine: false
 };
 
-displayTotalPrice({ min: 120, max: 300 });
+displaySelectedPackagePrice();
 
 closeAllPopups();
 
@@ -969,6 +1070,14 @@ const images = [
 let current = 0;
 let imgs = [];
 
+function ensureCarouselImage(img) {
+  if (img && !img.hasAttribute("src") && img.dataset.src) {
+    img.src = img.dataset.src;
+  }
+
+  return img ? img.dataset.src : "";
+}
+
 function preloadCarouselNeighbors() {
   const indexes = [
     current,
@@ -981,18 +1090,18 @@ function preloadCarouselNeighbors() {
   indexes.forEach(i => {
     const img = imgs[i];
     if (img && !img.dataset.preloaded) {
-      const preload = new Image();
-      preload.src = img.src;
+      ensureCarouselImage(img);
       img.dataset.preloaded = "true";
     }
   });
 }
 
-images.forEach(src => {
+images.forEach((src, index) => {
   const img = document.createElement("img");
   img.loading = "lazy";
   img.decoding = "async";
-  img.src = "slike-web-galerija-radova/" + src;
+  img.alt = `GBAutoCare detailing rad ${index + 1}`;
+  img.dataset.src = "slike-web-galerija-radova/" + src;
   carousel.appendChild(img);
   imgs.push(img);
 });
@@ -1069,7 +1178,8 @@ lightboxImg.classList.add("lb-exit-left");
 
 setTimeout(()=>{
 lbIndex = (lbIndex + 1) % imgs.length;
-lightboxImg.src = imgs[lbIndex].src;
+ensureCarouselImage(imgs[lbIndex]);
+lightboxImg.src = imgs[lbIndex].dataset.src;
 
 lightboxImg.classList.remove("lb-exit-left");
 lightboxImg.classList.add("lb-enter");
@@ -1087,7 +1197,8 @@ lightboxImg.classList.add("lb-exit-right");
 
 setTimeout(()=>{
 lbIndex = (lbIndex - 1 + imgs.length) % imgs.length;
-lightboxImg.src = imgs[lbIndex].src;
+ensureCarouselImage(imgs[lbIndex]);
+lightboxImg.src = imgs[lbIndex].dataset.src;
 
 lightboxImg.classList.remove("lb-exit-right");
 lightboxImg.classList.add("lb-enter");
@@ -1243,7 +1354,29 @@ const bookingForm = document.getElementById("booking-form");
 const bookingSelectedServices = document.getElementById("booking-selected-services");
 const bookingOpenSelection = document.getElementById("booking-open-selection");
 const bookingDateInput = document.getElementById("bookingDate");
+const bookingDateDisplay = document.getElementById("booking-date-display");
 const bookingTimeInput = document.getElementById("bookingTime");
+const bookingSubmitStatus = document.getElementById("booking-submit-status");
+const bookingSubmitStatusTitle = document.getElementById("booking-submit-status-title");
+const bookingSubmitStatusText = document.getElementById("booking-submit-status-text");
+
+function showBookingSubmitStatus(title, text) {
+    if (!bookingSubmitStatus || !bookingSubmitStatusTitle || !bookingSubmitStatusText) return;
+
+    bookingSubmitStatusTitle.textContent = title;
+    bookingSubmitStatusText.textContent = text;
+    bookingSubmitStatus.hidden = false;
+    bookingSubmitStatus.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function updateBookingDateDisplay() {
+    if (!bookingDateInput || !bookingDateDisplay) return;
+
+    const [year, month, day] = bookingDateInput.value.split("-");
+    bookingDateDisplay.textContent = year && month && day
+        ? `${day}. ${month}. ${year}.`
+        : "Odaberite datum";
+}
 
 if (bookingDateInput) {
     const today = new Date();
@@ -1254,6 +1387,14 @@ if (bookingDateInput) {
     const todayFormatted = `${yyyy}-${mm}-${dd}`;
     bookingDateInput.value = todayFormatted;
     bookingDateInput.min = todayFormatted;
+    updateBookingDateDisplay();
+    bookingDateInput.addEventListener("change", updateBookingDateDisplay);
+    bookingDateInput.addEventListener("input", updateBookingDateDisplay);
+    bookingDateInput.addEventListener("click", () => {
+        if (typeof bookingDateInput.showPicker === "function") {
+            bookingDateInput.showPicker();
+        }
+    });
 }
 
 if (bookingTimeInput) {
@@ -1402,23 +1543,22 @@ bookingForm?.addEventListener("submit", async function(e){
         ? selectedItems.map(item => `- ${item}`).join("\n")
         : "- Nije odabran paket/usluga";
 
-// 1. Ručno pokrećemo izračun cijene u trenutku slanja kako bismo bili 100% sigurni u iznos
-    const currentPriceObj = calculateTotalPrice(currentSelection);
+// Za paket koristimo prikazanu početnu cijenu, a za pojedinačne usluge izračun.
     let priceString = "- Nije izračunato";
+    const screenPrice = document.getElementById("total-price")?.textContent.trim();
 
-    if (currentPriceObj.min > 0 || currentPriceObj.max > 0) {
+    if (getSelectedPackageKey() && screenPrice) {
+        priceString = screenPrice;
+    } else {
+      const currentPriceObj = calculateTotalPrice(currentSelection);
+
+      if (currentPriceObj.min > 0 || currentPriceObj.max > 0) {
         if (currentPriceObj.min === currentPriceObj.max) {
             priceString = `Procijenjena cijena: ${currentPriceObj.min}€`;
         } else {
             priceString = `Procijenjena cijena: ${currentPriceObj.min}€ – ${currentPriceObj.max}€`;
         }
-    } else {
-        // Ako je klijent uzeo gotov paket (Bronze, Gold, Diamond), cijena se ne računa kroz currentSelection
-        // pa je prepisujemo direktno iz onoga što piše na ekranu
-        const screenPrice = document.getElementById("total-price")?.textContent.trim();
-        if (screenPrice) {
-            priceString = screenPrice;
-        }
+      }
     }
 
     // 2. Slažemo konačnu poruku s izračunatom cijenom
@@ -1467,6 +1607,11 @@ if (contactMethod === "Messenger") {
     
     // Kopiramo poruku u međuspremnik
     navigator.clipboard.writeText(message).then(() => {
+        showBookingSubmitStatus(
+            "Rezervacija je pripremljena za Messenger",
+            "Tekst upita je kopiran. Otvorite Messenger, zalijepite poruku i pošaljite je. Termin vrijedi tek nakon naše potvrde."
+        );
+
         // Otvaramo naš lijepi popup
         const msgPopup = document.getElementById('messengerPopup');
         msgPopup.classList.add('show');
@@ -1485,23 +1630,39 @@ if (contactMethod === "Messenger") {
     }).catch(err => {
         // Ako mobitel blokira kopiranje, samo otvori Messenger direktno
         console.error("Greška pri kopiranju:", err);
+        showBookingSubmitStatus(
+            "Otvaramo Messenger",
+            "Kopiranje poruke nije uspjelo. U Messengeru nam pošaljite podatke za željeni termin."
+        );
         window.open(messengerUrl, "_blank");
     });
 }
 
 if (contactMethod === "WhatsApp") {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    showBookingSubmitStatus(
+        "Rezervacija je pripremljena za WhatsApp",
+        "U WhatsAppu još pritisnite Pošalji. Termin vrijedi tek nakon naše potvrde."
+    );
     window.open(whatsappUrl, "_blank");
 }
 
 if (contactMethod === "Poziv") {
     const confirmCall = confirm("Preusmjeravamo vas na poziv 📞");
     if (confirmCall) {
+        showBookingSubmitStatus(
+            "Poziv je pokrenut",
+            "Tijekom poziva dogovorit ćemo uslugu i potvrditi raspoloživ termin."
+        );
         window.location.href = `tel:+${phoneNumber}`;
     }
 }
 
 if (contactMethod === "SMS") {
+    showBookingSubmitStatus(
+        "Rezervacija je pripremljena za SMS",
+        "U aplikaciji za poruke još pritisnite Pošalji. Termin vrijedi tek nakon naše potvrde."
+    );
     window.location.href = `sms:+${phoneNumber}?body=${encodedMessage}`;
 }
 });
@@ -1546,76 +1707,6 @@ goToBookingBtn?.addEventListener("click", () => {
 /* SAVED VEHICLES IN BOOKING */
 /* ========================= */
 
-
-async function testLoggedUser() {
-    const user = await getCurrentUser();
-    console.log('Trenutni user:', user);
-  }
-
-  testLoggedUser();
-
-  
-function calculateTotalPrice(selection) {
-  let total = { min: 0, max: 0 };
-
-  // INTERIOR
-  if (selection.interior === "basic") {
-    addPrice(total, PRICES.interior.basic);
-  }
-  if (selection.interior === "wipe") {
-    addPrice(total, PRICES.interior.wipe_and_vacuum);
-  }
-  if (selection.interior === "full") {
-    addPrice(total, PRICES.interior.full);
-  }
-
-  // EXTERIOR
-  if (selection.exterior === "basic") {
-    addPrice(total, PRICES.exterior.basic);
-  }
-  if (selection.exterior === "rims") {
-    addPrice(total, PRICES.exterior.wash_and_rims);
-  }
-  if (selection.exterior === "full") {
-    addPrice(total, PRICES.exterior.full);
-  }
-
-  // CHEMICAL
-  if (selection.chemical === "seats") {
-    addPrice(total, PRICES.chemical.seats);
-  }
-  if (selection.chemical === "carpets") {
-    addPrice(total, PRICES.chemical.carpets);
-  }
-  if (selection.chemical === "full") {
-    addPrice(total, PRICES.chemical.seats_and_carpets);
-  }
-
-  // EXTRAS
-  if (selection.ac) addPrice(total, PRICES.extras.antibacterial);
-  if (selection.headlight) addPrice(total, PRICES.extras.headlights_polishing);
-  if (selection.ceramic) addPrice(total, PRICES.extras.ceramic_protection);
-  if (selection.engine) addPrice(total, PRICES.extras.engine_cleaning);
-
-  return total;
-}
-
-function displayTotalPrice(total) {
-  const el = document.getElementById("total-price");
-
-  if (!el) return;
-
-  if (total.min === 0 && total.max === 0) {
-    el.textContent = "";
-    return;
-  }
-
-  if (total.min === total.max) {
-    el.textContent = `Procijenjena cijena: ${total.min}€`;
-  } else {
-    el.textContent = `Procijenjena cijena: ${total.min}€ – ${total.max}€`;
-  }
-}
 
 const PRICES = {
   interior: {
@@ -1690,7 +1781,42 @@ function displayTotalPrice(total) {
   }
 }
 
+const PACKAGE_STARTING_PRICES = {
+  Bronze: 30,
+  Gold: 80,
+  Diamond: 120
+};
+
+function getSelectedPackageKey() {
+  const packageText = document
+    .querySelector("#selection-list .selected-package span")
+    ?.textContent.trim() || "";
+
+  return Object.keys(PACKAGE_STARTING_PRICES)
+    .find(packageName => packageText.includes(packageName)) || null;
+}
+
+function displaySelectedPackagePrice() {
+  const el = document.getElementById("total-price");
+  if (!el) return;
+
+  const packageName = getSelectedPackageKey();
+  if (!packageName) return;
+
+  const hasAdditionalServices = Boolean(
+    document.querySelector("#selection-list li .remove-service")
+  );
+  const suffix = hasAdditionalServices ? " + odabrane dodatne usluge" : "";
+
+  el.textContent = `Procijenjena cijena: od ${PACKAGE_STARTING_PRICES[packageName]}€${suffix}`;
+}
+
 function updateTotal() {
+  if (getSelectedPackageKey()) {
+    displaySelectedPackagePrice();
+    return;
+  }
+
   const total = calculateTotalPrice(currentSelection);
   displayTotalPrice(total);
 }
@@ -1708,7 +1834,7 @@ document.querySelectorAll('#interiorPopup .popup-btn')[0]
     if (text.includes("čišćenje površina")) currentSelection.interior = "wipe";
     if (text.includes("Kompletno")) currentSelection.interior = "full";
 
-    updateTotal();
+    if (!convertCompleteCleaningToBronze()) updateTotal();
 });
 
 document.querySelector('#exteriorPopup .popup-btn')
@@ -1722,7 +1848,7 @@ document.querySelector('#exteriorPopup .popup-btn')
     if (text.includes("felge")) currentSelection.exterior = "rims";
     if (text.includes("Kompletno")) currentSelection.exterior = "full";
 
-    updateTotal();
+    if (!convertCompleteCleaningToBronze()) updateTotal();
 });
 
 document.querySelector('#chemicalPopup .popup-btn')
@@ -1764,36 +1890,37 @@ document.querySelector('#enginePopup .popup-btn')
 
 });
 
-// Brojač posjeta
-async function recordVisit() {
-    // Zapisujemo samo ako korisnik prvi put otvara stranicu u ovom tabu
-    // kako ne bismo brojali svako osvježavanje (F5) kao novi posjet
-    if (!sessionStorage.getItem('visited_already')) {
-        const { error } = await supabaseClient.from('page_visits').insert([{}]);
-        
-        if (!error) {
-            sessionStorage.setItem('visited_already', 'true');
-        }
-    }
+/* ========================= */
+/* ABOUT STORY MODAL */
+/* ========================= */
+
+const aboutStoryModal = document.getElementById('about-story');
+const openAboutStoryButton = document.getElementById('open-about-story');
+const closeAboutStoryButtons = aboutStoryModal?.querySelectorAll('.about-story-close, .about-story-backdrop');
+
+function openAboutStory() {
+  if (!aboutStoryModal) return;
+  aboutStoryModal.classList.add('is-open');
+  aboutStoryModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  aboutStoryModal.querySelector('.about-story-close')?.focus();
 }
 
-// Pokreni brojač čim se stranica učita
-document.addEventListener("DOMContentLoaded", recordVisit);
-
-// SUPABASE: Privatni brojač posjeta
-async function recordVisit() {
-    // Zapisujemo posjet samo ako ga nismo već zapisali u ovoj sesiji (da ne broji svako osvježavanje stranice)
-    if (!sessionStorage.getItem('visited_already')) {
-        const { error } = await supabaseClient.from('page_visits').insert([{}]);
-        
-        if (!error) {
-            sessionStorage.setItem('visited_already', 'true');
-            console.log("Posjet uspješno zabilježen!");
-        } else {
-            console.error("Greška kod brojača:", error.message);
-        }
-    }
+function closeAboutStory() {
+  if (!aboutStoryModal) return;
+  aboutStoryModal.classList.remove('is-open');
+  aboutStoryModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  openAboutStoryButton?.focus();
 }
 
-// Pokreni brojač čim se učita naslovna stranica
-document.addEventListener("DOMContentLoaded", recordVisit);
+openAboutStoryButton?.addEventListener('click', openAboutStory);
+closeAboutStoryButtons?.forEach(button => button.addEventListener('click', closeAboutStory));
+
+aboutStoryModal?.querySelector('.about-story-cta')?.addEventListener('click', closeAboutStory);
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && aboutStoryModal?.classList.contains('is-open')) {
+    closeAboutStory();
+  }
+});
