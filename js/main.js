@@ -753,7 +753,7 @@ currentSelection = {
   engine: false
 };
 
-displayTotalPrice({ min: 30, max: 50 });
+displayPackageStartingPrice(30);
 
 closeAllPopups();
 
@@ -808,7 +808,7 @@ currentSelection = {
   engine: false
 };
 
-displayTotalPrice({ min: 80, max: 100 });
+displayPackageStartingPrice(80);
 
 closeAllPopups();
 
@@ -865,7 +865,7 @@ currentSelection = {
   engine: false
 };
 
-displayTotalPrice({ min: 120, max: 300 });
+displayPackageStartingPrice(120);
 
 closeAllPopups();
 
@@ -1781,6 +1781,13 @@ function displayTotalPrice(total) {
   } else {
     el.textContent = `Procijenjena cijena: ${total.min}€ – ${total.max}€`;
   }
+}
+
+function displayPackageStartingPrice(price) {
+  const el = document.getElementById("total-price");
+  if (!el) return;
+
+  el.textContent = `Procijenjena cijena: od ${price}€`;
 }
 
 function updateTotal() {
