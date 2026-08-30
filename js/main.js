@@ -1295,6 +1295,18 @@ const bookingOpenSelection = document.getElementById("booking-open-selection");
 const bookingDateInput = document.getElementById("bookingDate");
 const bookingDateDisplay = document.getElementById("booking-date-display");
 const bookingTimeInput = document.getElementById("bookingTime");
+const bookingSubmitStatus = document.getElementById("booking-submit-status");
+const bookingSubmitStatusTitle = document.getElementById("booking-submit-status-title");
+const bookingSubmitStatusText = document.getElementById("booking-submit-status-text");
+
+function showBookingSubmitStatus(title, text) {
+    if (!bookingSubmitStatus || !bookingSubmitStatusTitle || !bookingSubmitStatusText) return;
+
+    bookingSubmitStatusTitle.textContent = title;
+    bookingSubmitStatusText.textContent = text;
+    bookingSubmitStatus.hidden = false;
+    bookingSubmitStatus.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
 
 function updateBookingDateDisplay() {
     if (!bookingDateInput || !bookingDateDisplay) return;
@@ -1535,6 +1547,11 @@ if (contactMethod === "Messenger") {
     
     // Kopiramo poruku u međuspremnik
     navigator.clipboard.writeText(message).then(() => {
+        showBookingSubmitStatus(
+            "Rezervacija je pripremljena za Messenger",
+            "Tekst upita je kopiran. Otvorite Messenger, zalijepite poruku i pošaljite je. Termin vrijedi tek nakon naše potvrde."
+        );
+
         // Otvaramo naš lijepi popup
         const msgPopup = document.getElementById('messengerPopup');
         msgPopup.classList.add('show');
@@ -1553,23 +1570,39 @@ if (contactMethod === "Messenger") {
     }).catch(err => {
         // Ako mobitel blokira kopiranje, samo otvori Messenger direktno
         console.error("Greška pri kopiranju:", err);
+        showBookingSubmitStatus(
+            "Otvaramo Messenger",
+            "Kopiranje poruke nije uspjelo. U Messengeru nam pošaljite podatke za željeni termin."
+        );
         window.open(messengerUrl, "_blank");
     });
 }
 
 if (contactMethod === "WhatsApp") {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    showBookingSubmitStatus(
+        "Rezervacija je pripremljena za WhatsApp",
+        "U WhatsAppu još pritisnite Pošalji. Termin vrijedi tek nakon naše potvrde."
+    );
     window.open(whatsappUrl, "_blank");
 }
 
 if (contactMethod === "Poziv") {
     const confirmCall = confirm("Preusmjeravamo vas na poziv 📞");
     if (confirmCall) {
+        showBookingSubmitStatus(
+            "Poziv je pokrenut",
+            "Tijekom poziva dogovorit ćemo uslugu i potvrditi raspoloživ termin."
+        );
         window.location.href = `tel:+${phoneNumber}`;
     }
 }
 
 if (contactMethod === "SMS") {
+    showBookingSubmitStatus(
+        "Rezervacija je pripremljena za SMS",
+        "U aplikaciji za poruke još pritisnite Pošalji. Termin vrijedi tek nakon naše potvrde."
+    );
     window.location.href = `sms:+${phoneNumber}?body=${encodedMessage}`;
 }
 });

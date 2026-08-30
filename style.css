@@ -6,6 +6,52 @@ color:white;
 scroll-behavior:smooth;
 }
 
+/* Jasna potvrda nakon pripreme rezervacijskog upita. */
+.booking-submit-status{
+  display:flex;
+  align-items:flex-start;
+  gap:13px;
+  margin-top:18px;
+  padding:16px 17px;
+  border:1px solid rgba(63,214,121,.34);
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(38,162,87,.13),rgba(255,255,255,.025));
+  box-shadow:0 12px 28px rgba(0,0,0,.2);
+}
+
+.booking-submit-status[hidden]{
+  display:none;
+}
+
+.booking-submit-status-icon{
+  display:grid;
+  flex:0 0 30px;
+  width:30px;
+  height:30px;
+  place-items:center;
+  border-radius:50%;
+  background:#27b866;
+  color:#fff;
+  font-size:15px;
+  font-weight:900;
+  box-shadow:0 0 16px rgba(39,184,102,.35);
+}
+
+.booking-submit-status strong{
+  display:block;
+  margin:1px 0 5px;
+  color:#fff;
+  font-size:14px;
+  line-height:1.35;
+}
+
+.booking-submit-status p{
+  margin:0;
+  color:rgba(255,255,255,.68);
+  font-size:12px;
+  line-height:1.55;
+}
+
 /* FAQ section */
 .faq-section{
   position:relative;
