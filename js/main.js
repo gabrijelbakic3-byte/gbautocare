@@ -9,6 +9,21 @@ let currentSelection = {
 };
 
 function rebuildSelectionFromList() {
+  if (getSelectedPackageKey()) {
+    currentSelection = {
+      interior: null,
+      exterior: null,
+      chemical: null,
+      ac: false,
+      headlight: false,
+      ceramic: false,
+      engine: false
+    };
+
+    displaySelectedPackagePrice();
+    return;
+  }
+
   const items = [...document.querySelectorAll("#selection-list li span")].map(el => el.textContent.trim());
 
   currentSelection = {
@@ -57,23 +72,6 @@ function rebuildSelectionFromList() {
 
   updateTotal();
 }
-
-document.querySelectorAll('#interiorPopup .popup-btn')[0]
-  ?.addEventListener('click', () => {
-
-    const selected = document.querySelector('input[name="interior"]:checked');
-
-    if (!selected) return;
-
-    const text = selected.parentElement.innerText;
-
-    if (text.includes("Osnovno")) currentSelection.interior = "basic";
-    if (text.includes("čišćenje površina")) currentSelection.interior = "wipe";
-    if (text.includes("Kompletno")) currentSelection.interior = "full";
-
-    updateTotal();
-});
- 
 
 /* ========================= */
 /* HAMBURGER MENU */
@@ -610,6 +608,15 @@ if(popupId === "interiorPopup" || popupId === "exteriorPopup"){
 showWarning("Ova usluga je već uključena u Gold paket.");
 return;
 }
+
+if(
+popupId === "chemicalPopup" &&
+serviceName.includes("Kemijsko čišćenje sjedala") &&
+!serviceName.includes("tepisi")
+){
+showWarning("Kemijsko čišćenje sjedala već je uključeno u Gold paket.");
+return;
+}
 }
 
 /* DIAMOND */
@@ -628,13 +635,25 @@ return;
 }
 
 /* provjeri postoji li već */
-const exists = [...list.querySelectorAll("li")]
-.some(li => li.textContent === serviceName);
+const existingGroupItem = popupId
+  ? list.querySelector(`li[data-service-group="${popupId}"]`)
+  : null;
+
+if(existingGroupItem){
+existingGroupItem.querySelector("span").textContent = serviceName;
+panel.classList.add("active");
+return;
+}
+
+const exists = [...list.querySelectorAll("li span")]
+.some(span => span.textContent.trim() === serviceName);
 
 if(exists) return;
 
 /* dodaj u moj izbor */
 const item = document.createElement("li");
+
+if(popupId) item.dataset.serviceGroup = popupId;
 
 item.innerHTML = `
 <span>${serviceName}</span>
@@ -684,7 +703,7 @@ function convertCompleteCleaningToBronze() {
     engine: false
   };
 
-  displayPackageStartingPrice(30);
+  displaySelectedPackagePrice();
   syncBookingSelection();
   showWarning("Kompletno unutarnje i vanjsko čišćenje objedinjeni su u Bronze paket.");
   return true;
@@ -795,7 +814,7 @@ currentSelection = {
   engine: false
 };
 
-displayPackageStartingPrice(30);
+displaySelectedPackagePrice();
 
 closeAllPopups();
 
@@ -850,7 +869,7 @@ currentSelection = {
   engine: false
 };
 
-displayPackageStartingPrice(80);
+displaySelectedPackagePrice();
 
 closeAllPopups();
 
@@ -907,7 +926,7 @@ currentSelection = {
   engine: false
 };
 
-displayPackageStartingPrice(120);
+displaySelectedPackagePrice();
 
 closeAllPopups();
 
@@ -1524,23 +1543,22 @@ bookingForm?.addEventListener("submit", async function(e){
         ? selectedItems.map(item => `- ${item}`).join("\n")
         : "- Nije odabran paket/usluga";
 
-// 1. Ručno pokrećemo izračun cijene u trenutku slanja kako bismo bili 100% sigurni u iznos
-    const currentPriceObj = calculateTotalPrice(currentSelection);
+// Za paket koristimo prikazanu početnu cijenu, a za pojedinačne usluge izračun.
     let priceString = "- Nije izračunato";
+    const screenPrice = document.getElementById("total-price")?.textContent.trim();
 
-    if (currentPriceObj.min > 0 || currentPriceObj.max > 0) {
+    if (getSelectedPackageKey() && screenPrice) {
+        priceString = screenPrice;
+    } else {
+      const currentPriceObj = calculateTotalPrice(currentSelection);
+
+      if (currentPriceObj.min > 0 || currentPriceObj.max > 0) {
         if (currentPriceObj.min === currentPriceObj.max) {
             priceString = `Procijenjena cijena: ${currentPriceObj.min}€`;
         } else {
             priceString = `Procijenjena cijena: ${currentPriceObj.min}€ – ${currentPriceObj.max}€`;
         }
-    } else {
-        // Ako je klijent uzeo gotov paket (Bronze, Gold, Diamond), cijena se ne računa kroz currentSelection
-        // pa je prepisujemo direktno iz onoga što piše na ekranu
-        const screenPrice = document.getElementById("total-price")?.textContent.trim();
-        if (screenPrice) {
-            priceString = screenPrice;
-        }
+      }
     }
 
     // 2. Slažemo konačnu poruku s izračunatom cijenom
@@ -1690,68 +1708,6 @@ goToBookingBtn?.addEventListener("click", () => {
 /* ========================= */
 
 
-function calculateTotalPrice(selection) {
-  let total = { min: 0, max: 0 };
-
-  // INTERIOR
-  if (selection.interior === "basic") {
-    addPrice(total, PRICES.interior.basic);
-  }
-  if (selection.interior === "wipe") {
-    addPrice(total, PRICES.interior.wipe_and_vacuum);
-  }
-  if (selection.interior === "full") {
-    addPrice(total, PRICES.interior.full);
-  }
-
-  // EXTERIOR
-  if (selection.exterior === "basic") {
-    addPrice(total, PRICES.exterior.basic);
-  }
-  if (selection.exterior === "rims") {
-    addPrice(total, PRICES.exterior.wash_and_rims);
-  }
-  if (selection.exterior === "full") {
-    addPrice(total, PRICES.exterior.full);
-  }
-
-  // CHEMICAL
-  if (selection.chemical === "seats") {
-    addPrice(total, PRICES.chemical.seats);
-  }
-  if (selection.chemical === "carpets") {
-    addPrice(total, PRICES.chemical.carpets);
-  }
-  if (selection.chemical === "full") {
-    addPrice(total, PRICES.chemical.seats_and_carpets);
-  }
-
-  // EXTRAS
-  if (selection.ac) addPrice(total, PRICES.extras.antibacterial);
-  if (selection.headlight) addPrice(total, PRICES.extras.headlights_polishing);
-  if (selection.ceramic) addPrice(total, PRICES.extras.ceramic_protection);
-  if (selection.engine) addPrice(total, PRICES.extras.engine_cleaning);
-
-  return total;
-}
-
-function displayTotalPrice(total) {
-  const el = document.getElementById("total-price");
-
-  if (!el) return;
-
-  if (total.min === 0 && total.max === 0) {
-    el.textContent = "";
-    return;
-  }
-
-  if (total.min === total.max) {
-    el.textContent = `Procijenjena cijena: ${total.min}€`;
-  } else {
-    el.textContent = `Procijenjena cijena: ${total.min}€ – ${total.max}€`;
-  }
-}
-
 const PRICES = {
   interior: {
     basic: 10,
@@ -1825,14 +1781,42 @@ function displayTotalPrice(total) {
   }
 }
 
-function displayPackageStartingPrice(price) {
+const PACKAGE_STARTING_PRICES = {
+  Bronze: 30,
+  Gold: 80,
+  Diamond: 120
+};
+
+function getSelectedPackageKey() {
+  const packageText = document
+    .querySelector("#selection-list .selected-package span")
+    ?.textContent.trim() || "";
+
+  return Object.keys(PACKAGE_STARTING_PRICES)
+    .find(packageName => packageText.includes(packageName)) || null;
+}
+
+function displaySelectedPackagePrice() {
   const el = document.getElementById("total-price");
   if (!el) return;
 
-  el.textContent = `Procijenjena cijena: od ${price}€`;
+  const packageName = getSelectedPackageKey();
+  if (!packageName) return;
+
+  const hasAdditionalServices = Boolean(
+    document.querySelector("#selection-list li .remove-service")
+  );
+  const suffix = hasAdditionalServices ? " + odabrane dodatne usluge" : "";
+
+  el.textContent = `Procijenjena cijena: od ${PACKAGE_STARTING_PRICES[packageName]}€${suffix}`;
 }
 
 function updateTotal() {
+  if (getSelectedPackageKey()) {
+    displaySelectedPackagePrice();
+    return;
+  }
+
   const total = calculateTotalPrice(currentSelection);
   displayTotalPrice(total);
 }
