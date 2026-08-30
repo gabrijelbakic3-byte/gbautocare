@@ -648,6 +648,48 @@ panel.classList.add("active");
 
 }
 
+function convertCompleteCleaningToBronze() {
+  if (currentSelection.interior !== "full" || currentSelection.exterior !== "full") {
+    return false;
+  }
+
+  const list = document.getElementById("selection-list");
+  if (!list) return false;
+
+  const additionalServices = [...list.children].filter(item => {
+    const text = item.textContent;
+    return !item.classList.contains("selected-package") &&
+      !text.includes("Kompletno unutarnje čišćenje") &&
+      !text.includes("Kompletno vanjsko pranje");
+  });
+
+  list.innerHTML = `
+    <li class="selected-package">
+      <span>Bronze paket</span>
+      <button class="remove-package">✕</button>
+    </li>
+    <li class="package-sub">Kompletno unutarnje čišćenje</li>
+    <li class="package-sub">Kompletno vanjsko pranje</li>
+  `;
+
+  additionalServices.forEach(item => list.appendChild(item));
+
+  currentSelection = {
+    interior: null,
+    exterior: null,
+    chemical: null,
+    ac: false,
+    headlight: false,
+    ceramic: false,
+    engine: false
+  };
+
+  displayPackageStartingPrice(30);
+  syncBookingSelection();
+  showWarning("Kompletno unutarnje i vanjsko čišćenje objedinjeni su u Bronze paket.");
+  return true;
+}
+
 /* ========================= */
 /* CLICK EXTRA SERVICES */
 /* ========================= */
@@ -1808,7 +1850,7 @@ document.querySelectorAll('#interiorPopup .popup-btn')[0]
     if (text.includes("čišćenje površina")) currentSelection.interior = "wipe";
     if (text.includes("Kompletno")) currentSelection.interior = "full";
 
-    updateTotal();
+    if (!convertCompleteCleaningToBronze()) updateTotal();
 });
 
 document.querySelector('#exteriorPopup .popup-btn')
@@ -1822,7 +1864,7 @@ document.querySelector('#exteriorPopup .popup-btn')
     if (text.includes("felge")) currentSelection.exterior = "rims";
     if (text.includes("Kompletno")) currentSelection.exterior = "full";
 
-    updateTotal();
+    if (!convertCompleteCleaningToBronze()) updateTotal();
 });
 
 document.querySelector('#chemicalPopup .popup-btn')
