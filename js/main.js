@@ -1009,6 +1009,14 @@ const images = [
 let current = 0;
 let imgs = [];
 
+function ensureCarouselImage(img) {
+  if (img && !img.hasAttribute("src") && img.dataset.src) {
+    img.src = img.dataset.src;
+  }
+
+  return img ? img.dataset.src : "";
+}
+
 function preloadCarouselNeighbors() {
   const indexes = [
     current,
@@ -1021,18 +1029,18 @@ function preloadCarouselNeighbors() {
   indexes.forEach(i => {
     const img = imgs[i];
     if (img && !img.dataset.preloaded) {
-      const preload = new Image();
-      preload.src = img.src;
+      ensureCarouselImage(img);
       img.dataset.preloaded = "true";
     }
   });
 }
 
-images.forEach(src => {
+images.forEach((src, index) => {
   const img = document.createElement("img");
   img.loading = "lazy";
   img.decoding = "async";
-  img.src = "slike-web-galerija-radova/" + src;
+  img.alt = `GBAutoCare detailing rad ${index + 1}`;
+  img.dataset.src = "slike-web-galerija-radova/" + src;
   carousel.appendChild(img);
   imgs.push(img);
 });
@@ -1109,7 +1117,8 @@ lightboxImg.classList.add("lb-exit-left");
 
 setTimeout(()=>{
 lbIndex = (lbIndex + 1) % imgs.length;
-lightboxImg.src = imgs[lbIndex].src;
+ensureCarouselImage(imgs[lbIndex]);
+lightboxImg.src = imgs[lbIndex].dataset.src;
 
 lightboxImg.classList.remove("lb-exit-left");
 lightboxImg.classList.add("lb-enter");
@@ -1127,7 +1136,8 @@ lightboxImg.classList.add("lb-exit-right");
 
 setTimeout(()=>{
 lbIndex = (lbIndex - 1 + imgs.length) % imgs.length;
-lightboxImg.src = imgs[lbIndex].src;
+ensureCarouselImage(imgs[lbIndex]);
+lightboxImg.src = imgs[lbIndex].dataset.src;
 
 lightboxImg.classList.remove("lb-exit-right");
 lightboxImg.classList.add("lb-enter");
