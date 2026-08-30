@@ -104,7 +104,7 @@
 }
 </script>
 
-<link rel="stylesheet" href="style.css?v=20260829-9">
+<link rel="stylesheet" href="style.css?v=20260830-1">
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -746,6 +746,14 @@ Izaberi paket
                         <span>Pošalji upit za rezervaciju</span>
                         <span class="booking-submit-arrow" aria-hidden="true">→</span>
                     </button>
+
+                    <div id="booking-submit-status" class="booking-submit-status" role="status" aria-live="polite" hidden>
+                        <span class="booking-submit-status-icon" aria-hidden="true">✓</span>
+                        <div>
+                            <strong id="booking-submit-status-title"></strong>
+                            <p id="booking-submit-status-text"></p>
+                        </div>
+                    </div>
 
                     <p class="booking-confirmation-note">
                         Slanje upita ne potvrđuje automatski termin. Javit ćemo vam se za konačnu potvrdu.
