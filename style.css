@@ -6,6 +6,41 @@ color:white;
 scroll-behavior:smooth;
 }
 
+.booking-privacy-note{
+  margin:16px 2px 18px;
+  color:rgba(255,255,255,.52);
+  font-size:11px;
+  line-height:1.55;
+}
+
+.booking-privacy-note a,
+.footer-bottom a{
+  color:#ff5757;
+}
+
+.footer-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.footer-bottom a{
+  font-size:11px;
+  text-decoration:none;
+}
+
+.footer-bottom a:hover{
+  text-decoration:underline;
+}
+
+@media(max-width:599px){
+  .footer-bottom{
+    flex-direction:column;
+    gap:7px;
+  }
+}
+
 /* Jasna potvrda nakon pripreme rezervacijskog upita. */
 .booking-submit-status{
   display:flex;
